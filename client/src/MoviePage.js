@@ -30,10 +30,30 @@ useEffect(() => {
   fetch("/api/getmovie?id=" + movieid)
     .then(response => response.json())
     .then(data => {
-      console.log("here");
-      console.log(data);
       setMovie(data);
-    });   
+    });
+    fetch("/api/getreviews?id=" + movieid)
+    .then(response => response.json())
+    .then(data => {
+      setReviews(data);
+    });  
+    
+    var user = {
+      movieid: movieid,
+      userid: userid
+    };
+    var options = {
+      method: 'POST',
+      body: JSON.stringify(user),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+    }
+    fetch("/api/reviewexists?id=", options)
+      .then(response => response.json())
+      .then(data => {
+        setReviewExists(data);
+      }); 
 }, []);
 
 const addFavorite = (movieid) => {

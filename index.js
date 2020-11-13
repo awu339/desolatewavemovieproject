@@ -160,12 +160,30 @@ app.post('/api/updatereview', (req, res) => {
   })
 });
 
+app.post("/api/reviewexists", (req, res) => {
+  let movieid = req.body.movieid;
+  let userid = req.body.userid;
+  const sqlSelect = "SELECT * FROM Review where movieid = ? AND userid = ?;";
+  db.query(sqlSelect, [movieid, userid], (err, result) => {
+      console.log("what's happening " + result);
+      res.json(result);
+  });
+});
+
 app.get('/api/report', (req, res) => {
   let reviewid = req.query.id;
   console.log(reviewid);
   const sqlUpdate = "UPDATE Review SET report = report + 1 WHERE reviewid = ?";
   db.query(sqlUpdate, [reviewid], (err, result) => {
       console.log('here for review');
+  });
+});
+
+app.get("/api/getreviews", (req, res) => {
+  let movieid = req.query.id;
+  const sqlSelect = "SELECT * FROM Review where movieid = ?;";
+  db.query(sqlSelect, [movieid], (err, result) => {
+      res.json(result);
   });
 });
 
