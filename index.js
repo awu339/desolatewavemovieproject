@@ -40,6 +40,56 @@ app.get("/api/getmovie", (req, res) => {
   });
 });
 
+
+app.post("/api/reviewexists", (req, res) => {
+  let movieid = req.body.movieid;
+  let userid = req.body.userid;
+  const sqlSelect = "SELECT * FROM Review where movieid = ? AND userid = ?;";
+  db.query(sqlSelect, [movieid, userid], (err, result) => {
+      console.log("what's happening " + result);
+      res.json(result);
+  });
+});
+
+app.get("/api/getusers", (req, res) => {
+  const sqlSelect = "SELECT * FROM User;";
+  db.query(sqlSelect, (err, result) => {
+      res.json(result);
+  });
+});
+
+app.post('/api/insertfavorite', (req, res) => {
+  console.log('here fav');
+  console.log(req);
+  const userID = req.body.userid;
+  const movieid = req.body.movieid;
+  const watched = 0;
+
+  const sqlInsert = "INSERT INTO Favorites (userID, movieid, watched) VALUES(?, ?, ?)";
+  db.query(sqlInsert, [userID, movieid, watched], (err, result) => {
+      console.log('here');
+      console.log(result);
+      console.log(err);
+  });
+});
+
+app.post('/api/submitreview', (req, res) => {
+  let userid = req.body.userid;
+  let rating = req.body.rating;
+  let content = req.body.review;
+  let movieid = req.body.movieid;
+  let date = req.body.date;
+  // const sqlInsert = "INSERT INTO Review (userid, movieid, rating, date, content) VALUES(?, ?, ?, ?, ?)";
+  // db.query(sqlInsert, [uerid, movieid, rating, date, content], (err, result) => {
+  // let date = parseInt(req.body.date);
+  const sqlInsert = "INSERT INTO Review (userid, movieid, rating, date, content, report) VALUES(?, ?, ?, curdate(), ?, 0)";
+  db.query(sqlInsert, [userid, movieid, rating, content], (err, result) => {
+      console.log('here for review');
+      console.log(result);
+      console.log(err);
+  });
+});
+
 // Put all API endpoints under '/api'
 app.get('/api/passwords', (req, res) => {
   const count = 5;
@@ -54,6 +104,8 @@ app.get('/api/passwords', (req, res) => {
 
   console.log(`Sent ${count} passwords`);
 });
+
+
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.

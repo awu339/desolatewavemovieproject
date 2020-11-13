@@ -32,37 +32,30 @@ useEffect(() => {
     .then(data => {
       console.log("here");
       console.log(data);
-      // console.log("response: " + response);
       setMovie(data);
-      // const data = response.data;
-      // const length = data.length;
-      // setNumMovies(length);
     });   
-  // console.log("getting one movie");
-    // var movieid= props.location.state[0].movieid;
-    // Axios.get("http://localhost:3002/api/getmovie?id=" + movieid)
-    // .then((response) => {
-    //     setMovie(response.data);
-    // })
-    // Axios.get("http://localhost:3002/api/getreviews?id=" + movieid)
-    // .then((response) => {
-    //   setReviews(response.data);
-    // })
-    // Axios.post("http://localhost:3002/api/reviewexists?id=", {
-    //   movieid: movieid,
-    //   userid: userid})
-    // .then((response) => {
-    //   setReviewExists(response.data);
-    // })
 }, []);
 
 const addFavorite = (movieid) => {
-    console.log('adding favorite');
-    Axios.post(`http://localhost:3002/api/insertfavorite`, {
-        movieid: movieid,
-        userid: userid
+  fetch("/api/insertfavorite", {
+    method: POST, 
+    body: JSON.stringify({
+      movieid: movieid,
+      userid: userid
     })
-    .then(() => alert('success'));
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log("favorites");
+      console.log(data);
+    }); 
+
+    // console.log('adding favorite');
+    // Axios.post(`http://localhost:3002/api/insertfavorite`, {
+    //     movieid: movieid,
+    //     userid: userid
+    // })
+    // .then(() => alert('success'));
 };
 
 /* const getUsername = (userid) => {
