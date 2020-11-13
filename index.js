@@ -23,6 +23,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/api/getmovies", (req, res) => {
+  console.log("movies");
     const sqlSelect = "SELECT * FROM Movies order by year desc, name asc;";
     db.query(sqlSelect, (err, result) => {
         res.json(result);
@@ -30,6 +31,7 @@ app.get("/api/getmovies", (req, res) => {
 });
 
 app.get("/api/getmovie", (req, res) => {
+  console.log("one movie");
   let movieid = req.query.id;
   console.log("movieid: " + movieid);
   const sqlSelect = "SELECT * FROM Movies where movieid = ?;";
