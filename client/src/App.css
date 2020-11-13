@@ -1,31 +1,136 @@
-.App {
-  text-align: center;
-  font-family: "Courier New", monospace;
+.login-form {
+  width: 100% ;
+  max-width: 500px;
+  padding: 15px;
+  margin: auto;
+  height: 100%;
+  align-items:center
+}
+
+.title {
+  font-weight: bold;
+}
+
+body, html, #root, .login, .container {
   width: 100%;
+  height: 100%;
 }
 
-h1 {
-  font-weight: normal;
-  font-size: 42px;
+.btn {
+  width: 100%;
+  min-width: 280px;
+  color: #565656;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  border: solid 2px #1189de;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+.App{
+  text-align: center;
 }
 
-.passwords {
+nav{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  background: blue;
+  color: white;
+}
+
+.navlinks{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   list-style: none;
-  padding: 0;
-  font-size: 32px;
-  margin-bottom: 2em;
 }
 
-.more {
-  font-size: 32px;
-  font-family: "Courier New", monospace;
-  border: 2px solid #000;
-  background-color: #fff;
-  padding: 10px 25px;
+.form {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.more:hover {
-  background-color: #FDD836;
+
+.form input {
+  width: 300px;
+  height: 60px;
+  margin: 10px;
 }
-.more:active {
-  background-color: #FFEFA9;
+
+.search {
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.search input {
+  width: 500px;
+  height: 40px;
+  margin: 10px;
+}
+
+.resultsBox {
+  padding: 20px;
+  text-align: left;
+}
+
+.b{
+  width: 50px;
+}
+
+.button{
+  background-color: white;
+  font-size: 15px;
+  transition-duration: 0.4s;
+  border-radius: 5px;
+}
+
+.button:hover {
+  background-color:#2376c4; 
+  color: white;
+}
+
+.movie-img {
+  width: 100px;
+  margin: 10px;
+}
+
+.movie-page-img {
+  width: 200px;
+  padding: 20px;
+}
+
+.movie-block {
+  margin-left: 15%;
+  margin-right: 10%;
+  width: 70%;
+}
+
+.movie-info {
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  margin-right: 20%;
+  margin-left: 20%;
+}
+
+.movie-text {
+  padding: 10px;
+  float:right;
+  text-align: right;
+}
+
+.movie-span {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

@@ -1,64 +1,39 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import './App.css';
-
-class App extends Component {
-  // Initialize state
-  state = { passwords: [] }
-
-  // Fetch passwords after first mount
-  componentDidMount() {
-    this.getPasswords();
-  }
-
-  getPasswords = () => {
-    // Get the passwords and store them in state
-    fetch('/api/passwords')
-      .then(res => res.json())
-      .then(passwords => this.setState({ passwords }));
-  }
-
-  render() {
-    const { passwords } = this.state;
-
-    return (
+import Axios from 'axios';
+import Nav from './Nav';
+import Home from './Home';
+import Favorites from './Favorites';
+import Movies from './Movies';
+import Profile from './Profile';
+import Search from './Search';
+import Newuser from './Newuser';
+import MoviePage from './MoviePage';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Login from './Login';
+import Friends from './Friends';
+import FriendPage from './FriendPage';
+function App() {
+  return (
+    <Router>
       <div className="App">
-        {/* Render the passwords if we have them */}
-        {passwords.length ? (
-          <div>
-            <h1>5 Passwords.</h1>
-            <ul className="passwords">
-              {/*
-                Generally it's bad to use "index" as a key.
-                It's ok for this example because there will always
-                be the same number of passwords, and they never
-                change positions in the array.
-              */}
-              {passwords.map((password, index) =>
-                <li key={index}>
-                  {password}
-                </li>
-              )}
-            </ul>
-            <button
-              className="more"
-              onClick={this.getPasswords}>
-              Get More
-            </button>
-          </div>
-        ) : (
-          // Render a helpful message otherwise
-          <div>
-            <h1>No passwords :(</h1>
-            <button
-              className="more"
-              onClick={this.getPasswords}>
-              Try Again?
-            </button>
-          </div>
-        )}
+          <Switch>
+            <Route path="/" exact component={Login}/>
+            <Route path="/favorites" component={Favorites}/>
+            <Route path="/movies" component={Movies}/>
+            <Route path="/profile" component={Profile}/>
+            <Route path="/search" component={Search}/>
+            <Route path="/newuser" component={Newuser}/>
+            <Route path="/moviepage" component={MoviePage}/>
+            <Route path ="/home" component ={Home}/>
+            <Route path ="/friends" component ={Friends}/>
+            <Route path ="/friendpage" component ={FriendPage}/>
+          </Switch>
       </div>
-    );
-  }
+    </Router>
+
+  );
 }
 
 export default App;
+
