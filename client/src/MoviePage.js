@@ -88,6 +88,7 @@ const addFavorite = (movieid) => {
 }; */
 
 const submitReview = () => {
+  var movieid = props.location.state[0].movieid;
   var review = {
     userid: userid,
       rating: rating,
@@ -102,6 +103,8 @@ const submitReview = () => {
         'Content-Type': 'application/json'
     }
   }
+  console.log("submit");
+
   fetch("/api/submitreview", options)
   .then(response => response.json())
     .then(data => {
@@ -112,6 +115,8 @@ const submitReview = () => {
 };
 
 const UpdateReview = () => {
+  var movieid = props.location.state[0].movieid;
+
   var review = {
     userid: userid,
       rating: rating,
