@@ -75,6 +75,8 @@ const addFavorite = (movieid) => {
 }; */
 
 const submitReview = () => {
+
+  
   var movieid = props.location.state[0].movieid;
   setDate("" + Date.now());
   console.log('date' + date);

@@ -77,6 +77,17 @@ app.get("/api/getfavorites", (req, res) => {
   });
 });
 
+app.get('/api/getuserid', (req, res) =>{
+  var usernameval = req.query.id;
+  console.log("check user " + usernameval);
+  const sqlSelect = "SELECT userid, type FROM User WHERE username = ?";
+  db.query(sqlSelect, [usernameval], (err, result) =>{
+      if(err) console.log(err);
+      console.log(result);
+      res.json(result);
+  });
+});
+
 app.post('/api/insertfavorite', (req, res) => {
   console.log('here fav');
   console.log(req);
