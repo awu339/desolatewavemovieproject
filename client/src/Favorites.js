@@ -24,7 +24,6 @@ function Favorites() {
   };
  
   useEffect(() => {
-    var userid = 1;
     fetch("/api/getfavorites?id=" + userid)
       .then(response => response.json())
       .then(data => {

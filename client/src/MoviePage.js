@@ -39,7 +39,7 @@ useEffect(() => {
 const addFavorite = (movieid) => {
   var user = {
     movieid: movieid,
-    userid: 1
+    userid: userid
   };
 
   var options = {
