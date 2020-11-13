@@ -20,7 +20,7 @@ function Newuser() {
     const submitUser = () => {
         console.log('here2');
         console.log(username);
-        Axios.post('http://localhost:3002/api/insert', {
+        Axios.post('/api/insert', {
             //userID: userID, 
             username: username, 
             pwd: pwd, 
