@@ -15,10 +15,10 @@ function Movies() {
     .then(data => {
       console.log("here");
       console.log(data);
-      // setMovieList(data);
+      setMovieList(data);
       // const data = response.data;
-      // const length = response.data.length;
-      // setNumMovies(length);
+      const length = data.length;
+      setNumMovies(length);
     }); 
   }, []);
 
