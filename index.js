@@ -18,6 +18,16 @@ db.connect();
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(cors());
+app.use(express.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
+app.get("/api/getmovies", (req, res) => {
+    const sqlSelect = "SELECT * FROM Movies order by year desc, name asc;";
+    db.query(sqlSelect, (err, result) => {
+        res.send(result);
+    });
+});
 
 // Put all API endpoints under '/api'
 app.get('/api/passwords', (req, res) => {
