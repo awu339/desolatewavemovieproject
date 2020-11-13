@@ -38,7 +38,7 @@ useEffect(() => {
 
 const addFavorite = (movieid) => {
   fetch("/api/insertfavorite", {
-    method: POST, 
+    method: "POST", 
     body: JSON.stringify({
       movieid: movieid,
       userid: userid
