@@ -24,12 +24,19 @@ function Favorites() {
   };
  
   useEffect(() => {
-    Axios.get("http://localhost:3002/api/getfavorites?id=" + userid)
-    .then((response) => {
-      setFavoritesList(response.data);
-      console.log("userid" + userid);
+    var userid = 1;
+    fetch("/api/getfavorites?id=" + userid)
+      .then(response => response.json())
+      .then(data => {
+        setFavoritesList(data);
+      });
+    
+    // Axios.get("http://localhost:3002/api/getfavorites?id=" + userid)
+    // .then((response) => {
+    //   setFavoritesList(response.data);
+    //   console.log("userid" + userid);
 
-    }); 
+    // }); 
   }, []);   
 
   return (
