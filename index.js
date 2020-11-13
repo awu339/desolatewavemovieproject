@@ -58,6 +58,25 @@ app.get("/api/getusers", (req, res) => {
   });
 });
 
+app.get('/api/checkuser', (req, res) =>{
+  var usernameval = req.query.id;
+  console.log("check user " + usernameval);
+  const sqlCheckUser = "SELECT password FROM User WHERE username = ?";
+  db.query(sqlCheckUser, [usernameval], (err, result) =>{
+      if(err) console.log(err);
+      console.log(result);
+      res.json(result);
+  });
+});
+
+app.get("/api/getfavorites", (req, res) => {
+  let userid = req.query.id;
+  const sqlSelect = "SELECT m.name as name, m.year as year, m.plot as plot, f.movieid as movieid, f.watched as watched FROM Movies as m, Favorites as f WHERE f.userid = ? and f.movieid = m.movieid;";
+  db.query(sqlSelect, [userid], (err, result) => {
+      res.json(result);
+  });
+});
+
 app.post('/api/insertfavorite', (req, res) => {
   console.log('here fav');
   console.log(req);
@@ -89,6 +108,8 @@ app.post('/api/submitreview', (req, res) => {
       console.log(err);
   });
 });
+
+
 
 // Put all API endpoints under '/api'
 app.get('/api/passwords', (req, res) => {

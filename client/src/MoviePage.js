@@ -41,7 +41,7 @@ const addFavorite = (movieid) => {
     method: "POST", 
     body: JSON.stringify({
       movieid: movieid,
-      userid: userid
+      userid: 1
     })
   })
     .then(response => response.json())

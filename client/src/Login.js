@@ -24,19 +24,25 @@ export default function Login() {
     //alert('username ' + username + " password " + password);
     console.log(password);
     
-    Axios.get("http://localhost:3002/api/checkuser?id=" + username)
-    .then((response) => {
+    fetch("/api/checkuser?id=" + username)
+    .then(response => response.json())
+    .then(data => {
+      correctPassword = data[0].password;
+      checkPassword();
+    });
+    // Axios.get("http://localhost:3002/api/checkuser?id=" + username)
+    // .then((response) => {
 
-        if(response.data.length == 0) {
-            alert("Username does not exist. Please try again");
-        }
-        else{
-            correctPassword = response.data[0].password;
-            console.log(correctPassword);
-            console.log(password===correctPassword);
-            checkPassword();
-        }    
-      });        
+    //     if(response.data.length == 0) {
+    //         alert("Username does not exist. Please try again");
+    //     }
+    //     else{
+    //         correctPassword = response.data[0].password;
+    //         console.log(correctPassword);
+    //         console.log(password===correctPassword);
+    //         checkPassword();
+    //     }    
+    //   });        
     }
 
     function checkPassword() {
