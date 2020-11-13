@@ -24,42 +24,63 @@ export default function Login() {
     //alert('username ' + username + " password " + password);
     console.log(password);
     
-    Axios.get("http://localhost:3002/api/checkuser?id=" + username)
-    .then((response) => {
+    fetch("/api/checkuser?id=" + username)
+    .then(response => response.json())
+    .then(data => {
+      correctPassword = data[0].password;
+      checkPassword();
+    });
+    // Axios.get("http://localhost:3002/api/checkuser?id=" + username)
+    // .then((response) => {
 
-        if(response.data.length == 0) {
-            alert("Username does not exist. Please try again");
-        }
-        else{
-            correctPassword = response.data[0].password;
-            console.log(correctPassword);
-            console.log(password===correctPassword);
-            checkPassword();
-        }    
-      });        
+    //     if(response.data.length == 0) {
+    //         alert("Username does not exist. Please try again");
+    //     }
+    //     else{
+    //         correctPassword = response.data[0].password;
+    //         console.log(correctPassword);
+    //         console.log(password===correctPassword);
+    //         checkPassword();
+    //     }    
+    //   });        
     }
 
     function checkPassword() {
-        if (password === correctPassword){
-            console.log("correct password"); 
-            Axios.get("http://localhost:3002/api/getuserid?id=" + username)
-            .then((response) => {
-                current_userid = response.data[0].userid;
-                current_type = response.data[0].type;
-                console.log('userid ' + current_userid);
-                console.log('type ' + current_type);
-                localStorage.setItem('userid', current_userid);
-                localStorage.setItem('type', current_type);
-                localStorage.setItem('username', username);
-                console.log(localStorage.getItem('userid'));
-                console.log(localStorage.getItem('username'));
-                window.location.href = "/home";
-            });
-        }
-        else{
-            console.log("WRONG!");
-            alert('Wrong Password. Please try again.');
-        }
+      if(password == correctPassword) {
+        fetch("/api/getuserid?id=" + username)
+          .then(response => response.json())
+          .then(data => {
+            current_userid = data[0].userid;
+            current_type = data[0].type;
+                    localStorage.setItem('userid', current_userid);
+                    localStorage.setItem('type', current_type);
+                    localStorage.setItem('username', username);
+                    window.location.href = "/home";
+    });
+      } else {
+        alert('Wrong Password. Please try again.');
+      }
+
+        // if (password === correctPassword){
+        //     console.log("correct password"); 
+        //     Axios.get("http://localhost:3002/api/getuserid?id=" + username)
+        //     .then((response) => {
+        //         current_userid = response.data[0].userid;
+        //         current_type = response.data[0].type;
+        //         console.log('userid ' + current_userid);
+        //         console.log('type ' + current_type);
+        //         localStorage.setItem('userid', current_userid);
+        //         localStorage.setItem('type', current_type);
+        //         localStorage.setItem('username', username);
+        //         console.log(localStorage.getItem('userid'));
+        //         console.log(localStorage.getItem('username'));
+        //         window.location.href = "/home";
+        //     });
+        // }
+        // else{
+        //     console.log("WRONG!");
+        //     alert('Wrong Password. Please try again.');
+        // }
     }; 
 
     

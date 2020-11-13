@@ -11,11 +11,13 @@ function Favorites() {
   console.log("current user is " + userid);
   
   let unfavorite = (movieid, userid) => {
-    console.log("movieid: " + movieid);
-    Axios.get("http://localhost:3002/api/delete?id=" + movieid + "&userid=" + userid);
-    //Axios.get('http://localhost:3001/api/delete', { id: movieid, userid: userid });
-    console.log("userid" + userid);
+    fetch("/api/delete?id=" + movieid + "&userid=" + userid);
 
+    // console.log("movieid: " + movieid);
+    // Axios.get("http://localhost:3002/api/delete?id=" + movieid + "&userid=" + userid);
+    // //Axios.get('http://localhost:3001/api/delete', { id: movieid, userid: userid });
+    // console.log("userid" + userid);
+    window.location.href = "/Favorites";
   };
 
   let watched = (movieid) => {
@@ -24,12 +26,18 @@ function Favorites() {
   };
  
   useEffect(() => {
-    Axios.get("http://localhost:3002/api/getfavorites?id=" + userid)
-    .then((response) => {
-      setFavoritesList(response.data);
-      console.log("userid" + userid);
+    fetch("/api/getfavorites?id=" + userid)
+      .then(response => response.json())
+      .then(data => {
+        setFavoritesList(data);
+      });
+    
+    // Axios.get("http://localhost:3002/api/getfavorites?id=" + userid)
+    // .then((response) => {
+    //   setFavoritesList(response.data);
+    //   console.log("userid" + userid);
 
-    }); 
+    // }); 
   }, []);   
 
   return (
