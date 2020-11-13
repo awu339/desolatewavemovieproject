@@ -31,7 +31,7 @@ useEffect(() => {
     .then(data => {
       console.log("here");
       console.log(data);
-      setMovieList(data);
+      setMovie(data);
       // const data = response.data;
       // const length = data.length;
       // setNumMovies(length);
