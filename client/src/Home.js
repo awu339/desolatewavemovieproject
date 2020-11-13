@@ -13,8 +13,6 @@ function Home() {
   const [dropdown, setDropdown] = useState("");
   const userid = localStorage.getItem('userid');
 
-
-  
   useEffect(() => {
     Axios.get("http://localhost:3002/api/gettopmovies")
     .then((response) => {
@@ -43,7 +41,7 @@ function Home() {
    
     <div>
       <Nav/>
-      <h1>Top trending movies 2020</h1>
+      <h1>TOP!!! trending movies 2020</h1>
       <Dropdown 
         options={options} 
         value={defaultOption} 
