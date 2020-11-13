@@ -26,7 +26,8 @@ function MoviePage(props) {
     var flag = "";
 
 useEffect(() => {
-  fetch("/api/getmovie")
+  var movieid= props.location.state[0].movieid;
+  fetch("/api/getmovie?id=" + movieid)
     .then(response => response.json())
     .then(data => {
       console.log("here");
