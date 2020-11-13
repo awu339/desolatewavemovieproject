@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.get("/api/getmovies", (req, res) => {
     const sqlSelect = "SELECT * FROM Movies order by year desc, name asc;";
     db.query(sqlSelect, (err, result) => {
-        res.send(result);
+        res.json(result);
     });
 });
 
