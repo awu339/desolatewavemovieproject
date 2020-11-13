@@ -88,6 +88,23 @@ app.get('/api/getuserid', (req, res) =>{
   });
 });
 
+app.get('/api/delete', (req, res) => {
+  var movieidval = req.query.id;
+  var userid = req.query.userid;
+  const sqlDelete = "DELETE FROM Favorites WHERE movieid = ? and userid = ?";
+  db.query(sqlDelete, [movieidval, userid],  (err, result) => {
+      if (err) console.log(err);
+  });
+});
+
+app.get("/api/getprofile", (req, res) => {
+  let userid = req.query.id;
+  const sqlSelect = "SELECT userid, username, type, date_created FROM User WHERE userid = ?;";
+  db.query(sqlSelect, [userid], (err, result) => {
+      res.json(result);
+  });
+});
+
 app.post('/api/insertfavorite', (req, res) => {
   console.log('here fav');
   console.log(req);

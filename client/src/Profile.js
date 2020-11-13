@@ -9,11 +9,14 @@ function Profile() {
   //const userid = localStorage.getItem('userid');
 
   useEffect(() => {
-    Axios.get("http://localhost:3002/api/getprofile?id=" + userid)
-    .then((response) => {
-      setProfileInfo(response.data);
-      console.log(userid);
-    }); 
+    fetch("/api/getprofile?id=" + userid)
+    .then(response => response.json())
+    .then(data => {
+      console.log("here");
+      console.log(data);
+      setProfileInfo(data);
+    });
+
   }, []);  
 
   return (

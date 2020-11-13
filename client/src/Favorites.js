@@ -11,10 +11,12 @@ function Favorites() {
   console.log("current user is " + userid);
   
   let unfavorite = (movieid, userid) => {
-    console.log("movieid: " + movieid);
-    Axios.get("http://localhost:3002/api/delete?id=" + movieid + "&userid=" + userid);
-    //Axios.get('http://localhost:3001/api/delete', { id: movieid, userid: userid });
-    console.log("userid" + userid);
+    fetch("/api/delete?id=" + movieid + "&userid=" + userid);
+
+    // console.log("movieid: " + movieid);
+    // Axios.get("http://localhost:3002/api/delete?id=" + movieid + "&userid=" + userid);
+    // //Axios.get('http://localhost:3001/api/delete', { id: movieid, userid: userid });
+    // console.log("userid" + userid);
 
   };
 
