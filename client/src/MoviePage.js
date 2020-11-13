@@ -26,11 +26,12 @@ function MoviePage(props) {
     var flag = "";
 
 useEffect(() => {
-  fetch("/api/getmovies")
+  fetch("/api/getmovie")
     .then(response => response.json())
     .then(data => {
       console.log("here");
       console.log(data);
+      console.log("respones: " + response);
       setMovie(data);
       // const data = response.data;
       // const length = data.length;
