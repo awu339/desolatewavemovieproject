@@ -48,20 +48,13 @@ const addFavorite = (movieid) => {
     headers: {
         'Content-Type': 'application/json'
     }
-}
+  }
   fetch("/api/insertfavorite", options)
     .then(response => response.json())
     .then(data => {
       console.log("favorites");
       console.log(data);
     }); 
-
-    // console.log('adding favorite');
-    // Axios.post(`http://localhost:3002/api/insertfavorite`, {
-    //     movieid: movieid,
-    //     userid: userid
-    // })
-    // .then(() => alert('success'));
 };
 
 /* const getUsername = (userid) => {
@@ -75,54 +68,54 @@ const addFavorite = (movieid) => {
 }; */
 
 const submitReview = () => {
-
-  
-  var movieid = props.location.state[0].movieid;
-  setDate("" + Date.now());
-  console.log('date' + date);
-  console.log("getting here");
-  Axios.post('http://localhost:3002/api/submitreview', {
-      userid: userid,
+  var review = {
+    userid: userid,
       rating: rating,
       review: review,
       date: date,
       movieid: movieid
-  }).then(() => {
-      alert("success");
-      console.log("actually getting here");
-  });
+  };
+  var options = {
+    method: 'POST',
+    body: JSON.stringify(review),
+    headers: {
+        'Content-Type': 'application/json'
+    }
+  }
+  fetch("/api/submitreview", options); 
   window.location.href = "/MoviePage";
 };
 
 const UpdateReview = () => {
-  var movieid = props.location.state[0].movieid;
-  setDate("" + Date.now());
-  Axios.post('http://localhost:3002/api/updatereview', {
-      userid: userid,
+  var review = {
+    userid: userid,
       rating: rating,
       review: review,
       date: date,
       movieid: movieid
-  }).then(() => {
-      alert("success");
-      console.log("actually getting here");
-  });
+  };
+
+  var options = {
+    method: 'POST',
+    body: JSON.stringify(review),
+    headers: {
+        'Content-Type': 'application/json'
+    }
+  }
+  fetch("/api/insertfavorite", options);
   window.location.href = "/MoviePage";
 };
 
 //change review table
 const report = (reviewid) => {
-  console.log('report');
-  console.log(reviewid);
-  Axios.get("http://localhost:3002/api/report?id=" + reviewid)
-  .then(() => alert('success'));
+  fetch("/api/report?id=" + reviewid)
+    .then(response => response.json()); 
 };  
 
 const deleteReview = (reviewid) => {
-  console.log('report');
-  console.log(reviewid);
-  Axios.get("http://localhost:3002/api/deletereview?id=" + reviewid)
-  .then(() => alert('success'));
+  fetch("/api/deletereview?id=" + reviewid)
+    .then(response => response.json());
+
   window.location.href = "/MoviePage";
 };  
 

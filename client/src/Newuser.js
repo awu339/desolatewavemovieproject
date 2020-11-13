@@ -60,7 +60,7 @@ function Newuser() {
                 setPwd(e.target.value)
                 }} 
             />
-            <label>Type:</label>
+            <label>Admin Code:</label>
             <input 
                 type="text" 
                 name="type" 
