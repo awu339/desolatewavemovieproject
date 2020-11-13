@@ -7,7 +7,7 @@ function Newuser() {
     //const [userID, setUserID] = useState('');
     const [username, setUsername] = useState('');
     const [pwd, setPwd] = useState('');
-    const [type, setType] = useState('');
+    var [type, setType] = useState('');
     const [userList, setUserList] = useState([]);
 
     /* useEffect(() => {
@@ -65,7 +65,11 @@ function Newuser() {
                 type="text" 
                 name="type" 
                 onChange={(e)=> {
-                setType(e.target.value)
+                  if(e.target.value == "cS3!6") {
+                    setType("admin");
+                  } else {
+                    setType("user");
+                  }
                 }} 
             />
             <button onClick = {submitUser}>Submit</button>

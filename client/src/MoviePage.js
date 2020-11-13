@@ -26,22 +26,32 @@ function MoviePage(props) {
     var flag = "";
 
 useEffect(() => {
-    console.log("getting one movie");
-    var movieid= props.location.state[0].movieid;
-    Axios.get("http://localhost:3002/api/getmovie?id=" + movieid)
-    .then((response) => {
-        setMovie(response.data);
-    })
-    Axios.get("http://localhost:3002/api/getreviews?id=" + movieid)
-    .then((response) => {
-      setReviews(response.data);
-    })
-    Axios.post("http://localhost:3002/api/reviewexists?id=", {
-      movieid: movieid,
-      userid: userid})
-    .then((response) => {
-      setReviewExists(response.data);
-    })
+  fetch("/api/getmovie")
+    .then(response => response.json())
+    .then(data => {
+      console.log("here");
+      console.log(data);
+      setMovieList(data);
+      // const data = response.data;
+      // const length = data.length;
+      // setNumMovies(length);
+    });   
+  // console.log("getting one movie");
+    // var movieid= props.location.state[0].movieid;
+    // Axios.get("http://localhost:3002/api/getmovie?id=" + movieid)
+    // .then((response) => {
+    //     setMovie(response.data);
+    // })
+    // Axios.get("http://localhost:3002/api/getreviews?id=" + movieid)
+    // .then((response) => {
+    //   setReviews(response.data);
+    // })
+    // Axios.post("http://localhost:3002/api/reviewexists?id=", {
+    //   movieid: movieid,
+    //   userid: userid})
+    // .then((response) => {
+    //   setReviewExists(response.data);
+    // })
 }, []);
 
 const addFavorite = (movieid) => {
