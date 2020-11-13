@@ -1,8 +1,20 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
 const generatePassword = require('password-generator');
+const mysql = require('mysql');
+const cors = require('cors');
 
 const app = express();
+
+const db = mysql.createConnection({
+    host: 'vcm-17529.vm.duke.edu',
+    user: 'root',
+    password: 'password',
+    database: 'mydb'
+});
+
+db.connect();
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
