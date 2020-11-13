@@ -11,13 +11,14 @@ function Movies() {
 
   useEffect(() => {
     fetch("/api/getmovies")
-    .then((response) => {
+    .then(response => response.json())
+    .then(data => {
       console.log("here");
-      console.log(response);
-      setMovieList(response.data);
-      const data = response.data;
-      const length = response.data.length;
-      setNumMovies(length);
+      console.log(data);
+      // setMovieList(data);
+      // const data = response.data;
+      // const length = response.data.length;
+      // setNumMovies(length);
     }); 
   }, []);
 
