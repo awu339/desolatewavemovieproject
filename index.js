@@ -32,7 +32,7 @@ app.get("/api/getmovies", (req, res) => {
 app.get("/api/getmovie", (req, res) => {
   let movieid = req.query.id;
   console.log("movieid: " + movieid);
-  const sqlSelect = "SELECT * FROM Movies where movieid = ?;";
+  const sqlSelect = "SELECT * FROM Movies where movieid = 376;";
   db.query(sqlSelect, [movieid], (err, result) => {
       res.json(result);
   });
