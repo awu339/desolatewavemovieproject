@@ -37,13 +37,19 @@ useEffect(() => {
 }, []);
 
 const addFavorite = (movieid) => {
-  fetch("/api/insertfavorite", {
-    method: "POST", 
-    body: JSON.stringify({
-      movieid: movieid,
-      userid: 1
-    })
-  })
+  var user = {
+    movieid: movieid,
+    userid: 1
+  };
+
+  var options = {
+    method: 'POST',
+    body: JSON.stringify(user),
+    headers: {
+        'Content-Type': 'application/json'
+    }
+}
+  fetch("/api/insertfavorite", options)
     .then(response => response.json())
     .then(data => {
       console.log("favorites");
