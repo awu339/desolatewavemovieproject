@@ -31,7 +31,7 @@ useEffect(() => {
     .then(data => {
       console.log("here");
       console.log(data);
-      console.log("responses: " + response);
+      console.log("response: " + response);
       setMovie(data);
       // const data = response.data;
       // const length = data.length;
