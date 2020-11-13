@@ -102,7 +102,12 @@ const submitReview = () => {
         'Content-Type': 'application/json'
     }
   }
-  fetch("/api/submitreview", options); 
+  fetch("/api/submitreview", options)
+  .then(response => response.json())
+    .then(data => {
+      console.log("submit");
+      console.log(data);
+    }); 
   window.location.href = "/MoviePage";
 };
 
