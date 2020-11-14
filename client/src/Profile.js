@@ -7,7 +7,7 @@ function Profile() {
   const [myReviews, setMyReviews] = useState([]);
   const userid = localStorage.getItem('userid');
 
-  useEffect(() => {
+/*   useEffect(() => {
     fetch("/api/getprofile?id=" + userid)
     .then(response => response.json())
     .then(data => {
@@ -16,7 +16,7 @@ function Profile() {
       setProfileInfo(data);
     });
 
-  }, []);  
+  }, []);   */
 
   useEffect(() => {
     fetch("/api/myreviews?id=" + userid)
