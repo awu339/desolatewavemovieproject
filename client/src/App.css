@@ -84,6 +84,19 @@ nav{
   width: 50px;
 }
 
+.fourth{
+  border-color: #3682d8;
+  color: #3682d8;
+  background-image: linear-gradient(45deg, #3682d8 50%, transparent 50%);
+  background-position: 100%;
+  background-size: 400%;
+  transition: background-image 300ms ease-in-out; 
+}
+  
+  .fourth:hover {
+    background-position: 0;
+}
+
 .newb{
   display:inline-block;
   padding:0.35em 1.2em;
@@ -99,6 +112,7 @@ nav{
   color:#3682d8;
   text-align:center;
   transition: all 0.2s;
+  background-color: white;
   }
 .newb:hover{
   color:#FFFFFF;
