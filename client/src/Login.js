@@ -58,7 +58,7 @@ export default function Login() {
         <h1>DesolateWave Movie List</h1>
       <form onSubmit={handleSubmit}>
         <FormGroup controlId="username" bsSize="large">
-          <ControlLabel>Username</ControlLabel>
+          <ControlLabel>Username: </ControlLabel>
           <FormControl
             type="username"
             value={username}
@@ -67,7 +67,7 @@ export default function Login() {
         </FormGroup>
         <br></br>
         <FormGroup controlId="password" bsSize="large">
-          <ControlLabel>Password</ControlLabel>
+          <ControlLabel>Password: </ControlLabel>
           <FormControl
             value={password}
             onChange={e => setPassword(e.target.value)}
