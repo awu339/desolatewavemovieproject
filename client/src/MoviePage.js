@@ -171,7 +171,7 @@ return (
           <br/> Director: {val.director}
           <br/> Actors: {val.actors} 
           <br/> Runtime: {val.runtime}
-          <br/> <Button outline color="primary" className="w-25" onClick={() => addFavorite(val.movieid)}>Add Favorite</Button>
+          <br/> <button className = "newb" onClick={() => addFavorite(val.movieid)}>Add Favorite</button>
 
           <h1>Leave a Review</h1>
           <label>Rating</label> 
@@ -193,7 +193,7 @@ return (
         }}
       />
               
-      <br/><Button outline color="primary" className="w-25" onClick = {submitReview}>Submit</Button>
+      <br/><button className = "newb" onClick = {submitReview}>Submit</button>
         </div>
         );}
   
@@ -208,7 +208,7 @@ return (
           <br/> Director: {val.director}
           <br/> Actors: {val.actors} 
           <br/> Runtime: {val.runtime}
-          <br/> <Button outline color="primary" className="w-25" onClick={() => addFavorite(val.movieid)}>Add Favorite</Button>
+          <br/> <button className = "newb" onClick={() => addFavorite(val.movieid)}>Add Favorite</button>
 
           <h1>Update Your Review</h1>
           <br/>User: {username}
@@ -233,8 +233,8 @@ return (
           setReview(e.target.value);
         }}
       />
-      <br/><Button outline color="primary" className="w-25" onClick = {UpdateReview}>Update</Button>
-     <br/> <Button outline color="primary" className="w-25" onClick={() => deleteReview(reviewexists[0].reviewid)}>Delete</Button>
+      <br/><button className = "newb" onClick = {UpdateReview}>Update</button>
+     <br/> <button className = "newb" onClick={() => deleteReview(reviewexists[0].reviewid)}>Delete</button>
 
             </p>
           );
@@ -254,9 +254,9 @@ return (
             <br/> Review: {val.content} | 
             Reported: {val.report}
             
-            <br/> <Button outline color="primary" className="w-25" onClick={() => report(val.reviewid)}>Report</Button> 
+            <br/> <button className = "newb" onClick={() => report(val.reviewid)}>Report</button> 
             {" "} 
-            <Button outline color="primary" className="w-25" onClick={() => deleteReview(val.reviewid)}>Delete</Button>
+            <button className = "newb" onClick={() => deleteReview(val.reviewid)}>Delete</button>
           </p>
         );
       }
@@ -267,7 +267,7 @@ return (
             Rating: {val.rating} | 
             Date: {val.date}
             <br/> Review: {val.content}
-            {" "} <br/> <Button outline color="primary" className="w-25" onClick={() => report(val.reviewid)}>Report</Button>
+            {" "} <br/> <button className = "newb" onClick={() => report(val.reviewid)}>Report</button>
           </p>
         );
       }
