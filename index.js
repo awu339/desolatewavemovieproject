@@ -105,6 +105,46 @@ app.get("/api/getprofile", (req, res) => {
   });
 });
 
+app.get('/api/watched', (req, res) =>{
+  console.log("watched indexjs");
+  var movieidval = req.query.id;
+  var userid = req.query.userid;
+  const sqlWatched = "UPDATE Favorites SET watched = 1 WHERE movieid = ? and userid = ?";
+  db.query(sqlWatched, [movieidval, userid], (err, result) =>{
+      if(err) console.log(err);
+  });
+});
+
+
+app.get("/api/getfriends", (req, res) => {
+  let userid = req.query.id;
+  const sqlSelect = "SELECT u.username, u.userid FROM Friend f, User u WHERE f.user1 = ? and f.user2 = u.userid;";
+  db.query(sqlSelect, [userid], (err, result) => {
+      res.json(result);
+  });
+});
+
+app.get("/api/getfriendfav", (req, res) => {
+  let userid = req.query.id;
+  console.log(req.query);
+  const sqlSelect = "SELECT m.name as name, m.year as year, m.plot as plot, f.movieid as movieid, f.watched as watched FROM Movies as m, Favorites as f WHERE f.userid = ? and f.movieid = m.movieid;";
+  db.query(sqlSelect, [userid], (err, result) => {
+      res.json(result);
+  });
+});
+
+app.post('/api/insertfriendfavorite', (req, res) => {
+  console.log('here fav');
+  console.log(req.body.userid);
+  const userID = req.body.userid;
+  const movieid = req.body.movieid;
+  const watched = 0;
+
+  const sqlInsert = "INSERT INTO Favorites (userID, movieid, watched) VALUES(?, ?, ?)";
+  db.query(sqlInsert, [userID, movieid, watched], (err, result) => {
+  });
+});
+
 app.post('/api/insertfavorite', (req, res) => {
   console.log('here fav');
   console.log(req);
@@ -114,9 +154,6 @@ app.post('/api/insertfavorite', (req, res) => {
 
   const sqlInsert = "INSERT INTO Favorites (userID, movieid, watched) VALUES(?, ?, ?)";
   db.query(sqlInsert, [userID, movieid, watched], (err, result) => {
-      console.log('here');
-      console.log(result);
-      console.log(err);
   });
 });
 
@@ -159,6 +196,8 @@ app.post('/api/updatereview', (req, res) => {
       console.log(result);
   })
 });
+
+
 
 app.post("/api/reviewexists", (req, res) => {
   let movieid = req.body.movieid;

@@ -9,11 +9,11 @@ function Friends() {
     const userid = localStorage.getItem('userid');
 
     useEffect(() => {
-        Axios.get("http://localhost:3002/api/getfriends?id=" + userid)
-        .then((response) => {
-          setFriendFavList(response.data);
-          console.log(response.data);
-        }); 
+    fetch("/api/getfriends?id=" + userid)
+        .then(response => response.json())
+        .then(data => {
+            setFriendFavList(data);
+        });
     }, []);  
       
     return (

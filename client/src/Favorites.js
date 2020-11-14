@@ -21,8 +21,7 @@ function Favorites() {
   };
 
   let watched = (movieid) => {
-    console.log("watched" + movieid);
-    Axios.get("http://localhost:3002/api/watched?id=" + movieid + "&userid=" + userid);
+    fetch("/api/watched?id=" + movieid + "&userid=" + userid);
   };
  
   useEffect(() => {

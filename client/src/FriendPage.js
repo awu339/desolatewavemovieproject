@@ -15,20 +15,27 @@ useEffect(() => {
     friend_username = props.location.state[0].username;
     //friend_userid = userid;
     console.log(userid);
-    Axios.get("http://localhost:3001/api/getfriendfav?id=" + userid)
-    .then((response) => {
-        setFavoritesList(response.data);
-    })
+    fetch("/api/getfriendfav?id=" + userid)
+    .then(response => response.json())
+    .then(data => {
+        setFavoritesList(data);
+    });
    
 }, []);
 
 const addFavorite = (movieid, cur_userid) => {
-    console.log('adding favorite');
-    Axios.post(`http://localhost:3001/api/insertfriendfavorite`, {
-        movieid: movieid,
-        userid: userid
-    })
-    .then(() => alert('success'));
+  var user = {
+    movieid: movieid,
+    userid: userid
+  };
+  var options = {
+    method: 'POST',
+    body: JSON.stringify(user),
+    headers: {
+        'Content-Type': 'application/json'
+    }
+  }
+  fetch("/api/insertfriendfavorite");
 };
 
 
