@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Axios from 'axios';
 import Nav from './Nav';
 import { Button } from 'reactstrap';
-//import { Button } from 'react-bootstrap';
 
 function Favorites() {
   const [favoritesList, setFavoritesList] = useState([]);
@@ -12,11 +10,6 @@ function Favorites() {
   
   let unfavorite = (movieid, userid) => {
     fetch("/api/delete?id=" + movieid + "&userid=" + userid);
-
-    // console.log("movieid: " + movieid);
-    // Axios.get("http://localhost:3002/api/delete?id=" + movieid + "&userid=" + userid);
-    // //Axios.get('http://localhost:3001/api/delete', { id: movieid, userid: userid });
-    // console.log("userid" + userid);
     window.location.href = "/Favorites";
   };
 
@@ -31,13 +24,6 @@ function Favorites() {
       .then(data => {
         setFavoritesList(data);
       });
-    
-    // Axios.get("http://localhost:3002/api/getfavorites?id=" + userid)
-    // .then((response) => {
-    //   setFavoritesList(response.data);
-    //   console.log("userid" + userid);
-
-    // }); 
   }, []);   
 
   return (

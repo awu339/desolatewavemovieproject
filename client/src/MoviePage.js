@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Axios from 'axios';
 import Nav from './Nav';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Button } from 'reactstrap';
 
 function MoviePage(props) {
-    const [movieList, setMovieList] = useState([]);
-    //const [userid, setUserID] = useState('');
-    const [movieid, setMovieID] = useState('');
-    const [watched, setWatched] = useState('');
     const [movie, setMovie] = useState([]);
-    const[favorite, setFavorite] = useState([]);
     const[reviewexists, setReviewExists] = useState([]);
     const [reviews, setReviews] = useState([]);
-    //var [username, setUsername] = useState('');
     var [rating, setRating] = useState("");
     var [review, setReview] = useState("");
     var [date, setDate] = useState("");
@@ -152,17 +144,6 @@ const deleteReview = (reviewid) => {
 
   window.location.href = "/MoviePage";
 };  
-
-/* const flagReport = (report) => {
-  console.log(report);
-  if (report >= 4){
-    flag = 1;
-  }
-  else{
-    flag = 0;
-  }
-};
- */
 
 return (
   <div>

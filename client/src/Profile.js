@@ -1,15 +1,11 @@
 import './App.css';
 import Nav from './Nav';
 import React, { useState, useEffect } from 'react';
-import Axios from 'axios';
-var userid = localStorage.getItem('userid');
+import { Link } from 'react-router-dom';
 
 function Profile() {
-  const [profileInfo, setProfileInfo] = useState([]);
   const [myReviews, setMyReviews] = useState([]);
   const userid = localStorage.getItem('userid');
-  const username = localStorage.getItem('username');
-  //const userid = localStorage.getItem('userid');
 
   useEffect(() => {
     fetch("/api/getprofile?id=" + userid)

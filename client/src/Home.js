@@ -161,5 +161,3 @@ function Home() {
 }
 
 export default Home;
-
-//<img src = "titanic_movieposter.jpg" alt ="image"/>

@@ -151,9 +151,6 @@ app.post('/api/submitreview', (req, res) => {
   let content = req.body.review;
   let movieid = req.body.movieid;
   let date = req.body.date;
-  // const sqlInsert = "INSERT INTO Review (userid, movieid, rating, date, content) VALUES(?, ?, ?, ?, ?)";
-  // db.query(sqlInsert, [uerid, movieid, rating, date, content], (err, result) => {
-  // let date = parseInt(req.body.date);
   const sqlInsert = "INSERT INTO Review (userid, movieid, rating, date, content, report) VALUES(?, ?, ?, curdate(), ?, 0)";
   db.query(sqlInsert, [userid, movieid, rating, content], (err, result) => {
       console.log(err);
@@ -166,9 +163,6 @@ app.post('/api/updatereview', (req, res) => {
   let content = req.body.review;
   let movieid = req.body.movieid;
   let date = req.body.date;
-  // const sqlInsert = "INSERT INTO Review (userid, movieid, rating, date, content) VALUES(?, ?, ?, ?, ?)";
-  // db.query(sqlInsert, [uerid, movieid, rating, date, content], (err, result) => {
-  // let date = parseInt(req.body.date);
   let sql = "DELETE FROM Review WHERE userid = ?;";
   let sql2 = "INSERT INTO Review (userid, movieid, rating, date, content, report) VALUES(?, ?, ?, curdate(), ?, 0);";
   db.query(sql, [userid], (err, result) => {
@@ -227,7 +221,6 @@ app.get("/api/getrecentmovies", (req, res) => {
 
 app.get('/api/deletereview', (req, res) => {
   var reviewid = req.query.id;
-  //we need to replace userid 1 with whoever is logged in
   const sqlDelete = "DELETE FROM Review WHERE reviewid = ?";
   db.query(sqlDelete, [reviewid],  (err, result) => {
       if (err) console.log(err);
