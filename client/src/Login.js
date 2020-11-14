@@ -77,7 +77,7 @@ export default function Login() {
         <button className = "fourth" disabled={!validateForm()} type="submit">
           Login
         </button>
-        <Link to = '/newuser'><button className = "fourths"> Register </button></Link>
+        <Link to = '/newuser'><button className = "newb"> Register </button></Link>
       </form>
     </div>
   );
