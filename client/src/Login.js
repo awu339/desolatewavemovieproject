@@ -60,12 +60,11 @@ export default function Login() {
         <FormGroup controlId="username" bsSize="large">
           <ControlLabel>Username</ControlLabel>
           <FormControl
-            autoFocus
             type="username"
             value={username}
             onChange={e => setUsername(e.target.value)}
           />
-          <spacer type="horizontal" width="100" height="100"> ♢ </spacer>
+          <br></br>
         </FormGroup>
         <FormGroup controlId="password" bsSize="large">
           <ControlLabel>Password</ControlLabel>
@@ -75,7 +74,7 @@ export default function Login() {
             type="password"
           />
         </FormGroup>
-        <spacer type="horizontal" width="100" height="100"> ♢ </spacer>
+        <br></br>
         <button className = "newb" disabled={!validateForm()} type="submit">
           Login
         </button>
