@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import { Row, Col, Container } from 'reactstrap';
 import Axios from 'axios';
 import Nav from './Nav';
 import { Link } from 'react-router-dom';
@@ -13,6 +14,7 @@ function Home() {
   const [number, setNumber] = useState(0);
   const [dropdown, setDropdown] = useState("");
   const userid = localStorage.getItem('userid');
+  const username = localStorage.getItem('username');
   const [profileInfo, setProfileInfo] = useState([]);
   useEffect(() => {
     fetch("/api/gettopmovies")
