@@ -275,6 +275,16 @@ app.get("/api/getsearchgenre", (req, res) => {
   })
 });
 
+app.get('/api/allreports', (req, res) => {
+  console.log("all reports");
+  const sqlSelect = "SELECT r.reviewid, r.movieid, m.name, u.username FROM Review r, Movies m, User u WHERE r.report > 0 and r.movieid = m.movieid and r.userid = u.userid;";
+  db.query(sqlSelect,  (err, result) => {
+      if (err) console.log(err);
+      //console.log(result);
+      res.json(result);
+  });
+}); 
+
 // // Put all API endpoints under '/api'
 // app.get('/api/passwords', (req, res) => {
 //   const count = 5;
