@@ -3,8 +3,10 @@ import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Login.css";
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
+import logo from './cinema.png';
 var current_userid = "";
 var current_type = "";
+
 
 //localStorage.setItem('Userid',current_userid);
 
@@ -29,20 +31,7 @@ export default function Login() {
     .then(data => {
       correctPassword = data[0].password;
       checkPassword();
-    });
-    // Axios.get("http://localhost:3002/api/checkuser?id=" + username)
-    // .then((response) => {
-
-    //     if(response.data.length == 0) {
-    //         alert("Username does not exist. Please try again");
-    //     }
-    //     else{
-    //         correctPassword = response.data[0].password;
-    //         console.log(correctPassword);
-    //         console.log(password===correctPassword);
-    //         checkPassword();
-    //     }    
-    //   });        
+    });    
     }
 
     function checkPassword() {
@@ -60,32 +49,12 @@ export default function Login() {
       } else {
         alert('Wrong Password. Please try again.');
       }
-
-        // if (password === correctPassword){
-        //     console.log("correct password"); 
-        //     Axios.get("http://localhost:3002/api/getuserid?id=" + username)
-        //     .then((response) => {
-        //         current_userid = response.data[0].userid;
-        //         current_type = response.data[0].type;
-        //         console.log('userid ' + current_userid);
-        //         console.log('type ' + current_type);
-        //         localStorage.setItem('userid', current_userid);
-        //         localStorage.setItem('type', current_type);
-        //         localStorage.setItem('username', username);
-        //         console.log(localStorage.getItem('userid'));
-        //         console.log(localStorage.getItem('username'));
-        //         window.location.href = "/home";
-        //     });
-        // }
-        // else{
-        //     console.log("WRONG!");
-        //     alert('Wrong Password. Please try again.');
-        // }
     }; 
 
     
   return (
     <div className="Login">
+        <img className="movie-page-img" src={logo}/>
         <h1>movielist.com</h1>
       <form onSubmit={handleSubmit}>
         <FormGroup controlId="username" bsSize="large">
@@ -105,10 +74,10 @@ export default function Login() {
             type="password"
           />
         </FormGroup>
-        <Button block bsSize="large" disabled={!validateForm()} type="submit">
+        <button className = "newb" disabled={!validateForm()} type="submit">
           Login
-        </Button>
-        <Link to = '/newuser'><Button block bsSize="large" className = "btn"> Register </Button></Link>
+        </button>
+        <Link to = '/newuser'><button className = "newb"> Register </button></Link>
       </form>
     </div>
   );
