@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Nav from './Nav';
 import { Button } from 'reactstrap';
+import image from './nomovie.jpg';
 
 function MoviePage(props) {
     const [movie, setMovie] = useState([]);
@@ -152,11 +153,18 @@ return (
       console.log("rendering the movie");
       console.log(reviewexists);
       
+      var x = "";
+      if (val.poster == "N/A") {
+        x = image;
+      }
+      else {
+        x = val.poster;
+      }
       if (reviewexists === undefined || reviewexists.length == 0){
         return (
         <div className = "movie-info">
           <h2>{val.name} </h2>
-          <img className="movie-page-img" src = {val.poster} alt="Poster"/>
+          <img className="movie-page-img" src = {x} alt="Poster"/>
           <br/> Year: {val.year} 
           <br/> Genre: {val.genre} 
           <br/> Synopsis: {val.plot} 
@@ -193,7 +201,7 @@ return (
           return (
             <p>
               <h2>{val.name} </h2>
-          <img className="movie-page-img" src = {val.poster} alt="Poster"/>
+          <img className="movie-page-img" src = {x} alt="Poster"/>
           <br/> Year: {val.year} 
           <br/> Genre: {val.genre} 
           <br/> Synopsis: {val.plot} 

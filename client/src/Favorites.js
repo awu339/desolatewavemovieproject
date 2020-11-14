@@ -46,9 +46,9 @@ function Favorites() {
               Synopsis: {val.synopsis} |
               Watched: {watchval}
               <br />
-              <Button outline color="primary" size = "sm"  onClick={() => {unfavorite(val.movieid, userid)}}> Unfavorite </Button> 
+              <button className = "button" onClick={() => {unfavorite(val.movieid, userid)}}> Unfavorite </button> 
               {' '}
-              <Button outline color="primary" size = "sm"  onClick={() => {watched(val.movieid, userid)}}> Watched </Button>
+              <button className = "button" onClick={() => {watched(val.movieid, userid)}}> Watched </button>
            </p>
           );
           })} 
