@@ -22,6 +22,7 @@ function Favorites() {
 
   let watched = (movieid) => {
     fetch("/api/watched?id=" + movieid + "&userid=" + userid);
+    window.location.href = "/Favorites"
   };
  
   useEffect(() => {
@@ -59,9 +60,9 @@ function Favorites() {
               Synopsis: {val.synopsis} |
               Watched: {watchval}
               <br />
-              <Button outline color="primary" className="w-25" onClick={() => {unfavorite(val.movieid, userid)}}> Unfavorite </Button> 
+              <Button outline color="primary" size = "sm"  onClick={() => {unfavorite(val.movieid, userid)}}> Unfavorite </Button> 
               {' '}
-              <Button outline color="primary" className="w-25" onClick={() => {watched(val.movieid, userid)}}> Watched </Button>
+              <Button outline color="primary" size = "sm"  onClick={() => {watched(val.movieid, userid)}}> Watched </Button>
            </p>
           );
           })} 

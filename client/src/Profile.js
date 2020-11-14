@@ -6,6 +6,9 @@ var userid = localStorage.getItem('userid');
 
 function Profile() {
   const [profileInfo, setProfileInfo] = useState([]);
+  const [myReviews, setMyReviews] = useState([]);
+  const userid = localStorage.getItem('userid');
+  const username = localStorage.getItem('username');
   //const userid = localStorage.getItem('userid');
 
   useEffect(() => {
@@ -19,20 +22,29 @@ function Profile() {
 
   }, []);  
 
+  useEffect(() => {
+    fetch("/api/myreviews?id=" + userid)
+    .then(response => response.json())
+    .then(data => {
+      setMyReviews(data);
+    });
+
+  }, []);   
+
   return (
     <div>
       <Nav/>
-      <h1>Profile</h1>
-      {profileInfo.map((val) => {
+      <h1>My Reviews</h1>
+      {myReviews.map((val) => {
         return (
         <p>
-          Userid: {val.userid} 
-          <br />
-          Username: {val.username} 
-          <br />
-          User type: {val.type} 
-          <br />
-          Date created: {val.date_created}
+          Movie: {val.name} | 
+          Rating: {val.rating} | 
+          Review #: {val.reviewid} | 
+          <Link to={{ pathname: "/MoviePage", 
+                state: [{movieid: val.movieid}]  
+                }}> show
+         </Link>
         </p>
         );
       })}

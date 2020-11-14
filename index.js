@@ -285,6 +285,19 @@ app.get('/api/allreports', (req, res) => {
   });
 }); 
 
+app.get('/api/myreviews', (req, res) => {
+  console.log("my reviews");
+  var userid = req.query.id;
+  console.log(userid);
+  const sqlSelect = "SELECT * FROM Review r, Movies m WHERE r.movieid = m.movieid and r.userid = ? order by r.rating DESC;";
+  // const sqlSelect = "SELECT r.reviewid, r.movieid, m.name, r.rating FROM Review r, Movies m WHERE r.movieid = m.movieid and r.userid = ?;";
+  db.query(sqlSelect, [userid], (err, result) => {
+      if (err) console.log(err);
+      //console.log(result);
+      res.json(result);
+  });
+}); 
+
 // // Put all API endpoints under '/api'
 // app.get('/api/passwords', (req, res) => {
 //   const count = 5;

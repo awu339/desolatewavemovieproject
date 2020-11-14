@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Row, Col, Container } from 'reactstrap';
-import Axios from 'axios';
 import Nav from './Nav';
 import { Link } from 'react-router-dom';
 import Dropdown from 'react-dropdown';
@@ -65,7 +64,7 @@ function Home() {
         </p>
         );
       })}
-      <Container fluid>
+      <Container>
       <Row>
         <Col>
         <h1>TOP!!! trending movies 2020</h1>
@@ -75,7 +74,7 @@ function Home() {
         placeholder="Options" 
         onChange={(e) => {
           
-           console.log(e.value);
+          console.log(e.value);
           if (e.value == "Top 10" || e.value == "") {
             setNumber(10);
             num = 10;
