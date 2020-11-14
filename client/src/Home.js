@@ -14,19 +14,18 @@ function Home() {
   const userid = localStorage.getItem('userid');
 
   useEffect(() => {
-    Axios.get("http://localhost:3002/api/gettopmovies")
-    .then((response) => {
-      if (response != null){
-        setTopMovies(response.data);
-      }
-     
+    fetch("/api/gettopmovies")
+    .then(response => response.json())
+    .then(data => {
+      setTopMovies(data);
     }); 
   }, []);
 
   useEffect(() => {
-    Axios.get("http://localhost:3002/api/getrecentmovies")
-    .then((response) => {
-      setRecentMovies(response.data);
+    fetch("/api/getrecentmovies")
+    .then(response => response.json())
+    .then(data => {
+      setRecentMovies(data);
     }); 
   }, []);
 

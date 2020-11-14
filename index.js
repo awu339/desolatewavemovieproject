@@ -187,6 +187,29 @@ app.get("/api/getreviews", (req, res) => {
   });
 });
 
+app.get("/api/gettopmovies", (req, res) => {
+  let sql = "CREATE VIEW a AS (SELECT movieid, AVG(rating) as rating FROM Review GROUP BY movieid);";
+  let sql2 = "SELECT m.name, a.rating, m.movieid, m.poster FROM Movies m, a WHERE m.movieid = a.movieid ORDER BY a.rating desc;"
+  db.query(sql, (err, result) => {
+      //res.send(result);
+      console.log("sql");
+      console.log(result);
+  })
+  db.query(sql2, (err, result) => {
+      res.json(result);
+      console.log("sql2");
+      console.log(result);
+  })
+});
+
+app.get("/api/getrecentmovies", (req, res) => {
+  let sql = "SELECT * FROM Movies WHERE year = 2019 or year = 2020 order by year desc;"
+  db.query(sql, (err, result) => {
+      res.json(result);
+      console.log(result);
+  })
+});
+
 app.get('/api/deletereview', (req, res) => {
   console.log("delete review");
   var reviewid = req.query.id;
