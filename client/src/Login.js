@@ -65,6 +65,7 @@ export default function Login() {
             value={username}
             onChange={e => setUsername(e.target.value)}
           />
+          <spacer type="horizontal" width="100" height="100"> ♢ </spacer>
         </FormGroup>
         <FormGroup controlId="password" bsSize="large">
           <ControlLabel>Password</ControlLabel>
@@ -74,9 +75,11 @@ export default function Login() {
             type="password"
           />
         </FormGroup>
-        <button className = "fourth" disabled={!validateForm()} type="submit">
+        <spacer type="horizontal" width="100" height="100"> ♢ </spacer>
+        <button className = "newb" disabled={!validateForm()} type="submit">
           Login
         </button>
+        {" "}
         <Link to = '/newuser'><button className = "newb"> Register </button></Link>
       </form>
     </div>
