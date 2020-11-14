@@ -23,7 +23,6 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/api/getmovies", (req, res) => {
-  console.log("movies");
     const sqlSelect = "SELECT * FROM Movies order by year desc, name asc;";
     db.query(sqlSelect, (err, result) => {
         res.json(result);
@@ -31,9 +30,7 @@ app.get("/api/getmovies", (req, res) => {
 });
 
 app.get("/api/getmovie", (req, res) => {
-  console.log("one movie");
   let movieid = req.query.id;
-  console.log("movieid: " + movieid);
   const sqlSelect = "SELECT * FROM Movies where movieid = ?;";
   db.query(sqlSelect, [movieid], (err, result) => {
       res.json(result);
@@ -46,7 +43,6 @@ app.post("/api/reviewexists", (req, res) => {
   let userid = req.body.userid;
   const sqlSelect = "SELECT * FROM Review where movieid = ? AND userid = ?;";
   db.query(sqlSelect, [movieid, userid], (err, result) => {
-      console.log("what's happening " + result);
       res.json(result);
   });
 });
@@ -60,11 +56,9 @@ app.get("/api/getusers", (req, res) => {
 
 app.get('/api/checkuser', (req, res) =>{
   var usernameval = req.query.id;
-  console.log("check user " + usernameval);
   const sqlCheckUser = "SELECT password FROM User WHERE username = ?";
   db.query(sqlCheckUser, [usernameval], (err, result) =>{
       if(err) console.log(err);
-      console.log(result);
       res.json(result);
   });
 });
@@ -79,11 +73,9 @@ app.get("/api/getfavorites", (req, res) => {
 
 app.get('/api/getuserid', (req, res) =>{
   var usernameval = req.query.id;
-  console.log("check user " + usernameval);
   const sqlSelect = "SELECT userid, type FROM User WHERE username = ?";
   db.query(sqlSelect, [usernameval], (err, result) =>{
       if(err) console.log(err);
-      console.log(result);
       res.json(result);
   });
 });
@@ -106,7 +98,6 @@ app.get("/api/getprofile", (req, res) => {
 });
 
 app.get('/api/watched', (req, res) =>{
-  console.log("watched indexjs");
   var movieidval = req.query.id;
   var userid = req.query.userid;
   const sqlWatched = "UPDATE Favorites SET watched = 1 WHERE movieid = ? and userid = ?";
@@ -126,7 +117,6 @@ app.get("/api/getfriends", (req, res) => {
 
 app.get("/api/getfriendfav", (req, res) => {
   let userid = req.query.id;
-  console.log(req.query);
   const sqlSelect = "SELECT m.name as name, m.year as year, m.plot as plot, f.movieid as movieid, f.watched as watched FROM Movies as m, Favorites as f WHERE f.userid = ? and f.movieid = m.movieid;";
   db.query(sqlSelect, [userid], (err, result) => {
       res.json(result);
@@ -134,8 +124,7 @@ app.get("/api/getfriendfav", (req, res) => {
 });
 
 app.post('/api/insertfriendfavorite', (req, res) => {
-  console.log('here fav');
-  console.log(req.body.userid);
+
   const userID = req.body.userid;
   const movieid = req.body.movieid;
   const watched = 0;
@@ -146,8 +135,7 @@ app.post('/api/insertfriendfavorite', (req, res) => {
 });
 
 app.post('/api/insertfavorite', (req, res) => {
-  console.log('here fav');
-  console.log(req);
+
   const userID = req.body.userid;
   const movieid = req.body.movieid;
   const watched = 0;
@@ -168,8 +156,6 @@ app.post('/api/submitreview', (req, res) => {
   // let date = parseInt(req.body.date);
   const sqlInsert = "INSERT INTO Review (userid, movieid, rating, date, content, report) VALUES(?, ?, ?, curdate(), ?, 0)";
   db.query(sqlInsert, [userid, movieid, rating, content], (err, result) => {
-      console.log('here for review');
-      console.log(result);
       console.log(err);
   });
 });
@@ -187,13 +173,9 @@ app.post('/api/updatereview', (req, res) => {
   let sql2 = "INSERT INTO Review (userid, movieid, rating, date, content, report) VALUES(?, ?, ?, curdate(), ?, 0);";
   db.query(sql, [userid], (err, result) => {
       //res.send(result);
-      console.log("sql");
-      console.log(result);
   })
   db.query(sql2,[userid, movieid, rating, content], (err, result) => {
       res.json(result);
-      console.log("sql2");
-      console.log(result);
   })
 });
 
@@ -210,7 +192,6 @@ app.post("/api/reviewexists", (req, res) => {
 
 app.get('/api/report', (req, res) => {
   let reviewid = req.query.id;
-  console.log(reviewid);
   const sqlUpdate = "UPDATE Review SET report = report + 1 WHERE reviewid = ?";
   db.query(sqlUpdate, [reviewid], (err, result) => {
   });
@@ -245,7 +226,6 @@ app.get("/api/getrecentmovies", (req, res) => {
 });
 
 app.get('/api/deletereview', (req, res) => {
-  console.log("delete review");
   var reviewid = req.query.id;
   //we need to replace userid 1 with whoever is logged in
   const sqlDelete = "DELETE FROM Review WHERE reviewid = ?";
@@ -256,7 +236,6 @@ app.get('/api/deletereview', (req, res) => {
 
 
 app.post('/api/insert', (req, res) => {
-  console.log('here1');
   const username = req.body.username;
   const pwd = req.body.pwd;
   const type = req.body.type;
@@ -296,20 +275,20 @@ app.get("/api/getsearchgenre", (req, res) => {
   })
 });
 
-// Put all API endpoints under '/api'
-app.get('/api/passwords', (req, res) => {
-  const count = 5;
+// // Put all API endpoints under '/api'
+// app.get('/api/passwords', (req, res) => {
+//   const count = 5;
 
-  // Generate some passwords
-  const passwords = Array.from(Array(count).keys()).map(i =>
-    generatePassword(12, false)
-  )
+//   // Generate some passwords
+//   const passwords = Array.from(Array(count).keys()).map(i =>
+//     generatePassword(12, false)
+//   )
 
-  // Return them as json
-  res.json(passwords);
+//   // Return them as json
+//   res.json(passwords);
 
-  console.log(`Sent ${count} passwords`);
-});
+//   console.log(`Sent ${count} passwords`);
+// });
 
 
 
@@ -322,4 +301,4 @@ app.get('*', (req, res) => {
 const port = process.env.PORT || 5000;
 app.listen(port);
 
-console.log(`Password generator listening on ${port}`);
+// console.log(`Password generator listening on ${port}`);
