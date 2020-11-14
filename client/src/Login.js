@@ -55,7 +55,7 @@ export default function Login() {
   return (
     <div className="Login">
         <img className="movie-page-img" src={logo}/>
-        <h1>movielist.com</h1>
+        <h1>DesolateWave Movie List</h1>
       <form onSubmit={handleSubmit}>
         <FormGroup controlId="username" bsSize="large">
           <ControlLabel>Username</ControlLabel>
@@ -64,8 +64,8 @@ export default function Login() {
             value={username}
             onChange={e => setUsername(e.target.value)}
           />
-          <br></br>
         </FormGroup>
+        <br></br>
         <FormGroup controlId="password" bsSize="large">
           <ControlLabel>Password</ControlLabel>
           <FormControl
