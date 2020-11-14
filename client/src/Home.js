@@ -5,6 +5,7 @@ import Nav from './Nav';
 import { Link } from 'react-router-dom';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import image from './nomovie.jpg';
 
 function Home() {
   const [topMovies, setTopMovies] = useState([]);
@@ -12,7 +13,7 @@ function Home() {
   const [number, setNumber] = useState(0);
   const [dropdown, setDropdown] = useState("");
   const userid = localStorage.getItem('userid');
-
+  const [profileInfo, setProfileInfo] = useState([]);
   useEffect(() => {
     fetch("/api/gettopmovies")
     .then(response => response.json())
@@ -29,6 +30,17 @@ function Home() {
     }); 
   }, []);
 
+  useEffect(() => {
+    fetch("/api/getprofile?id=" + userid)
+    .then(response => response.json())
+    .then(data => {
+      console.log("here");
+      console.log(data);
+      setProfileInfo(data);
+    });
+
+  }, []);  
+
   const options = [
     'Top 10', 'Top 25', 'Top 50'
   ];
@@ -40,8 +52,22 @@ function Home() {
    
     <div>
       <Nav/>
-      <h1>TOP!!! trending movies 2020</h1>
-      <Dropdown 
+      <h1>Welcome {username}!</h1>
+      {profileInfo.map((val) => {
+        var date = val.date_created.split("T");
+        date = date[0];
+        return (
+        <p>
+          User type: {val.type} | 
+          Date created: {date}
+        </p>
+        );
+      })}
+      <Container fluid>
+      <Row>
+        <Col>
+        <h1>TOP!!! trending movies 2020</h1>
+        <Dropdown 
         options={options} 
         value={defaultOption} 
         placeholder="Options" 
@@ -63,32 +89,72 @@ function Home() {
 
       {topMovies.slice(0,number).map((movie) => {
         console.log(number);
-        return (
-        <div>
-          {movie.name} | Rating: {movie.rating}
-          <Link to={{ 
-            pathname: "/MoviePage", 
-            state: [{userid: userid, movieid: movie.movieid, watched: 1}]  
-            }}> 
-            <img className="movie-img" src={movie.poster} alt="poster"/>
-          </Link>
+        if(movie.poster == "N/A"){
+          return (
+          
+            <div>
+              {movie.name} | Rating: {movie.rating}
+              <Link to={{ 
+                pathname: "/MoviePage", 
+                state: [{userid: userid, movieid: movie.movieid, watched: 1}]  
+                }}> 
+                <img className="icon-img" src={image}  alt="poster"/>
+              </Link>
+            </div>
+            );
+        }
+        else{  
+          return (
+          
+            <div>
+              {movie.name} | Rating: {movie.rating}
+              <Link to={{ 
+                pathname: "/MoviePage", 
+                state: [{userid: userid, movieid: movie.movieid, watched: 1}]  
+                }}> 
+                <img className="movie-img" src={movie.poster} alt="poster"/> 
+                
+              </Link>
         </div>
-        );
+          );
+        }
       })}
+        </Col>
+        <Col>
+        <h1>Recent Movies</h1>
+          {recentMovies.map((movie) => {
+            if(movie.poster == "N/A"){
+              return (
+                <div>
+                  {movie.name} | 
+                  <Link to={{ 
+                    pathname: "/MoviePage", 
+                    state: [{userid: userid, movieid: movie.movieid, watched: 1}]  
+                    }}> 
+                    <img className="icon-img" src={image} alt={movie.name}/>
+                  </Link>
+                </div>
+                );
+            }
+            else{ 
+              return (
+            
+                <div>
+                  {movie.name} | 
+                  <Link to={{ 
+                    pathname: "/MoviePage", 
+                    state: [{userid: userid, movieid: movie.movieid, watched: 1}]  
+                    }}> 
+                    <img className="movie-img" src={movie.poster} alt={movie.name}/>
+                  </Link>
+                  </div>
+                );
+           }
+          })}
+        </Col>
+      </Row>
 
-      <h1>Recent Movies</h1>
-      {recentMovies.map((movie) => {
-        return (
-        <span className = "movie-span">
-          <Link to={{ 
-            pathname: "/MoviePage", 
-            state: [{userid: userid, movieid: movie.movieid, watched: 1}]  
-            }}> 
-            <img className="movie-img" src={movie.poster} alt={movie.name}/>
-          </Link>
-        </span>
-        );
-      })}
+      </Container>
     </div>
   );
 }

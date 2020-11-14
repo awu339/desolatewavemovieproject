@@ -97,7 +97,17 @@ nav{
 }
 
 .movie-img {
-  width: 100px;
+  width: 70px;
+  margin: 10px;
+}
+
+.icon-img {
+  width: 40px;
+  margin: 10px;
+}
+
+.logo-img {
+  width: 50px;
   margin: 10px;
 }
 
