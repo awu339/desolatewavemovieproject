@@ -222,6 +222,26 @@ app.get('/api/deletereview', (req, res) => {
 });
 
 
+app.post('/api/insert', (req, res) => {
+  console.log('here1');
+  const username = req.body.username;
+  const pwd = req.body.pwd;
+  const type = req.body.type;
+  console.log(username);
+  let sql = "SELECT * FROM User;"
+  const sqlInsert = "INSERT INTO User (username, password, type, date_created) VALUES(?, ?, ?, curdate());";
+  db.query(sql, (err, result) => {
+      console.log('here');
+      console.log(result);
+      console.log(err);
+  });
+  db.query(sqlInsert, [username, pwd, type], (err, result) => {
+      console.log('here');
+      console.log(result);
+      console.log(err);
+  });
+});
+
 
 // Put all API endpoints under '/api'
 app.get('/api/passwords', (req, res) => {

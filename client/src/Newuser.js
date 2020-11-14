@@ -18,17 +18,21 @@ function Newuser() {
     }, []); */
 
     const submitUser = () => {
-        console.log('here2');
-        console.log(username);
-        Axios.post('/api/insert', {
-            //userID: userID, 
-            username: username, 
-            pwd: pwd, 
-            type: type
-        }).then(() => {
-            alert("success");
-        });
-        window.location.href = "http://localhost:3000/";
+      var user = {
+        username: username,
+        pwd: pwd, 
+        type: type
+      };
+      var options = {
+        method: 'POST',
+        body: JSON.stringify(user),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+      }
+      fetch("/api/insert", options); 
+
+      window.location.href = "/Login";
     };
 
   return (
