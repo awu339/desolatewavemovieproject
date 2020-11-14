@@ -165,7 +165,6 @@ app.post("/api/reviewexists", (req, res) => {
   let userid = req.body.userid;
   const sqlSelect = "SELECT * FROM Review where movieid = ? AND userid = ?;";
   db.query(sqlSelect, [movieid, userid], (err, result) => {
-      console.log("what's happening " + result);
       res.json(result);
   });
 });
@@ -175,7 +174,6 @@ app.get('/api/report', (req, res) => {
   console.log(reviewid);
   const sqlUpdate = "UPDATE Review SET report = report + 1 WHERE reviewid = ?";
   db.query(sqlUpdate, [reviewid], (err, result) => {
-      console.log('here for review');
   });
 });
 
@@ -192,13 +190,11 @@ app.get("/api/gettopmovies", (req, res) => {
   let sql2 = "SELECT m.name, a.rating, m.movieid, m.poster FROM Movies m, a WHERE m.movieid = a.movieid ORDER BY a.rating desc;"
   db.query(sql, (err, result) => {
       //res.send(result);
-      console.log("sql");
-      console.log(result);
+
   })
   db.query(sql2, (err, result) => {
       res.json(result);
-      console.log("sql2");
-      console.log(result);
+
   })
 });
 
@@ -206,14 +202,12 @@ app.get("/api/getrecentmovies", (req, res) => {
   let sql = "SELECT * FROM Movies WHERE year = 2019 or year = 2020 order by year desc;"
   db.query(sql, (err, result) => {
       res.json(result);
-      console.log(result);
   })
 });
 
 app.get('/api/deletereview', (req, res) => {
   console.log("delete review");
   var reviewid = req.query.id;
-  //console.log(req.body);
   //we need to replace userid 1 with whoever is logged in
   const sqlDelete = "DELETE FROM Review WHERE reviewid = ?";
   db.query(sqlDelete, [reviewid],  (err, result) => {
@@ -227,21 +221,41 @@ app.post('/api/insert', (req, res) => {
   const username = req.body.username;
   const pwd = req.body.pwd;
   const type = req.body.type;
-  console.log(username);
   let sql = "SELECT * FROM User;"
   const sqlInsert = "INSERT INTO User (username, password, type, date_created) VALUES(?, ?, ?, curdate());";
   db.query(sql, (err, result) => {
-      console.log('here');
-      console.log(result);
-      console.log(err);
+
   });
   db.query(sqlInsert, [username, pwd, type], (err, result) => {
-      console.log('here');
-      console.log(result);
-      console.log(err);
+
   });
 });
 
+app.get("/api/getsearchtitle", (req, res) => {
+  let title = '%' + req.query.title + '%';
+  let sql = "SELECT * FROM Movies WHERE name LIKE ? order by year desc;";
+  db.query(sql, [title], (err, result) => {
+      res.json(result);
+
+  })
+});
+
+app.get("/api/getsearchyear", (req, res) => {
+  let year = req.query.year;
+  let sql = "SELECT * FROM Movies WHERE year = ?;";
+  db.query(sql, [year], (err, result) => {
+      res.json(result);
+  })
+});
+
+app.get("/api/getsearchgenre", (req, res) => {
+  let genre = '%' + req.query.genre + '%';
+  let sql = "SELECT * FROM Movies WHERE genre LIKE ? order by year desc;";
+  db.query(sql, [genre], (err, result) => {
+      res.json(result);
+
+  })
+});
 
 // Put all API endpoints under '/api'
 app.get('/api/passwords', (req, res) => {

@@ -35,22 +35,25 @@ function Search() {
 
   const submitQuery = () => {
     if (dropdownType == "Title" || dropdownType == "") {
-      Axios.get("http://localhost:3002/api/getsearchtitle?title=" + title)
-      .then((response) => {
-        setResult(response.data);
-        setnumresults(response.data.length);
-      });
+      fetch("/api/getsearchtitle?title=" + title)
+    .then(response => response.json())
+    .then(data => {
+      setResult(data);
+      setnumresults(data.length);
+    });
     } else if (dropdownType == "Year") {
-      Axios.get("http://localhost:3002/api/getsearchyear?year=" + year)
-      .then((response) => {
-        setResult(response.data);
-        setnumresults(response.data.length);
-      });
+      fetch("/api/getsearchyear?year=" + year)
+    .then(response => response.json())
+    .then(data => {
+      setResult(data);
+      setnumresults(data.length);
+    });
     } else if (dropdownType == "Genre") {
-      Axios.get("http://localhost:3002/api/getsearchgenre?genre=" + genre)
-      .then((response) => {
-        setResult(response.data);
-        setnumresults(response.data.length);
+      fetch("/api/getsearchgenre?genre=" + genre)
+      .then(response => response.json())
+      .then(data => {
+        setResult(data);
+        setnumresults(data.length);
       });
     } else {
       console.log("Invalid search submitted")

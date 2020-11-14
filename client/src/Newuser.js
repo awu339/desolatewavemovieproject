@@ -32,7 +32,7 @@ function Newuser() {
       }
       fetch("/api/insert", options); 
 
-      window.location.href = "/Login";
+      window.location.href = "/";
     };
 
   return (
