@@ -89,7 +89,9 @@ const addFavorite = (movieid) => {
 
 const submitReview = () => {
   var movieid = props.location.state[0].movieid;
-  var review = {
+  setDate("" + Date.now());
+
+  var currreview = {
     userid: userid,
       rating: rating,
       review: review,
@@ -98,7 +100,7 @@ const submitReview = () => {
   };
   var options = {
     method: 'POST',
-    body: JSON.stringify(review),
+    body: JSON.stringify(currreview),
     headers: {
         'Content-Type': 'application/json'
     }
@@ -116,8 +118,9 @@ const submitReview = () => {
 
 const UpdateReview = () => {
   var movieid = props.location.state[0].movieid;
+  setDate("" + Date.now());
 
-  var review = {
+  var currreview = {
     userid: userid,
       rating: rating,
       review: review,
@@ -127,12 +130,12 @@ const UpdateReview = () => {
 
   var options = {
     method: 'POST',
-    body: JSON.stringify(review),
+    body: JSON.stringify(currreview),
     headers: {
         'Content-Type': 'application/json'
     }
   }
-  fetch("/api/insertfavorite", options);
+  fetch("/api/updatereview", options);
   window.location.href = "/MoviePage";
 };
 
