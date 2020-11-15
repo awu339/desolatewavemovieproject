@@ -90,7 +90,7 @@ const addFavorite = (movieid) => {
         'Content-Type': 'application/json'
     }
   }
-  fetch("/api/insertfriendfavorite");
+  fetch("/api/insertfriendfavorite", options);
 };
 
 
