@@ -161,8 +161,8 @@ app.get("/api/getfriendfav", (req, res) => {
 
 app.post('/api/insertfriendfavorite', (req, res) => {
 
-  const userID = req.body.userid;
   const movieid = req.body.movieid;
+  const userID = req.body.userid;
   const watched = 0;
 
   const sqlInsert = "INSERT INTO Favorites (userID, movieid, watched) VALUES(?, ?, ?)";

@@ -31,6 +31,8 @@ useEffect(() => {
     .then(response => response.json())
     .then(data => {
         setFriendExists(data);
+        console.log("let's see if this works");
+        console.log(data);
     });
 }, []);
 
@@ -73,7 +75,7 @@ let unfavorite = (movieid, userid1) => {
   fetch("/api/delete?id=" + movieid + "&userid=" + userid1);
 };
 
-const addFavorite = (movieid, userid1) => {
+const addFavorite = (movieid) => {
   var user = {
     movieid: movieid,
     userid: userid1
@@ -132,6 +134,8 @@ return (
     })}
 
     {arr.map(() => {
+      console.log("does friendexists exist");
+      console.log(friendexists);
       if(friendexists === undefined || friendexists.length === 0){
         return(
           <p>
