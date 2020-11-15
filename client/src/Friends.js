@@ -12,6 +12,7 @@ var arr = [1];
 function Friends() {
     const [friendFavList, setFriendFavList] = useState([]);
     const[friendResList, setFriendResList] = useState([]);
+    const[search, setSearch] = useState('');
     const userid1 = localStorage.getItem('userid');
 
     useEffect(() => {
@@ -27,8 +28,8 @@ function Friends() {
         window.location.href = "/Friends";
       };
 
-      const submitQuery = (username) => {
-          fetch("/api/getsearchuser?user=" + username)
+      const submitQuery = () => {
+          fetch("/api/getsearchuser?user=" + search)
           .then(response => response.json())
           .then(data => {
             setFriendResList(data);
@@ -41,15 +42,18 @@ function Friends() {
             <h1>Friends</h1>
             <Col className = "search-section">
             <div className="search">
-              
-              
+                Search for Friends
               <input 
                 type="text" 
                 name="title" 
                 onChange={(e) => {
-                  }
+                    setSearch(e.target.value);
                 }
-              /> </div> </Col>
+                }
+              />
+              <button className = "newb" onClick = {submitQuery}>Search</button> 
+              </div> 
+              </Col>
             <div>
             {arr.map(() => {
                 if (friendFavList === undefined || friendFavList.length === 0){
