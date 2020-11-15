@@ -5,6 +5,7 @@ import Nav from './Nav';
 import { Link } from 'react-router-dom';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import image from './nomovie.jpg';
 
 function Search() {
   const [title, setTitle] = useState('');
@@ -105,13 +106,14 @@ function Search() {
 
       <div className="resultsBox">
         {searchResult.map((val) => {
+          if(val.poster == "N/A"){
           return (  
           <div className="movie-block">
             <Link to={{ 
               pathname: "/MoviePage", 
               state: [{userid: userid, movieid: val.movieid, watched: 1}]  
               }}> 
-              <img className="movie-img" src={val.poster} alt="poster"/>
+              <img className="icon-img" src={image} alt="poster"/>
             </Link>
             
             <span className="movie-text">
@@ -128,7 +130,33 @@ function Search() {
             <hr/>
           </div>
           );
-        })}
+      }
+     else{
+        return (  
+        <div className="movie-block">
+          <Link to={{ 
+            pathname: "/MoviePage", 
+            state: [{userid: userid, movieid: val.movieid, watched: 1}]  
+            }}> 
+            <img className="movie-img" src={val.poster} alt="poster"/>
+          </Link>
+          
+          <span className="movie-text">
+            <Link to={{ 
+              pathname: "/MoviePage", 
+              state: [{userid: userid, movieid: val.movieid, watched: 1}]  
+              }}> 
+              {val.name}
+            </Link>
+            , {val.year}
+            <br />
+            {val.genre}
+          </span>
+          <hr/>
+        </div>
+        );
+    }
+      })}
       </div>
     </div>
   );

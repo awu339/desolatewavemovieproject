@@ -139,7 +139,7 @@ return (
         Synopsis: {val.synopsis} |
         Watched: {watchval}
         <br />
-        <button onClick={() => addFavorite(val.movieid)}>Add Favorite</button>
+        <button className = "newb" onClick={() => addFavorite(val.movieid)}>Add Favorite</button>
      </p>
     );
     })} 
