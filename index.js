@@ -289,7 +289,7 @@ app.post('/api/insert', (req, res) => {
 
 app.get("/api/getsearchtitle", (req, res) => {
   let title = '%' + req.query.title + '%';
-  let sql = "SELECT * FROM Movies WHERE name LIKE %?% order by year desc;";
+  let sql = "SELECT * FROM Movies WHERE name LIKE ? order by year desc;";
   db.query(sql, [title], (err, result) => {
       res.json(result);
 
