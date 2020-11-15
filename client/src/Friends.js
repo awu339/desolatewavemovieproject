@@ -23,14 +23,14 @@ function Friends() {
         window.location.href = "/Friends";
       };
 
-    //   const submitQuery = (username) => {
-    //       fetch("/api/getsearchuser?user=" + username)
-    //       .then(response => response.json())
-    //       .then(data => {
-    //         setResult(data);
-    //         setnumresults(data.length);
-    //       });
-    //   };
+      const submitQuery = (username) => {
+          fetch("/api/getsearchuser?user=" + username)
+          .then(response => response.json())
+          .then(data => {
+            setResult(data);
+            setnumresults(data.length);
+          });
+      };
       
     return (
         <div>
