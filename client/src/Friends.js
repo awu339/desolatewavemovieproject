@@ -64,6 +64,14 @@ function Friends() {
               <Col> Results
               <div class="scroll">
                   {friendResList.map((val) => {
+                      if (friendResList === undefined || friendResList.length === 0){
+                        return (
+                       <p>
+                           No matching users.
+                       </p>
+                           )
+                       } else {
+                      
                       return (
                       <p>
                           Username: <Link to={{
@@ -73,8 +81,9 @@ function Friends() {
                               <br />
                               <button className = "newb" onClick={() => {addfriend(val.userid)}}> Add Friend </button> 
                               </p>
-                              );        
-                              })}
+                              );}        
+                              })
+                    }
                               </div>
               </Col>
               </div> 
