@@ -3,6 +3,7 @@ import Nav from './Nav';
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
+var arr = [1];
 //var userid = localStorage.getItem('userid');
 
 function Reports() {
@@ -36,6 +37,15 @@ function Reports() {
     <div>
       <Nav/>
       <h1>All Reported Reviews</h1>
+      {arr.map(() => {
+          if (friendFavList === undefined || friendFavList.length === 0){
+            return (
+              <p>
+                There are 0 reviews reported.
+              </p>
+              )
+            }
+            })} 
       {reported.map((val) => {
         return (
         <p>
