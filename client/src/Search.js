@@ -110,6 +110,7 @@ function Search() {
           onChange={(e) => {
             setType(e.value);
           }}
+          className='skinny-dropdown'
         />
         <input 
           type="text" 
@@ -137,7 +138,7 @@ function Search() {
       </div>
 
       <div className="search">
-        <h2>Search by genre</h2>
+        <h2>Display by genre</h2>
         <Dropdown 
           options={genres} 
           value={genres[0]} 
@@ -147,7 +148,7 @@ function Search() {
           }}
           className='skinny-dropdown'
         />
-        <button onClick = {searchGenre}>Search</button>
+        <button onClick = {searchGenre}>Display</button>
       </div>
 
       <div className="resultsBox">
