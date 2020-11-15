@@ -121,6 +121,8 @@ app.get("/api/friendexists", (req, res) => {
   let user2 = req.body.userid;
   const sqlSelect = "SELECT * FROM Friend where user1 = ? AND user2 = ?;";
   db.query(sqlSelect, [user1, user2], (err, result) => {
+      console.log("can i see this");
+      console.log(result);
       res.json(result);
   });
 });

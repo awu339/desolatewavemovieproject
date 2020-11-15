@@ -27,6 +27,9 @@ useEffect(() => {
     .then(data => {
         setReviewsListLimit(data);
     });
+    console.log("users");
+    console.log(userid1);
+    console.log(userid);
     fetch("/api/friendexists?id=" + userid1 + "&userid=" + userid)
     .then(response => response.json())
     .then(data => {
@@ -95,6 +98,8 @@ return (
   <div>
     <Nav/>
     <h1>{friend_username}'s Profile</h1>
+
+    <h2>{friend_username}'s Favorites</h2>
     {favoritesList.map((val) => {
     
     var watchval = "";
