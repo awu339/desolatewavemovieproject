@@ -49,11 +49,11 @@ function Reports() {
       {reported.map((val) => {
         return (
         <p>
-          Movie: {val.name} | Reported by: {val.username} | Review #: {val.reviewid} | 
-          <Link to={{ pathname: "/MoviePage", 
+          Title: <Link to={{ 
+                pathname: "/MoviePage", 
                 state: [{movieid: val.movieid}]  
-                }}> show
-         </Link>
+                }}> {val.name} 
+              </Link> | Reported by: {val.username} | Review #: {val.reviewid} 
           <br />
         </p>
         );
