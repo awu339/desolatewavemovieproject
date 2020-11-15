@@ -35,6 +35,16 @@ function Newuser() {
       window.location.href = "/";
     };
 
+    function displayCode() {
+      var cont = document.getElementById('cont');
+      if (cont.style.display == 'block') {
+          cont.style.display = 'none';
+      }
+      else {
+          cont.style.display = 'block';
+      }
+  }
+
   return (
     <div>
       
@@ -64,18 +74,12 @@ function Newuser() {
                 setPwd(e.target.value)
                 }} 
             />
-            <label>Admin Code:</label>
-            <input 
-                type="text" 
-                name="type" 
-                onChange={(e)=> {
-                  if(e.target.value == "cS3!6") {
-                    setType("admin");
-                  } else {
-                    setType("user");
-                  }
-                }} 
-            />
+            <label>Select User Type</label>
+                <p>
+            <select id="sel" onChange={displayCode}>
+            <option value="1">User</option>
+            <option value="2" selected>Admin</option>
+        </select>
             <button onClick = {submitUser}>Submit</button>
 
              {/* {userList.map((val) => {
