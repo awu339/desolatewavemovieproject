@@ -102,58 +102,62 @@ function Search() {
     <div>
       <Nav />
       <h1>Search</h1>
-      <div className="search">
-        <span>
-          <label for = "search-by">Search by...</label>
+      <Grid>
+        <Row>
+        <Col>
+        <div className="search">
+          <span>
+            <Dropdown 
+              id = "search-by"
+              options={options} 
+              value={defaultOption} 
+              placeholder="Search by..." 
+              onChange={(e) => {
+                setType(e.value);
+              }}
+              className='skinny-dropdown'
+            />
+            <input 
+              type="text" 
+              name="title" 
+              onChange={(e) => {
+                  if (dropdownType == "Title" || dropdownType == "") {
+                    setTitle(e.target.value);
+                  } else if (dropdownType == "Year") {
+                    setYear(e.target.value);
+                  } else if (dropdownType == "Genre") {
+                    setGenre(e.target.value);
+                  } else { }
+                }
+              }
+            />
+          </span>
+
+          <span>
+            <button className = "newb" onClick = {sortByName}>Sort by name</button>
+            <button className = "newb" onClick = {sortByYear}>Sort by year</button>
+            <button className = "newb" onClick = {sortByGenre}>Sort by genre</button>
+          </span>
+          <button className = "newb" onClick = {submitQuery}>Search</button>
+          <p>{numresults} results</p>
+        </div>
+
+        <div className="search">
+          <h2>Display by genre</h2>
           <Dropdown 
-            id = "search-by"
-            options={options} 
-            value={defaultOption} 
-            placeholder="Search by..." 
+            options={genres} 
+            value={genres[0]} 
+            placeholder="Genres" 
             onChange={(e) => {
-              setType(e.value);
+              setGenre(e.value);
             }}
             className='skinny-dropdown'
           />
-          <input 
-            type="text" 
-            name="title" 
-            onChange={(e) => {
-                if (dropdownType == "Title" || dropdownType == "") {
-                  setTitle(e.target.value);
-                } else if (dropdownType == "Year") {
-                  setYear(e.target.value);
-                } else if (dropdownType == "Genre") {
-                  setGenre(e.target.value);
-                } else { }
-              }
-            }
-          />
-        </span>
-
-        <span>
-          <button className = "newb" onClick = {sortByName}>Sort by name</button>
-          <button className = "newb" onClick = {sortByYear}>Sort by year</button>
-          <button className = "newb" onClick = {sortByGenre}>Sort by genre</button>
-        </span>
-        <button className = "newb" onClick = {submitQuery}>Search</button>
-        <p>{numresults} results</p>
-      </div>
-
-      <div className="search">
-        <h2>Display by genre</h2>
-        <Dropdown 
-          options={genres} 
-          value={genres[0]} 
-          placeholder="Genres" 
-          onChange={(e) => {
-            setGenre(e.value);
-          }}
-          className='skinny-dropdown'
-        />
-        <button className = "newb" onClick = {searchGenre}>Display</button>
-      </div>
-
+          <button className = "newb" onClick = {searchGenre}>Display</button>
+        </div>
+        </Col>
+        
+      <Col>
       <div className="resultsBox">
         {searchResult.map((val) => {
           if (val.poster == "N/A") {
@@ -208,7 +212,13 @@ function Search() {
           }
       })}
       </div>
+      </Col>
+      </Row>
+      </Grid>
     </div>
+    
+
+    
   );
 }
 
