@@ -63,7 +63,7 @@ function Home() {
       <Grid>
         <Row>
           <Col>
-          <h2>Top Rated Movies</h2>
+          <h2 style = "padding: 10px; margin-top: 20px;">Top Rated Movies</h2>
           <div className = "search"> 
             <Dropdown 
               options={options} 
