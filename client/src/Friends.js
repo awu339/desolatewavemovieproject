@@ -33,6 +33,7 @@ function Friends() {
           .then(response => response.json())
           .then(data => {
             setFriendResList(data);
+            console.log(data);
           });
       };
       
