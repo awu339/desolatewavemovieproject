@@ -25,7 +25,7 @@ function Friends() {
     
     let addfriend = (userid) => {
         fetch("/api/addfriend?id=" + userid1 + "&userid=" + userid);
-        window.location.href = "/FriendPage";
+        window.location.href = "/Friends";
       };
 
     let unfriend = (userid) => {
@@ -62,6 +62,7 @@ function Friends() {
               <button className = "newb" onClick = {submitQuery}>Search</button> 
               </Col>
               <Col> Results
+              <div class="scrollingDiv" style="overflow-y:scroll;">
               {friendResList.map((val) => {
             return (
                 <p>
@@ -74,7 +75,7 @@ function Friends() {
             </p>
             );        
             })}
-
+</div>
               </Col>
               </div> 
               </Col>
