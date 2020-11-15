@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 //import { Row, Col, Container } from 'reactstrap';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 import Nav from './Nav';
 import { Link } from 'react-router-dom';
 import Dropdown from 'react-dropdown';
@@ -60,7 +60,7 @@ function Home() {
         </p>
         );
       })}
-      <Container>
+      <Grid>
         <Row>
           <Col>
           <h1>Top Rated Movies</h1>
@@ -159,7 +159,7 @@ function Home() {
               })}
           </Col>
         </Row>
-      </Container>
+      </Grid>
     </div>
   );
 }
