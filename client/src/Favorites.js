@@ -3,6 +3,7 @@ import './App.css';
 import Nav from './Nav';
 import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
+var arr = [1];
 
 function Favorites() {
   const [favoritesList, setFavoritesList] = useState([]);
@@ -31,6 +32,15 @@ function Favorites() {
     <div>
       <Nav />
       <h1>My Favorites</h1>
+      {arr.map(() => {
+         if (favoritesList === undefined || favoritesList.length === 0){
+           return (
+             <p>
+               You have 0 movies in your Favorites.
+             </p>
+           )
+         }
+      })}
           {favoritesList.map((val) => {
           console.log(userid);
           var watchval = "";

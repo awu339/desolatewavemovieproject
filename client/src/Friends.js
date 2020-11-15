@@ -3,6 +3,7 @@ import './App.css';
 import Axios from 'axios';
 import Nav from './Nav';
 import { Link } from 'react-router-dom';
+var arr = [1];
 
 function Friends() {
     const [friendFavList, setFriendFavList] = useState([]);
@@ -24,7 +25,16 @@ function Friends() {
     return (
         <div>
             <Nav/>
-            <h1>Friends</h1> 
+            <h1>Friends</h1>
+            {arr.map(() => {
+                if (friendFavList === undefined || friendFavList.length === 0){
+                 return (
+                <p>
+                    You have 0 friends.
+                </p>
+                    )
+                }
+            })} 
             {friendFavList.map((val) => {
             return (
                 <p>
