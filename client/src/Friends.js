@@ -23,6 +23,11 @@ function Friends() {
         });
     }, []);
     
+    let addfriend = (userid) => {
+        fetch("/api/addfriend?id=" + userid1 + "&userid=" + userid);
+        window.location.href = "/FriendPage";
+      };
+
     let unfriend = (userid) => {
         fetch("/api/unfriend?id=" + userid1 + "&userid=" + userid);
         window.location.href = "/Friends";
@@ -44,6 +49,7 @@ function Friends() {
             <h1>Friends</h1>
             <Col className = "search-section">
             <div className="search">
+                <Col>
                 Search for Friends
               <input 
                 type="text" 
@@ -54,9 +60,26 @@ function Friends() {
                 }
               />
               <button className = "newb" onClick = {submitQuery}>Search</button> 
+              </Col>
+              <Col> Results
+              {friendResList.map((val) => {
+            return (
+                <p>
+                Username: <Link to={{
+                pathname: "/FriendPage", 
+                state: [{userid: val.userid, username: val.username}]  
+                }}>{val.username}</Link>
+                <br />
+                <button className = "newb" onClick={() => {addfriend(val.userid)}}> Add Friend </button> 
+            </p>
+            );        
+            })}
+
+              </Col>
               </div> 
               </Col>
             <div>
+                My Friends
             {arr.map(() => {
                 if (friendFavList === undefined || friendFavList.length === 0){
                  return (
