@@ -75,7 +75,15 @@ function Newuser() {
                 }} 
             />
             <label>Select User Type</label>
-            <select id="sel" onChange={displayCode}>
+            <select id="sel" onChange={(e) => {
+              var cont = document.getElementById('cont');
+              if (cont.style.display == 'block') {
+                  cont.style.display = 'none';
+              }
+              else {
+                  cont.style.display = 'block';
+              }
+            }}>
             <option value="1" >User</option>
             <option value="2" selected>Admin</option> </select>
             <button onClick = {submitUser}>Submit</button>
