@@ -7,6 +7,7 @@ var arr = [1];
 
 function Friends() {
     const [friendFavList, setFriendFavList] = useState([]);
+    const[friendResList, setFriendResList] = useState([]);
     const userid1 = localStorage.getItem('userid');
 
     useEffect(() => {
@@ -22,26 +23,13 @@ function Friends() {
         window.location.href = "/Friends";
       };
 
-      const submitQuery = (search) => {
-        if (dropdownType == "Title" || dropdownType == "") {
-          fetch("/api/getsearchtitle?title=" + title)
+      const submitQuery = (username) => {
+          fetch("/api/getsearchuser?user=" + username)
           .then(response => response.json())
           .then(data => {
             setResult(data);
             setnumresults(data.length);
           });
-        } else if (dropdownType == "Year") {
-          fetch("/api/getsearchyear?year=" + year)
-          .then(response => response.json())
-          .then(data => {
-            setResult(data);
-            setnumresults(data.length);
-        });
-        } else if (dropdownType == "Genre") {
-          searchGenre();
-        } else {
-          console.log("Invalid search submitted")
-        }
       };
       
     return (
