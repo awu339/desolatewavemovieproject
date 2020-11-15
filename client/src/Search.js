@@ -105,9 +105,9 @@ function Search() {
       <h1>Search</h1>
       <Grid>
         <Row>
-        <Col>
-        <div className="search">
-          <span>
+          <Col className = "search-section">
+          <div className="search">
+            
             <Dropdown 
               id = "search-by"
               options={options} 
@@ -132,88 +132,87 @@ function Search() {
                 }
               }
             />
-          </span>
 
-          <span>
-            <button className = "newb" onClick = {sortByName}>Sort by name</button>
-            <button className = "newb" onClick = {sortByYear}>Sort by year</button>
-            <button className = "newb" onClick = {sortByGenre}>Sort by genre</button>
-          </span>
-          <button className = "newb" onClick = {submitQuery}>Search</button>
-          <p>{numresults} results</p>
-        </div>
+            <span>
+              <button className = "newb" onClick = {sortByName}>Sort by name</button>
+              <button className = "newb" onClick = {sortByYear}>Sort by year</button>
+              <button className = "newb" onClick = {sortByGenre}>Sort by genre</button>
+            </span>
+            <button className = "newb" onClick = {submitQuery}>Search</button>
+            <p>{numresults} results</p>
+          </div>
 
-        <div className="search">
-          <h2>Display by genre</h2>
-          <Dropdown 
-            options={genres} 
-            value={genres[0]} 
-            placeholder="Genres" 
-            onChange={(e) => {
-              setGenre(e.value);
-            }}
-            className='skinny-dropdown'
-          />
-          <button className = "newb" onClick = {searchGenre}>Display</button>
-        </div>
+          <div className="search">
+            <h2>Display by genre</h2>
+            <Dropdown 
+              options={genres} 
+              value={genres[0]} 
+              placeholder="Genres" 
+              onChange={(e) => {
+                setGenre(e.value);
+              }}
+              className='skinny-dropdown'
+            />
+            <button className = "newb" onClick = {searchGenre}>Display</button>
+          </div>
         </Col>
         
-      <Col>
-      <div className="resultsBox">
-        {searchResult.map((val) => {
-          if (val.poster == "N/A") {
-            return (  
-              <div className="movie-block">
-                <Link to={{ 
-                  pathname: "/MoviePage", 
-                  state: [{userid: userid, movieid: val.movieid, watched: 1}]  
-                  }}> 
-                  <img className="icon-img" src={image} alt="poster"/>
-                </Link>
-                
-                <span className="movie-text">
-                  <Link to={{ 
-                    pathname: "/MoviePage", 
-                    state: [{userid: userid, movieid: val.movieid, watched: 1}]  
-                    }}> 
-                    {val.name}
-                  </Link>
-                  , {val.year}
-                  <br />
-                  {val.genre}
-                </span>
-                <hr/>
-              </div>
-            );
-          }
-          else{
-            return (  
-              <div className="movie-block">
-                <Link to={{ 
-                  pathname: "/MoviePage", 
-                  state: [{userid: userid, movieid: val.movieid, watched: 1}]  
-                  }}> 
-                  <img className="movie-img" src={val.poster} alt="poster"/>
-                </Link>
-                
-                <span className="movie-text">
-                  <Link to={{ 
-                    pathname: "/MoviePage", 
-                    state: [{userid: userid, movieid: val.movieid, watched: 1}]  
-                    }}> 
-                    {val.name}
-                  </Link>
-                  , {val.year}
-                  <br />
-                  {val.genre}
-                </span>
-                <hr/>
-              </div>
-            );
-          }
-      })}
-      </div>
-      </Col>
+        <Col>
+            <div className="resultsBox">
+              {searchResult.map((val) => {
+                if (val.poster == "N/A") {
+                  return (  
+                    <div className="movie-block">
+                      <Link to={{ 
+                        pathname: "/MoviePage", 
+                        state: [{userid: userid, movieid: val.movieid, watched: 1}]  
+                        }}> 
+                        <img className="icon-img" src={image} alt="poster"/>
+                      </Link>
+                      
+                      <span className="movie-text">
+                        <Link to={{ 
+                          pathname: "/MoviePage", 
+                          state: [{userid: userid, movieid: val.movieid, watched: 1}]  
+                          }}> 
+                          {val.name}
+                        </Link>
+                        , {val.year}
+                        <br />
+                        {val.genre}
+                      </span>
+                      <hr/>
+                    </div>
+                  );
+                }
+                else{
+                  return (  
+                    <div className="movie-block">
+                      <Link to={{ 
+                        pathname: "/MoviePage", 
+                        state: [{userid: userid, movieid: val.movieid, watched: 1}]  
+                        }}> 
+                        <img className="movie-img" src={val.poster} alt="poster"/>
+                      </Link>
+                      
+                      <span className="movie-text">
+                        <Link to={{ 
+                          pathname: "/MoviePage", 
+                          state: [{userid: userid, movieid: val.movieid, watched: 1}]  
+                          }}> 
+                          {val.name}
+                        </Link>
+                        , {val.year}
+                        <br />
+                        {val.genre}
+                      </span>
+                      <hr/>
+                    </div>
+                  );
+                }
+            })}
+            </div>
+        </Col>
       </Row>
       </Grid>
     </div>
