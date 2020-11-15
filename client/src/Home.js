@@ -67,7 +67,7 @@ function Home() {
       <Container>
       <Row>
         <Col>
-        <h1>TOP!!! trending movies 2020</h1>
+        <h1>Top Rated Movies</h1>
         <Dropdown 
         options={options} 
         value={defaultOption} 
@@ -122,7 +122,7 @@ function Home() {
       })}
         </Col>
         <Col>
-        <h1>Recent Movies</h1>
+        <h1>Recently Released Movies</h1>
           {recentMovies.map((movie) => {
             if(movie.poster == "N/A"){
               return (

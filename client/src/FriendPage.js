@@ -96,6 +96,28 @@ return (
     <Nav/>
     <h1>{friend_username}'s Profile</h1>
 
+    {arr.map(() => {
+      console.log("does friendexists exist");
+      console.log(friendexists);
+      if(friendexists === undefined || friendexists.length === 0){
+        return(
+          <p>
+          <br/> <button className = "newb" onClick={() => {addfriend(userid)}}> Add Friend </button> 
+          </p>
+        )
+      }
+      else{
+        return(
+          <p>
+          <br/> <button className = "newb" onClick={() => {unfriend(userid)}}> Remove Friend </button> 
+          </p>
+        )
+      }
+
+    }
+
+    )}
+
     <h2>{friend_username}'s Favorites</h2>
     {favoritesList.map((val) => {
     
@@ -138,28 +160,6 @@ return (
       </p>
       );
     })}
-
-    {arr.map(() => {
-      console.log("does friendexists exist");
-      console.log(friendexists);
-      if(friendexists === undefined || friendexists.length === 0){
-        return(
-          <p>
-          <br/> <button className = "newb" onClick={() => {addfriend(userid)}}> Add Friend </button> 
-          </p>
-        )
-      }
-      else{
-        return(
-          <p>
-          <br/> <button className = "newb" onClick={() => {unfriend(userid)}}> Remove Friend </button> 
-          </p>
-        )
-      }
-
-    }
-
-    )}
   </div>
 );
 }
