@@ -103,31 +103,34 @@ function Search() {
       <Nav />
       <h1>Search</h1>
       <div className="search">
-        <Dropdown 
-          options={options} 
-          value={defaultOption} 
-          placeholder="Search by..." 
-          onChange={(e) => {
-            setType(e.value);
-          }}
-          className='skinny-dropdown'
-        />
-        <input 
-          type="text" 
-          name="title" 
-          onChange={(e) => {
-              if (dropdownType == "Title" || dropdownType == "") {
-                setTitle(e.target.value);
-              } else if (dropdownType == "Year") {
-                setYear(e.target.value);
-              } else if (dropdownType == "Genre") {
-                setGenre(e.target.value);
-              } else {
-
+        <span>
+          <label for = "search-by">Search by...</label>
+          <Dropdown 
+            id = "search-by"
+            options={options} 
+            value={defaultOption} 
+            placeholder="Search by..." 
+            onChange={(e) => {
+              setType(e.value);
+            }}
+            className='skinny-dropdown'
+          />
+          <input 
+            type="text" 
+            name="title" 
+            onChange={(e) => {
+                if (dropdownType == "Title" || dropdownType == "") {
+                  setTitle(e.target.value);
+                } else if (dropdownType == "Year") {
+                  setYear(e.target.value);
+                } else if (dropdownType == "Genre") {
+                  setGenre(e.target.value);
+                } else { }
               }
             }
-          }
-        />
+          />
+        </span>
+
         <span>
           <button className = "newb" onClick = {sortByName}>Sort by name</button>
           <button className = "newb" onClick = {sortByYear}>Sort by year</button>
