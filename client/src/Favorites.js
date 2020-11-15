@@ -41,7 +41,7 @@ function Favorites() {
           }
           return (
             <p>
-              Title : {val.name} |
+              Title: {val.name} |
               Year: {val.year} | 
               Synopsis: {val.synopsis} |
               Watched: {watchval}
