@@ -238,7 +238,7 @@ app.get('/api/dismiss', (req, res) => {
 
 app.get("/api/getreviews", (req, res) => {
   let movieid = req.query.id;
-  const sqlSelect = "SELECT * FROM Review r, User u where movieid = ? AND r.userid = u.userid;";
+  const sqlSelect = "SELECT * FROM Review r, User u where movieid = ? AND r.userid = u.userid order by r.date desc;";
   db.query(sqlSelect, [movieid], (err, result) => {
       res.json(result);
   });
@@ -315,7 +315,7 @@ app.get("/api/getsearchgenre", (req, res) => {
 
 app.get('/api/allreports', (req, res) => {
   console.log("all reports");
-  const sqlSelect = "SELECT * FROM Review r, Movies m, User u WHERE r.report > 0 and r.movieid = m.movieid and r.userid = u.userid;";
+  const sqlSelect = "SELECT * FROM Review r, Movies m, User u WHERE r.report > 0 and r.movieid = m.movieid and r.userid = u.userid order by r.report desc;";
   db.query(sqlSelect,  (err, result) => {
       if (err) console.log(err);
       //console.log(result);

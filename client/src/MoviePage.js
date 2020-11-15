@@ -189,7 +189,7 @@ return (
       <input
         type="text"
         name="review"
-        size="300"
+        size="100"
         onChange={(e) => {
           setReview(e.target.value);
         }}
@@ -231,7 +231,7 @@ return (
       <input
         type="text"
         name="review"
-        size="300"
+        size="100"
         onChange={(e) => {
           setReview(e.target.value);
         }}
