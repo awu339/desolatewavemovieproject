@@ -30,7 +30,7 @@ function Favorites() {
   return (
     <div>
       <Nav />
-      <h1>Favorites</h1>
+      <h1>My Favorites</h1>
           {favoritesList.map((val) => {
           console.log(userid);
           var watchval = "";

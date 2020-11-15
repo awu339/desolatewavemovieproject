@@ -2,6 +2,7 @@ import './App.css';
 import Nav from './Nav';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+var arr = [1];
 
 function Profile() {
   const [myReviews, setMyReviews] = useState([]);
@@ -31,6 +32,15 @@ function Profile() {
     <div>
       <Nav/>
       <h1>My Reviews</h1>
+      {arr.map(() => {
+         if (myReviews === undefined || myReviews.length === 0){
+           return (
+             <p>
+               You have written 0 reviews.
+             </p>
+           )
+         }
+      })}
       {myReviews.map((val) => {
         var date = val.date.split("T");
         date = date[0];
