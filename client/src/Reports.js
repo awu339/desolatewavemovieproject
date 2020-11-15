@@ -66,7 +66,10 @@ function Reports() {
                 pathname: "/MoviePage", 
                 state: [{movieid: val.movieid}]  
                 }}> {val.name} 
-              </Link> | # of Reports: {val.report} | Review Author: {val.username}
+              </Link> | # of Reports: {val.report} | Review Author: <Link to={{ 
+                pathname: "/FriendPage", 
+                state: [{userid: val.userid, username: val.username}]  
+                }}>{val.username}</Link>
               <br/> Review: {val.content} 
           <br />
           <button className = "newb" onClick={() => deleteReview(val.reviewid)}>Delete Review</button> 

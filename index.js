@@ -238,7 +238,7 @@ app.get('/api/dismiss', (req, res) => {
 
 app.get("/api/getreviews", (req, res) => {
   let movieid = req.query.id;
-  const sqlSelect = "SELECT r.reviewid, r.userid, r.movieid, r.rating, r.date, r.content, u.username FROM Review r, User u where movieid = ? AND r.userid = u.userid;";
+  const sqlSelect = "SELECT * FROM Review r, User u where movieid = ? AND r.userid = u.userid;";
   db.query(sqlSelect, [movieid], (err, result) => {
       res.json(result);
   });

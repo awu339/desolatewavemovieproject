@@ -189,6 +189,7 @@ return (
       <input
         type="text"
         name="review"
+        size="300"
         onChange={(e) => {
           setReview(e.target.value);
         }}
@@ -230,6 +231,7 @@ return (
       <input
         type="text"
         name="review"
+        size="300"
         onChange={(e) => {
           setReview(e.target.value);
         }}
@@ -247,6 +249,8 @@ return (
     
     {reviews.map((val) => {
       if (type == "admin"){
+        var date = val.date.split("T");
+        date = date[0];
         return (
           <p>
             User: <Link to={{ 
@@ -254,7 +258,7 @@ return (
                 state: [{userid: val.userid, username: val.username}]  
                 }}>{val.username}</Link> | 
             Rating: {val.rating} | 
-            Date: {val.date}
+            Date: {date}
             <br/> Review: {val.content} | 
             Reported: {val.report}
             
@@ -265,6 +269,8 @@ return (
         );
       }
       else{
+        var date = val.date.split("T");
+        date = date[0];
         return (
           <p>
             User: <Link to={{ 
@@ -272,7 +278,7 @@ return (
                 state: [{userid: val.userid, username: val.username}]  
                 }}>{val.username}</Link> | 
             Rating: {val.rating} | 
-            Date: {val.date}
+            Date: {date}
             <br/> Review: {val.content}
             {" "} <br/> <button className = "newb" onClick={() => report(val.reviewid)}>Report</button>
           </p>
