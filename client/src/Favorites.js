@@ -46,7 +46,7 @@ function Favorites() {
                 pathname: "/MoviePage", 
                 state: [{userid: userid, movieid: val.movieid}]  
                 }}> {val.name} 
-              </Link>|
+              </Link> |
               Year: {val.year} | 
               Synopsis: {val.synopsis} |
               Watched: {watchval}

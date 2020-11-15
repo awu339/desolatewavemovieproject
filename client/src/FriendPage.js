@@ -108,7 +108,11 @@ return (
     }
     return (
       <p>
-        Movie: {val.name} |
+        Movie: <Link to={{ 
+                pathname: "/MoviePage", 
+                state: [{userid: userid1, movieid: val.movieid}]  
+                }}> {val.name} 
+              </Link> |
         Year: {val.year} | 
         Synopsis: {val.synopsis} |
         Watched: {watchval}
