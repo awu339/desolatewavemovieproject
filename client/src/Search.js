@@ -129,11 +129,11 @@ function Search() {
           }
         />
         <span>
-          <button onClick = {sortByName}>Sort by name</button>
-          <button onClick = {sortByYear}>Sort by year</button>
-          <button onClick = {sortByGenre}>Sort by genre</button>
+          <button className = "newb" onClick = {sortByName}>Sort by name</button>
+          <button className = "newb" onClick = {sortByYear}>Sort by year</button>
+          <button className = "newb" onClick = {sortByGenre}>Sort by genre</button>
         </span>
-        <button onClick = {submitQuery}>Search</button>
+        <button className = "newb" onClick = {submitQuery}>Search</button>
         <p>{numresults} results</p>
       </div>
 
@@ -148,7 +148,7 @@ function Search() {
           }}
           className='skinny-dropdown'
         />
-        <button onClick = {searchGenre}>Display</button>
+        <button className = "newb" onClick = {searchGenre}>Display</button>
       </div>
 
       <div className="resultsBox">

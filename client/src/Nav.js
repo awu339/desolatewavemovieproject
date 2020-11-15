@@ -26,9 +26,6 @@ function Nav() {
                 <Link style={navStyle} to='/home'>
                     <li>Home</li>
                 </Link>
-                <Link style={navStyle} to='/movies'>
-                    <li>Movies</li>
-                </Link>
                 <Link style={navStyle} to='/search'>
                     <li>Search</li>
                 </Link>
