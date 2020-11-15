@@ -32,15 +32,16 @@ function Profile() {
       <Nav/>
       <h1>My Reviews</h1>
       {myReviews.map((val) => {
+        var date = val.date.split("T");
+        date = date[0];
         return (
         <p>
-          Movie: {val.name} | 
-          Rating: {val.rating} | 
-          Review #: {val.reviewid} | 
-          <Link to={{ pathname: "/MoviePage", 
+          Movie: <Link to={{ pathname: "/MoviePage", 
                 state: [{movieid: val.movieid}]  
-                }}> show
-         </Link>
+                }}>{val.name}</Link> | 
+          Rating: {val.rating} | 
+          Date Reviewed: {date} 
+          <br/> Review: {val.content}
         </p>
         );
       })}

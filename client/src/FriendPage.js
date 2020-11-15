@@ -51,7 +51,7 @@ let unfavorite = (movieid, userid1) => {
 const addFavorite = (movieid, userid1) => {
   var user = {
     movieid: movieid,
-    userid: userid
+    userid: userid1
   };
   var options = {
     method: 'POST',
@@ -91,6 +91,8 @@ return (
     <h2>{friend_username}'s Top 10 Rated Movies</h2>
 
     {reviewsListLimit.map((val) => {
+      var date = val.date.split("T");
+      date = date[0];
       return (
         <p>
           Movie: <Link to={{ 
@@ -98,7 +100,7 @@ return (
                 state: [{userid: userid1, movieid: val.movieid}]  
                 }}> {val.name}</Link> |
           Rating: {val.rating} | 
-          Date Reviewed: {val.date} 
+          Date Reviewed: {date} 
           <br/> Review: {val.content}
       </p>
       );

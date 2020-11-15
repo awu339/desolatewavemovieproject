@@ -28,8 +28,7 @@ function Friends() {
             {friendFavList.map((val) => {
             return (
                 <p>
-                Username: 
-                <Link to={{
+                Username: <Link to={{
                 pathname: "/FriendPage", 
                 state: [{userid: val.userid, username: val.username}]  
                 }}>{val.username}</Link>
