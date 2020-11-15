@@ -4,23 +4,29 @@ import Axios from 'axios';
 import Nav from './Nav';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 var friend_username = "";
+var userid = "";
+var userfavlist = [];
+var arr = [1];
 
 function FriendPage(props) {
-    const [favoritesList, setFavoritesList] = useState([]);
-    const userid = localStorage.getItem('userid');
+  const[friendexists, setFriendExists] = useState([]);
+  const [favoritesList, setFavoritesList] = useState([]);
+  const [reviewsListLimit, setReviewsListLimit] = useState([]);
+  const userid1 = localStorage.getItem('userid');
 
 useEffect(() => {
-    console.log("getting one movie");
-    var userid = props.location.state[0].userid;
+    userid = props.location.state[0].userid;
     friend_username = props.location.state[0].username;
-    //friend_userid = userid;
-    console.log(userid);
     fetch("/api/getfriendfav?id=" + userid)
     .then(response => response.json())
     .then(data => {
         setFavoritesList(data);
     });
-   
+    fetch("/api/getfriendreviewslimit?id=" + userid)
+    .then(response => response.json())
+    .then(data => {
+        setReviewsListList(data);
+    });
 }, []);
 
 const addFavorite = (movieid, cur_userid) => {

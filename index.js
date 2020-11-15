@@ -98,6 +98,15 @@ app.get('/api/unfriend', (req, res) => {
   });
 });
 
+app.get("/api/getfriendreviewslimit", (req, res) => {
+  let userid = req.query.id;
+  const sqlSelect = "SELECT r.reviewid, r.userid, r.rating, r.date, r.content, m.name, m.movieid FROM Review r, Movies m WHERE r.userid = ? AND r.movieid = m.movieid order by r.rating desc, r.date desc limit 10;";
+  db.query(sqlSelect, [userid], (err, result) => {
+      res.json(result);
+  });
+});
+
+
 app.get("/api/getprofile", (req, res) => {
   let userid = req.query.id;
   const sqlSelect = "SELECT userid, username, type, date_created FROM User WHERE userid = ?;";

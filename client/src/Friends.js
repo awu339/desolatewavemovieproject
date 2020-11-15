@@ -9,7 +9,7 @@ function Friends() {
     const userid1 = localStorage.getItem('userid');
 
     useEffect(() => {
-    fetch("/api/getfriends?id=" + userid)
+    fetch("/api/getfriends?id=" + userid1)
         .then(response => response.json())
         .then(data => {
             setFriendFavList(data);
