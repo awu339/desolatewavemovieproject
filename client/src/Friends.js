@@ -42,13 +42,7 @@ function Friends() {
             <Col className = "search-section">
             <div className="search">
               
-              <Dropdown 
-                id = "search-by"
-                options={options} 
-                value={defaultOption} 
-                placeholder="Search for friends..." 
-                className='skinny-dropdown'
-              />
+              
               <input 
                 type="text" 
                 name="title" 
