@@ -98,6 +98,15 @@ app.get('/api/unfriend', (req, res) => {
   });
 });
 
+app.get('/api/addfriend', (req, res) => {
+  var user1 = req.query.id;
+  var user2 = req.query.userid;
+  const sqlInsert = "INSERT INTO Friend (user1, user2) VALUES(?, ?)";
+  db.query(sqlInsert, [user1, user2],  (err, result) => {
+      if (err) console.log(err);
+  });
+});
+
 app.get("/api/getfriendreviewslimit", (req, res) => {
   let userid = req.query.id;
   const sqlSelect = "SELECT r.reviewid, r.userid, r.rating, r.date, r.content, m.name, m.movieid FROM Review r, Movies m WHERE r.userid = ? AND r.movieid = m.movieid order by r.rating desc, r.date desc limit 10;";

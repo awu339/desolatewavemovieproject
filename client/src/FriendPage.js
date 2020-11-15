@@ -36,7 +36,12 @@ useEffect(() => {
 
 let unfriend = (userid) => {
   fetch("/api/unfriend?id=" + userid1 + "&userid=" + userid);
-  window.location.href = "/Friends";
+  window.location.href = "/FriendPage";
+};
+
+let addfriend = (userid) => {
+  fetch("/api/addfriend?id=" + userid1 + "&userid=" + userid);
+  window.location.href = "/FriendPage";
 };
 
 let unfavorite = (movieid, userid1) => {
@@ -102,14 +107,14 @@ return (
       if(friendexists === undefined || friendexists.length === 0){
         return(
           <p>
-          <br/> <Button outline color="primary" className="w-25" onClick={() => addfriend(userid)}>Add Friend</Button>
+          <br/> <button className = "newb" onClick={() => {addfriend(val.userid)}}> Add Friend </button> 
           </p>
         )
       }
       else{
         return(
           <p>
-          <br/> <Button outline color="primary" className="w-25" onClick={() => unfriend(userid)}>Remove Friend</Button>
+          <br/> <button className = "newb" onClick={() => {unfriend(val.userid)}}> Remove Friend </button> 
           </p>
         )
       }
