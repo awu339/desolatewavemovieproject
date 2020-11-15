@@ -75,7 +75,7 @@ function Newuser() {
                 }} 
             />
             <label>Select User Type</label>
-            <select id="sel" onChange={toggle}>
+            <select id="sel" onChange={displayCode}>
             <option value="1" >User</option>
             <option value="2" selected>Admin</option> </select>
             <button onClick = {submitUser}>Submit</button>
