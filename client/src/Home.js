@@ -63,7 +63,7 @@ function Home() {
       <Grid>
         <Row>
           <Col>
-          <h1>Top Rated Movies</h1>
+          <h2>Top Rated Movies</h2>
           <div className = "search"> 
             <Dropdown 
               options={options} 
@@ -89,14 +89,14 @@ function Home() {
                   <Link to={{ 
                     pathname: "/MoviePage", 
                     state: [{userid: userid, movieid: movie.movieid}]  
-                    }}> {movie.name} 
-                  </Link> | Rating: {movie.rating}
-                  <Link to={{ 
-                    pathname: "/MoviePage", 
-                    state: [{userid: userid, movieid: movie.movieid}]  
                     }}> 
                     <img className="icon-img" src={image}  alt="poster"/>
                   </Link>
+                  <Link to={{ 
+                    pathname: "/MoviePage", 
+                    state: [{userid: userid, movieid: movie.movieid}]  
+                    }}> {movie.name} 
+                  </Link> | Rating: {movie.rating}
                 </div>
                 );
             }
@@ -105,37 +105,37 @@ function Home() {
                 <div>
                   <Link to={{ 
                     pathname: "/MoviePage", 
-                    state: [{userid: userid, movieid: movie.movieid}]  
-                    }}> {movie.name} 
-                  </Link> | Rating: {movie.rating}
-                  <Link to={{ 
-                    pathname: "/MoviePage", 
                     state: [{userid: userid, movieid: movie.movieid, watched: 1}]  
                     }}> 
                     <img className="movie-img" src={movie.poster} alt="poster"/> 
                   </Link>
+                  <Link to={{ 
+                    pathname: "/MoviePage", 
+                    state: [{userid: userid, movieid: movie.movieid}]  
+                    }}> {movie.name} 
+                  </Link> | Rating: {movie.rating}
                 </div>
               );
             }
           })}
           </Col>
           <Col>
-            <h1>Recently Released Movies</h1>
+            <h2>Recently Released Movies</h2>
               {recentMovies.map((movie) => {
                 if(movie.poster == "N/A") {
                   return (
                     <div>
-                      <Link to={{ 
-                      pathname: "/MoviePage", 
-                      state: [{userid: userid, movieid: movie.movieid}]  
-                      }}> {movie.name} 
-                      </Link> | 
                       <Link to={{ 
                         pathname: "/MoviePage", 
                         state: [{userid: userid, movieid: movie.movieid, watched: 1}]  
                         }}> 
                         <img className="icon-img" src={image} alt={movie.name}/>
                       </Link>
+                      <Link to={{ 
+                      pathname: "/MoviePage", 
+                      state: [{userid: userid, movieid: movie.movieid}]  
+                      }}> {movie.name} 
+                      </Link>, {movie.year}
                     </div>
                   );
                 }
@@ -144,15 +144,15 @@ function Home() {
                     <div>
                       <Link to={{ 
                         pathname: "/MoviePage", 
-                        state: [{userid: userid, movieid: movie.movieid}]  
-                        }}> {movie.name} 
-                        </Link> | 
-                      <Link to={{ 
-                        pathname: "/MoviePage", 
                         state: [{userid: userid, movieid: movie.movieid, watched: 1}]  
                         }}> 
                         <img className="movie-img" src={movie.poster} alt={movie.name}/>
                       </Link>
+                      <Link to={{ 
+                        pathname: "/MoviePage", 
+                        state: [{userid: userid, movieid: movie.movieid}]  
+                        }}> {movie.name} 
+                        </Link>, {movie.year} 
                     </div>
                   );
                 }
