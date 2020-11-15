@@ -65,6 +65,7 @@ const addfriend = (userid) => {
     .then(data => {
       console.log("friend");
       console.log(data);
+      window.location.href = "/FriendPage";
     }); 
 };
 
@@ -130,18 +131,18 @@ return (
       );
     })}
 
-    {arr.map((val) => {
+    {arr.map(() => {
       if(friendexists === undefined || friendexists.length === 0){
         return(
           <p>
-          <br/> <button className = "newb" onClick={() => {addfriend(val.userid)}}> Add Friend </button> 
+          <br/> <button className = "newb" onClick={() => {addfriend(userid)}}> Add Friend </button> 
           </p>
         )
       }
       else{
         return(
           <p>
-          <br/> <button className = "newb" onClick={() => {unfriend(val.userid)}}> Remove Friend </button> 
+          <br/> <button className = "newb" onClick={() => {unfriend(userid)}}> Remove Friend </button> 
           </p>
         )
       }
