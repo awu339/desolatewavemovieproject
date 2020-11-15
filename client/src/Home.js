@@ -11,10 +11,10 @@ function Home() {
   const [topMovies, setTopMovies] = useState([]);
   const [recentMovies, setRecentMovies] = useState([]);
   const [number, setNumber] = useState(0);
-  const [dropdown, setDropdown] = useState("");
   const userid = localStorage.getItem('userid');
   const username = localStorage.getItem('username');
   const [profileInfo, setProfileInfo] = useState([]);
+
   useEffect(() => {
     fetch("/api/gettopmovies")
     .then(response => response.json())
@@ -36,11 +36,8 @@ function Home() {
     fetch("/api/getprofile?id=" + userid)
     .then(response => response.json())
     .then(data => {
-      console.log("here");
-      console.log(data);
       setProfileInfo(data);
     });
-
   }, []);  
 
   const options = [
@@ -48,10 +45,7 @@ function Home() {
   ];
   const defaultOption = options[0];
 
-  let num = 10;
-
   return (
-   
     <div>
       <Nav/>
       <h1>Welcome {username}!</h1>
@@ -82,10 +76,10 @@ function Home() {
                 setNumber(50);
               } 
             }}
+            className = "skinny-dropdown"
           />
 
           {topMovies.slice(0,number).map((movie) => {
-            console.log(number);
             if(movie.poster == "N/A"){
               return (
                 <div>
@@ -116,7 +110,6 @@ function Home() {
                     state: [{userid: userid, movieid: movie.movieid, watched: 1}]  
                     }}> 
                     <img className="movie-img" src={movie.poster} alt="poster"/> 
-                    
                   </Link>
                 </div>
               );
@@ -157,13 +150,12 @@ function Home() {
                         }}> 
                         <img className="movie-img" src={movie.poster} alt={movie.name}/>
                       </Link>
-                      </div>
-                    );
+                    </div>
+                  );
                 }
               })}
           </Col>
         </Row>
-
       </Container>
     </div>
   );
