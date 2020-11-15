@@ -165,3 +165,10 @@ nav{
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+.skinny-dropdown {
+  width: 200px;
+  text-align: center;
+  align-items: center;
+
+}

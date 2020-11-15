@@ -8,6 +8,7 @@ import 'react-dropdown/style.css';
 import image from './nomovie.jpg';
 
 function Search() {
+  const [genres, setGenres] = useState([]);
   const [title, setTitle] = useState('');
   const [year, setYear] = useState('');
   const [genre, setGenre] = useState('');
@@ -15,6 +16,33 @@ function Search() {
   const [dropdownType, setType] = useState('');
   const [numresults, setnumresults] = useState(0);
   const userid = localStorage.getItem('userid');
+
+  useEffect(() => {
+    fetch("/api/getgenres")
+    .then(response => response.json())
+    .then(data => {
+      if (data != null) {
+        var set = new Set();
+        var array = [];
+        let i;
+        for (i = 0; i < data.length; i++) {
+          let e = data[i].genre;
+          let ee = e.split(", ");
+          let j;
+          for (j = 0; j < ee.length; j++) {
+            set.add(ee[j]);
+          }
+        }
+        var sett = set.keys();
+
+        let k;
+        for (k = 0; k < set.size; k++) {
+          array.push(sett.next().value);
+        }
+        setGenres(array);
+      }
+    }); 
+  }, []);
 
   const sortByName = () => {
     let newList = [...searchResult];
@@ -37,29 +65,33 @@ function Search() {
   const submitQuery = () => {
     if (dropdownType == "Title" || dropdownType == "") {
       fetch("/api/getsearchtitle?title=" + title)
-    .then(response => response.json())
-    .then(data => {
-      setResult(data);
-      setnumresults(data.length);
-    });
-    } else if (dropdownType == "Year") {
-      fetch("/api/getsearchyear?year=" + year)
-    .then(response => response.json())
-    .then(data => {
-      setResult(data);
-      setnumresults(data.length);
-    });
-    } else if (dropdownType == "Genre") {
-      fetch("/api/getsearchgenre?genre=" + genre)
       .then(response => response.json())
       .then(data => {
         setResult(data);
         setnumresults(data.length);
       });
+    } else if (dropdownType == "Year") {
+      fetch("/api/getsearchyear?year=" + year)
+      .then(response => response.json())
+      .then(data => {
+        setResult(data);
+        setnumresults(data.length);
+    });
+    } else if (dropdownType == "Genre") {
+      searchGenre();
     } else {
       console.log("Invalid search submitted")
     }
   };
+
+  const searchGenre = () => {
+    fetch("/api/getsearchgenre?genre=" + genre)
+    .then(response => response.json())
+    .then(data => {
+      setResult(data);
+      setnumresults(data.length);
+    });
+  }
 
   const options = [
     'Title', 'Year', 'Genre'
@@ -96,66 +128,80 @@ function Search() {
           }
         />
         <span>
-          <button onClick = {submitQuery}>Search</button>
           <button onClick = {sortByName}>Sort by name</button>
           <button onClick = {sortByYear}>Sort by year</button>
           <button onClick = {sortByGenre}>Sort by genre</button>
         </span>
+        <button onClick = {submitQuery}>Search</button>
         <p>{numresults} results</p>
+      </div>
+
+      <div className="search">
+        <h2>Search by genre</h2>
+        <Dropdown 
+          options={genres} 
+          value={genres[0]} 
+          placeholder="Genres" 
+          onChange={(e) => {
+            setGenre(e.value);
+          }}
+          className='skinny-dropdown'
+        />
+        <button onClick = {searchGenre}>Search</button>
       </div>
 
       <div className="resultsBox">
         {searchResult.map((val) => {
-          if(val.poster == "N/A"){
-          return (  
-          <div className="movie-block">
-            <Link to={{ 
-              pathname: "/MoviePage", 
-              state: [{userid: userid, movieid: val.movieid, watched: 1}]  
-              }}> 
-              <img className="icon-img" src={image} alt="poster"/>
-            </Link>
-            
-            <span className="movie-text">
-              <Link to={{ 
-                pathname: "/MoviePage", 
-                state: [{userid: userid, movieid: val.movieid, watched: 1}]  
-                }}> 
-                {val.name}
-              </Link>
-              , {val.year}
-              <br />
-              {val.genre}
-            </span>
-            <hr/>
-          </div>
-          );
-      }
-     else{
-        return (  
-        <div className="movie-block">
-          <Link to={{ 
-            pathname: "/MoviePage", 
-            state: [{userid: userid, movieid: val.movieid, watched: 1}]  
-            }}> 
-            <img className="movie-img" src={val.poster} alt="poster"/>
-          </Link>
-          
-          <span className="movie-text">
-            <Link to={{ 
-              pathname: "/MoviePage", 
-              state: [{userid: userid, movieid: val.movieid, watched: 1}]  
-              }}> 
-              {val.name}
-            </Link>
-            , {val.year}
-            <br />
-            {val.genre}
-          </span>
-          <hr/>
-        </div>
-        );
-    }
+          if (val.poster == "N/A") {
+            return (  
+              <div className="movie-block">
+                <Link to={{ 
+                  pathname: "/MoviePage", 
+                  state: [{userid: userid, movieid: val.movieid, watched: 1}]  
+                  }}> 
+                  <img className="icon-img" src={image} alt="poster"/>
+                </Link>
+                
+                <span className="movie-text">
+                  <Link to={{ 
+                    pathname: "/MoviePage", 
+                    state: [{userid: userid, movieid: val.movieid, watched: 1}]  
+                    }}> 
+                    {val.name}
+                  </Link>
+                  , {val.year}
+                  <br />
+                  {val.genre}
+                </span>
+                <hr/>
+              </div>
+            );
+          }
+          else{
+            return (  
+              <div className="movie-block">
+                <Link to={{ 
+                  pathname: "/MoviePage", 
+                  state: [{userid: userid, movieid: val.movieid, watched: 1}]  
+                  }}> 
+                  <img className="movie-img" src={val.poster} alt="poster"/>
+                </Link>
+                
+                <span className="movie-text">
+                  <Link to={{ 
+                    pathname: "/MoviePage", 
+                    state: [{userid: userid, movieid: val.movieid, watched: 1}]  
+                    }}> 
+                    {val.name}
+                  </Link>
+                  , {val.year}
+                  <br />
+                  {val.genre}
+                </span>
+                <hr/>
+              </div>
+            );
+          }
       })}
       </div>
     </div>
