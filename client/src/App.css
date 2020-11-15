@@ -207,3 +207,8 @@ h1 {
   margin: 10px;
   height: 500px;
 }
+
+.scroll {
+  height: 300px;
+  overflow-y: scroll;
+}

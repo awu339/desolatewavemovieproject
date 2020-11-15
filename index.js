@@ -280,10 +280,10 @@ app.post('/api/insert', (req, res) => {
   let sql = "SELECT * FROM User;"
   const sqlInsert = "INSERT INTO User (username, password, type, date_created) VALUES(?, ?, ?, curdate());";
   db.query(sql, (err, result) => {
-
+    if(err) alert(err);
   });
   db.query(sqlInsert, [username, pwd, type], (err, result) => {
-
+    if(err) alert(err);
   });
 });
 

@@ -62,19 +62,20 @@ function Friends() {
               <button className = "newb" onClick = {submitQuery}>Search</button> 
               </Col>
               <Col> Results
-              {friendResList.map((val) => {
-            return (
-                <p>
-                Username: <Link to={{
-                pathname: "/FriendPage", 
-                state: [{userid: val.userid, username: val.username}]  
-                }}>{val.username}</Link>
-                <br />
-                <button className = "newb" onClick={() => {addfriend(val.userid)}}> Add Friend </button> 
-            </p>
-            );        
-            })}
-
+              <div class="scroll">
+                  {friendResList.map((val) => {
+                      return (
+                      <p>
+                          Username: <Link to={{
+                              pathname: "/FriendPage", 
+                              state: [{userid: val.userid, username: val.username}]  
+                              }}>{val.username}</Link>
+                              <br />
+                              <button className = "newb" onClick={() => {addfriend(val.userid)}}> Add Friend </button> 
+                              </p>
+                              );        
+                              })}
+                              </div>
               </Col>
               </div> 
               </Col>
