@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 function Friends() {
     const [friendFavList, setFriendFavList] = useState([]);
-    const userid = localStorage.getItem('userid');
+    const userid1 = localStorage.getItem('userid');
 
     useEffect(() => {
     fetch("/api/getfriends?id=" + userid)
@@ -14,7 +14,12 @@ function Friends() {
         .then(data => {
             setFriendFavList(data);
         });
-    }, []);  
+    }, []);
+    
+    let unfriend = (userid) => {
+        fetch("/api/unfriend?id=" + userid1 + "&userid=" + userid);
+        window.location.href = "/Friends";
+      };
       
     return (
         <div>
@@ -29,6 +34,7 @@ function Friends() {
                 state: [{userid: val.userid, username: val.username}]  
                 }}> {val.username} </Link>
                 <br />
+                <button className = "newb" onClick={() => {unfriend(val.userid)}}> Remove Friend </button> 
             </p>
             );        
             })}        
