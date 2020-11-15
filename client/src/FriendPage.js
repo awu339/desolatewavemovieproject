@@ -25,7 +25,7 @@ useEffect(() => {
     fetch("/api/getfriendreviewslimit?id=" + userid)
     .then(response => response.json())
     .then(data => {
-        setReviewsListList(data);
+        setReviewsListLimit(data);
     });
 }, []);
 
