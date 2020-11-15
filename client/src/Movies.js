@@ -38,7 +38,11 @@ function Movies() {
                   }}> 
                   <img className="icon-img" src={image} />
                 </Link>
-                <b>{val.name} </b> {val.year}
+                <b> <Link to={{ 
+                pathname: "/MoviePage", 
+                state: [{userid: userid, movieid: val.movieid}]  
+                }}> {val.name} 
+              </Link> </b> {val.year}
               </div>
             );
           }
@@ -50,7 +54,11 @@ function Movies() {
                   state: [{userid: userid, movieid: val.movieid, watched: 0}]  
                   }}> <img className="movie-img" src={val.poster}/> 
                 </Link>
-                <b>{val.name} </b> {val.year}
+                <b> <Link to={{ 
+                pathname: "/MoviePage", 
+                state: [{userid: userid, movieid: val.movieid}]  
+                }}> {val.name} 
+              </Link> </b> {val.year}
               </div>
             );
           }

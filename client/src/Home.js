@@ -59,8 +59,8 @@ function Home() {
         date = date[0];
         return (
         <p>
-          User type: {val.type} | 
-          Date created: {date}
+          User Type: {val.type} | 
+          Date Created: {date}
         </p>
         );
       })}
@@ -94,10 +94,14 @@ function Home() {
           return (
           
             <div>
-              {movie.name} | Rating: {movie.rating}
               <Link to={{ 
                 pathname: "/MoviePage", 
-                state: [{userid: userid, movieid: movie.movieid, watched: 1}]  
+                state: [{userid: userid, movieid: movie.movieid}]  
+                }}> {movie.name} 
+              </Link> | Rating: {movie.rating}
+              <Link to={{ 
+                pathname: "/MoviePage", 
+                state: [{userid: userid, movieid: movie.movieid}]  
                 }}> 
                 <img className="icon-img" src={image}  alt="poster"/>
               </Link>
@@ -108,7 +112,11 @@ function Home() {
           return (
           
             <div>
-              {movie.name} | Rating: {movie.rating}
+              <Link to={{ 
+                pathname: "/MoviePage", 
+                state: [{userid: userid, movieid: movie.movieid}]  
+                }}> {movie.name} 
+              </Link> | Rating: {movie.rating}
               <Link to={{ 
                 pathname: "/MoviePage", 
                 state: [{userid: userid, movieid: movie.movieid, watched: 1}]  
@@ -127,7 +135,11 @@ function Home() {
             if(movie.poster == "N/A"){
               return (
                 <div>
-                  {movie.name} | 
+                  <Link to={{ 
+                  pathname: "/MoviePage", 
+                  state: [{userid: userid, movieid: movie.movieid}]  
+                  }}> {movie.name} 
+                  </Link> | 
                   <Link to={{ 
                     pathname: "/MoviePage", 
                     state: [{userid: userid, movieid: movie.movieid, watched: 1}]  
@@ -141,7 +153,11 @@ function Home() {
               return (
             
                 <div>
-                  {movie.name} | 
+                  <Link to={{ 
+                    pathname: "/MoviePage", 
+                    state: [{userid: userid, movieid: movie.movieid}]  
+                    }}> {movie.name} 
+                    </Link> | 
                   <Link to={{ 
                     pathname: "/MoviePage", 
                     state: [{userid: userid, movieid: movie.movieid, watched: 1}]  
