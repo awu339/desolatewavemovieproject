@@ -22,6 +22,19 @@ function Reports() {
     }); 
   }, []);
 
+  const deleteReview = (reviewid) => {
+    fetch("/api/deletereview?id=" + reviewid)
+      .then(response => response.json());
+  
+    window.location.href = "/Reports";
+  };  
+
+  const dismissReport = (reviewid) => {
+    fetch("/api/dismiss?id=" + reviewid)
+      .then(response => response.json());
+  
+    window.location.href = "/Reports";
+  };  
 
 /*   useEffect(() => {
     Axios.get("http://localhost:3001/api/allreports")
@@ -53,8 +66,12 @@ function Reports() {
                 pathname: "/MoviePage", 
                 state: [{movieid: val.movieid}]  
                 }}> {val.name} 
-              </Link> | Reported by: {val.username} | Review #: {val.reviewid} 
+              </Link> | # of Reports: {val.report} | Review Author: {val.username}
+              <br/> Review: {val.content} 
           <br />
+          <button className = "newb" onClick={() => deleteReview(val.reviewid)}>Delete Review</button> 
+          {" "}
+          <button className = "newb" onClick={() => dismissReport(val.reviewid)}>Dismiss Report</button> 
         </p>
         );
       })} 

@@ -229,6 +229,13 @@ app.get('/api/report', (req, res) => {
   });
 });
 
+app.get('/api/dismiss', (req, res) => {
+  let reviewid = req.query.id;
+  const sqlUpdate = "UPDATE Review SET report = 0 WHERE reviewid = ?";
+  db.query(sqlUpdate, [reviewid], (err, result) => {
+  });
+});
+
 app.get("/api/getreviews", (req, res) => {
   let movieid = req.query.id;
   const sqlSelect = "SELECT r.reviewid, r.userid, r.movieid, r.rating, r.date, r.content, u.username FROM Review r, User u where movieid = ? AND r.userid = u.userid;";
@@ -308,7 +315,7 @@ app.get("/api/getsearchgenre", (req, res) => {
 
 app.get('/api/allreports', (req, res) => {
   console.log("all reports");
-  const sqlSelect = "SELECT r.reviewid, r.movieid, m.name, u.username FROM Review r, Movies m, User u WHERE r.report > 0 and r.movieid = m.movieid and r.userid = u.userid;";
+  const sqlSelect = "SELECT * FROM Review r, Movies m, User u WHERE r.report > 0 and r.movieid = m.movieid and r.userid = u.userid;";
   db.query(sqlSelect,  (err, result) => {
       if (err) console.log(err);
       //console.log(result);
