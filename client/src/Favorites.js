@@ -41,7 +41,11 @@ function Favorites() {
           }
           return (
             <p>
-              Title: {val.name} |
+              Title: <Link to={{ 
+                pathname: "/MoviePage", 
+                state: [{userid: userid, movieid: val.movieid}]  
+                }}> {val.name} 
+              </Link>|
               Year: {val.year} | 
               Synopsis: {val.synopsis} |
               Watched: {watchval}

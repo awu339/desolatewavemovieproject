@@ -117,8 +117,8 @@ app.get("/api/getfriendreviewslimit", (req, res) => {
 });
 
 app.get("/api/friendexists", (req, res) => {
-  let user1 = req.body.id;
-  let user2 = req.body.userid;
+  let user1 = req.query.id;
+  let user2 = req.query.userid;
   const sqlSelect = "SELECT * FROM Friend where user1 = ? AND user2 = ?;";
   db.query(sqlSelect, [user1, user2], (err, result) => {
       console.log("can i see this");
