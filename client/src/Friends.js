@@ -62,7 +62,7 @@ function Friends() {
               <button className = "newb" onClick = {submitQuery}>Search</button> 
               </Col>
               <Col> Results
-              <div class="scrollingDiv" style="overflow-y:scroll;">
+              <div style="overflow-y:scroll;">
               {friendResList.map((val) => {
             return (
                 <p>
