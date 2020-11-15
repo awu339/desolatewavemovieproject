@@ -50,7 +50,6 @@ function Nav() {
                 </u1>
                 <br />
             </nav>
-                
           );
     }
     else{
@@ -87,8 +86,6 @@ function Nav() {
             </nav>   
           );
     }
-
- 
 }
 
 export default Nav;

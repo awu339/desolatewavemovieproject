@@ -63,21 +63,23 @@ function Home() {
         <Row>
           <Col>
           <h1>Top Rated Movies</h1>
-          <Dropdown 
-            options={options} 
-            value={defaultOption} 
-            placeholder="Options" 
-            onChange={(e) => {
-              if (e.value == "Top 10" || e.value == "") {
-                setNumber(10);
-              } else if (e.value == "Top 25") {
-                setNumber(25);
-              } else if (e.value == "Top 50") {
-                setNumber(50);
-              } 
-            }}
-            className = "skinny-dropdown"
-          />
+          <div className = "search"> 
+            <Dropdown 
+              options={options} 
+              value={defaultOption} 
+              placeholder="Options" 
+              onChange={(e) => {
+                if (e.value == "Top 10" || e.value == "") {
+                  setNumber(10);
+                } else if (e.value == "Top 25") {
+                  setNumber(25);
+                } else if (e.value == "Top 50") {
+                  setNumber(50);
+                } 
+              }}
+              className = "skinny-dropdown"
+            />
+          </div>
 
           {topMovies.slice(0,number).map((movie) => {
             if(movie.poster == "N/A"){
