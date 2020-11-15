@@ -62,7 +62,7 @@ function Friends() {
               <button className = "newb" onClick = {submitQuery}>Search</button> 
               </Col>
               <Col> Results
-              <div class="scroll">
+              <div>
                   {friendResList.map((val) => {
                       if (friendResList === undefined || friendResList.length === 0){
                         return (
@@ -73,7 +73,7 @@ function Friends() {
                        } else {
                       
                       return (
-                      <p>
+                      <p class="scroll">
                           Username: <Link to={{
                               pathname: "/FriendPage", 
                               state: [{userid: val.userid, username: val.username}]  
