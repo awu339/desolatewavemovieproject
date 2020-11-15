@@ -40,6 +40,9 @@ let unfriend = (userid) => {
 };
 
 let addfriend = (userid) => {
+  console.log("am i getting here?");
+  console.log(userid);
+  console.log(userid1);
   fetch("/api/addfriend?id=" + userid1 + "&userid=" + userid);
   window.location.href = "/FriendPage";
 };
