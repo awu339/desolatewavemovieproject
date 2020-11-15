@@ -75,11 +75,9 @@ function Newuser() {
                 }} 
             />
             <label>Select User Type</label>
-                <p>
-            <select id="sel" onChange={displayCode}>
-            <option value="1">User</option>
-            <option value="2" selected>Admin</option>
-        </select>
+            <select id="sel" onChange={toggle}>
+            <option value="1" >User</option>
+            <option value="2" selected>Admin</option> </select>
             <button onClick = {submitUser}>Submit</button>
 
              {/* {userList.map((val) => {
