@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import image from './nomovie.jpg';
+import { Grid, Row, Col } from 'react-bootstrap';
 
 function Search() {
   const [genres, setGenres] = useState([]);
