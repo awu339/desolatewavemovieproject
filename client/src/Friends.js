@@ -29,10 +29,10 @@ function Friends() {
             return (
                 <p>
                 Username: 
-                <Link to={{ 
+                <Link to={{
                 pathname: "/FriendPage", 
                 state: [{userid: val.userid, username: val.username}]  
-                }}> {val.username} </Link>
+                }}>{val.username}</Link>
                 <br />
                 <button className = "newb" onClick={() => {unfriend(val.userid)}}> Remove Friend </button> 
             </p>

@@ -106,6 +106,14 @@ app.get("/api/getfriendreviewslimit", (req, res) => {
   });
 });
 
+app.get("/api/friendexists", (req, res) => {
+  let user1 = req.body.user1;
+  let user2 = req.body.user2;
+  const sqlSelect = "SELECT * FROM Friend where user1 = ? AND user2 = ?;";
+  db.query(sqlSelect, [user1, user2], (err, result) => {
+      res.json(result);
+  });
+});
 
 app.get("/api/getprofile", (req, res) => {
   let userid = req.query.id;

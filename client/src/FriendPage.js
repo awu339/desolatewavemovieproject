@@ -27,9 +27,23 @@ useEffect(() => {
     .then(data => {
         setReviewsListLimit(data);
     });
+    fetch("/api/friendexists?id=" + userid1 + "&userid=" + userid)
+    .then(response => response.json())
+    .then(data => {
+        setFriendExists(data);
+    });
 }, []);
 
-const addFavorite = (movieid, cur_userid) => {
+let unfriend = (userid) => {
+  fetch("/api/unfriend?id=" + userid1 + "&userid=" + userid);
+  window.location.href = "/Friends";
+};
+
+let unfavorite = (movieid, userid1) => {
+  fetch("/api/delete?id=" + movieid + "&userid=" + userid1);
+};
+
+const addFavorite = (movieid, userid1) => {
   var user = {
     movieid: movieid,
     userid: userid
@@ -48,7 +62,7 @@ const addFavorite = (movieid, cur_userid) => {
 return (
   <div>
     <Nav/>
-    <h1>{friend_username}'s Favorites</h1>
+    <h1>{friend_username}'s Profile</h1>
     {favoritesList.map((val) => {
     
     var watchval = "";
@@ -69,6 +83,40 @@ return (
      </p>
     );
     })} 
+    <h2>{friend_username}'s Top 10 Rated Movies</h2>
+    {reviewsListLimit.map((val) => {
+      return (
+        <p>
+          Movie: <Link to={{ 
+                pathname: "/MoviePage", 
+                state: [{userid: userid1, movieid: val.movieid}]  
+                }}> {val.name}</Link> |
+          Rating: {val.rating} | 
+          Date Reviewed: {val.date} 
+          <br/> Review: {val.content}
+      </p>
+      );
+    })}
+
+    {arr.map(() => {
+      if(friendexists === undefined || friendexists.length === 0){
+        return(
+          <p>
+          <br/> <Button outline color="primary" className="w-25" onClick={() => addfriend(userid)}>Add Friend</Button>
+          </p>
+        )
+      }
+      else{
+        return(
+          <p>
+          <br/> <Button outline color="primary" className="w-25" onClick={() => unfriend(userid)}>Remove Friend</Button>
+          </p>
+        )
+      }
+
+    }
+
+    )}
   </div>
 );
 }
