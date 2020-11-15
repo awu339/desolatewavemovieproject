@@ -14,6 +14,8 @@ import Login from './Login';
 import Friends from './Friends';
 import FriendPage from './FriendPage';
 import Reports from './Reports';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
   return (
     <Router>
