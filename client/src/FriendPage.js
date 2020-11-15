@@ -89,6 +89,7 @@ return (
     );
     })} 
     <h2>{friend_username}'s Top 10 Rated Movies</h2>
+
     {reviewsListLimit.map((val) => {
       return (
         <p>
@@ -103,7 +104,7 @@ return (
       );
     })}
 
-    {arr.map(() => {
+    {arr.map((val) => {
       if(friendexists === undefined || friendexists.length === 0){
         return(
           <p>
