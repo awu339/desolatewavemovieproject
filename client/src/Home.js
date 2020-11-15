@@ -85,7 +85,7 @@ function Home() {
           {topMovies.slice(0,number).map((movie) => {
             if(movie.poster == "N/A"){
               return (
-                <div>
+                <div className = "left">
                   <Link to={{ 
                     pathname: "/MoviePage", 
                     state: [{userid: userid, movieid: movie.movieid}]  
@@ -102,7 +102,7 @@ function Home() {
             }
             else{  
               return ( 
-                <div>
+                <div className = "left">
                   <Link to={{ 
                     pathname: "/MoviePage", 
                     state: [{userid: userid, movieid: movie.movieid, watched: 1}]  
@@ -124,7 +124,7 @@ function Home() {
               {recentMovies.map((movie) => {
                 if(movie.poster == "N/A") {
                   return (
-                    <div>
+                    <div className = "left">
                       <Link to={{ 
                         pathname: "/MoviePage", 
                         state: [{userid: userid, movieid: movie.movieid, watched: 1}]  
@@ -141,7 +141,7 @@ function Home() {
                 }
                 else{ 
                   return (
-                    <div>
+                    <div className = "left">
                       <Link to={{ 
                         pathname: "/MoviePage", 
                         state: [{userid: userid, movieid: movie.movieid, watched: 1}]  

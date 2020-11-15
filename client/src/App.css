@@ -189,3 +189,8 @@ nav{
   align-items: center;
   margin: 20px;
 }
+
+.left {
+  align-content: left;
+  text-align: left;
+}
