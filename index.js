@@ -65,7 +65,7 @@ app.get('/api/checkuser', (req, res) =>{
 
 app.get("/api/getfavorites", (req, res) => {
   let userid = req.query.id;
-  const sqlSelect = "SELECT m.name as name, m.year as year, m.plot as plot, f.movieid as movieid, f.watched as watched FROM Movies as m, Favorites as f WHERE f.userid = ? and f.movieid = m.movieid;";
+  const sqlSelect = "SELECT m.name as name, m.year as year, m.plot as plot, f.movieid as movieid, f.watched as watched FROM Movies as m, Favorites as f WHERE f.userid = ? and f.movieid = m.movieid order by m.name asc;";
   db.query(sqlSelect, [userid], (err, result) => {
       res.json(result);
   });
