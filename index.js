@@ -98,10 +98,10 @@ app.get('/api/unfriend', (req, res) => {
   });
 });
 
-app.post('/api/addfriend', (req, res) => {
+app.get('/api/addfriend', (req, res) => {
 
-  const user1 = req.body.user1;
-  const user2 = req.body.user2;
+  const user1 = req.query.id;
+  const user2 = req.query.userid;
 
   const sqlInsert = "INSERT INTO Friend (user1, user2) VALUES(?, ?)";
     db.query(sqlInsert, [user1, user2],  (err, result) => {

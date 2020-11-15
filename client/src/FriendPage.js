@@ -44,15 +44,12 @@ let unfriend = (userid) => {
   window.location.href = "/FriendPage";
 };
 
-/* let addfriend = (userid) => {
-  console.log("am i getting here?");
-  console.log(userid);
-  console.log(userid1);
+let addfriend = (userid) => {
   fetch("/api/addfriend?id=" + userid1 + "&userid=" + userid);
   window.location.href = "/FriendPage";
-}; */
+};
 
-const addfriend = (userid) => {
+/* const addfriend = (userid) => {
   var user = {
     user1: userid1,
     user2: userid
@@ -72,7 +69,7 @@ const addfriend = (userid) => {
       console.log(data);
       window.location.href = "/FriendPage";
     }); 
-};
+}; */
 
 let unfavorite = (movieid, userid1) => {
   fetch("/api/delete?id=" + movieid + "&userid=" + userid1);
