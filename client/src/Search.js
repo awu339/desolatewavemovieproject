@@ -212,13 +212,10 @@ function Search() {
                 }
             })}
             </div>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
       </Grid>
     </div>
-    
-
-    
   );
 }
 
