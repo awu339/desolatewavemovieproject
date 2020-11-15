@@ -29,6 +29,7 @@ function Friends() {
       };
 
       const submitQuery = () => {
+          console.log("search : " + search);
           fetch("/api/getsearchuser?user=" + search)
           .then(response => response.json())
           .then(data => {

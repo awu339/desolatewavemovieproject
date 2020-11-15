@@ -305,7 +305,7 @@ app.get("/api/getsearchyear", (req, res) => {
 });
 
 app.get("/api/getsearchuser", (req, res) => {
-  let username = req.query.username;
+  let username = '%' + req.query.username + '%';
   let sql = "SELECT * FROM User WHERE username LIKE ? order by username desc;";
   db.query(sql, [username], (err, result) => {
       res.json(result);
