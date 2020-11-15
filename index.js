@@ -89,6 +89,15 @@ app.get('/api/delete', (req, res) => {
   });
 });
 
+app.get('/api/unfriend', (req, res) => {
+  var user1 = req.query.id;
+  var user2 = req.query.userid;
+  const sqlDelete = "DELETE FROM Friend WHERE user1 = ? and user2 = ?";
+  db.query(sqlDelete, [user1, user2],  (err, result) => {
+      if (err) console.log(err);
+  });
+});
+
 app.get("/api/getprofile", (req, res) => {
   let userid = req.query.id;
   const sqlSelect = "SELECT userid, username, type, date_created FROM User WHERE userid = ?;";
@@ -193,7 +202,7 @@ app.get('/api/report', (req, res) => {
 
 app.get("/api/getreviews", (req, res) => {
   let movieid = req.query.id;
-  const sqlSelect = "SELECT * FROM Review where movieid = ?;";
+  const sqlSelect = "SELECT r.reviewid, r.userid, r.movieid, r.rating, r.date, r.content, u.username FROM Review r, User u where movieid = ? AND r.userid = u.userid;";
   db.query(sqlSelect, [movieid], (err, result) => {
       res.json(result);
   });

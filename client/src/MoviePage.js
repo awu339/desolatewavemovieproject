@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Nav from './Nav';
 import { Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import image from './nomovie.jpg';
 
 function MoviePage(props) {
@@ -160,7 +161,7 @@ return (
       else {
         x = val.poster;
       }
-      if (reviewexists === undefined || reviewexists.length == 0){
+      if (reviewexists === undefined || reviewexists.length === 0){
         return (
         <div className = "movie-info">
           <h2>{val.name} </h2>
@@ -248,7 +249,10 @@ return (
       if (type == "admin"){
         return (
           <p>
-            User: {val.userid} | 
+            User: <Link to={{ 
+                pathname: "/FriendPage", 
+                state: [{userid: val.userid, username: val.username}]  
+                }}>{val.username}</Link> | 
             Rating: {val.rating} | 
             Date: {val.date}
             <br/> Review: {val.content} | 
@@ -263,7 +267,10 @@ return (
       else{
         return (
           <p>
-            User: {val.userid} | 
+            User: <Link to={{ 
+                pathname: "/FriendPage", 
+                state: [{userid: val.userid, username: val.username}]  
+                }}>{val.username}</Link> | 
             Rating: {val.rating} | 
             Date: {val.date}
             <br/> Review: {val.content}
