@@ -16,38 +16,40 @@ function MoviePage(props) {
     const userid = localStorage.getItem('userid');
     const type = localStorage.getItem('type');
     const username = localStorage.getItem('username');
-    console.log("username" + username);
     var flag = "";
 
 useEffect(() => {
   var movieid= props.location.state[0].movieid;
   fetch("/api/getmovie?id=" + movieid)
-    .then(response => response.json())
-    .then(data => {
-      setMovie(data);
-    });
-    fetch("/api/getreviews?id=" + movieid)
-    .then(response => response.json())
-    .then(data => {
-      setReviews(data);
-    });  
+  .then(response => response.json())
+  .then(data => {
+    setMovie(data);
+  });
+
+  fetch("/api/getreviews?id=" + movieid)
+  .then(response => response.json())
+  .then(data => {
+    setReviews(data);
+  });  
     
-    var user = {
-      movieid: movieid,
-      userid: userid
-    };
-    var options = {
-      method: 'POST',
-      body: JSON.stringify(user),
-      headers: {
-          'Content-Type': 'application/json'
-      }
+  var user = {
+    movieid: movieid,
+    userid: userid
+  };
+
+  var options = {
+    method: 'POST',
+    body: JSON.stringify(user),
+    headers: {
+        'Content-Type': 'application/json'
     }
-    fetch("/api/reviewexists?id=", options)
-      .then(response => response.json())
-      .then(data => {
-        setReviewExists(data);
-      }); 
+  }
+
+  fetch("/api/reviewexists?id=", options)
+  .then(response => response.json())
+  .then(data => {
+    setReviewExists(data);
+  }); 
 }, []);
 
 const addFavorite = (movieid) => {
@@ -163,40 +165,43 @@ return (
       }
       if (reviewexists === undefined || reviewexists.length === 0){
         return (
-        <div className = "movie-info">
-          <h2>{val.name} </h2>
-          <img className="movie-page-img" src = {x} alt="Poster"/>
-          <br/> Year: {val.year} 
-          <br/> Genre: {val.genre} 
-          <br/> Synopsis: {val.plot} 
-          <br/> Director: {val.director}
-          <br/> Actors: {val.actors} 
-          <br/> Runtime: {val.runtime}
-          <br/> <button className = "newb" onClick={() => addFavorite(val.movieid)}>Add Favorite</button>
+          <div className = "movie-info">
+            <h2>{val.name} </h2>
+            <img className="movie-page-img" src = {x} alt="Poster"/>
+            <br/> Year: {val.year} 
+            <br/> Genre: {val.genre} 
+            <br/> Synopsis: {val.plot} 
+            <br/> Director: {val.director}
+            <br/> Actors: {val.actors} 
+            <br/> Runtime: {val.runtime}
+            <br/> <button className = "newb" onClick={() => addFavorite(val.movieid)}>Add Favorite</button>
 
-          <h1>Leave a Review</h1>
-          <label>Rating</label> 
-          <input
-        type="number"
-        min="0"
-        max="5"
-        name="rating"
-        onChange={(e) => {
-          setRating(e.target.value);
-        }}
-      />
-      <br/> <label>Review</label> 
-      <input
-        type="text"
-        name="review"
-        size="100"
-        onChange={(e) => {
-          setReview(e.target.value);
-        }}
-      />
-              
-      <br/><button className = "newb" onClick = {submitReview}>Submit</button>
-        </div>
+            <h1>Leave a Review</h1>
+            <label>Rating</label> 
+            <input
+              type="number"
+              min="0"
+              max="5"
+              name="rating"
+              onChange={(e) => {
+                setRating(e.target.value);
+              }}
+              className = "rating-input"
+            />
+
+            <br/> <label>Review</label> 
+            <input
+              type="text"
+              name="review"
+              size="100"
+              onChange={(e) => {
+                setReview(e.target.value);
+              }}
+              className = "review-input"
+            />
+                
+            <br/><button className = "newb" onClick = {submitReview}>Submit</button>
+          </div>
         );}
   
         else{

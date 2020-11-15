@@ -15,10 +15,6 @@ function Nav() {
         borderRadius: '5px'
     };
 
-    $("navStyle").hover(function(){
-        $(this).css("background", "dark gray");
-    });
-
     if(type === 'admin'){
         return (
             <nav>

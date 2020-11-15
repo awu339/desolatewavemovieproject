@@ -42,30 +42,29 @@ function Favorites() {
          }
       })}
           {favoritesList.map((val) => {
-          console.log(userid);
-          var watchval = "";
-          if (val.watched == 1){
-            var watchval = "Yes"
-          }
-          else{
-            var watchval = "No"
-          }
-          return (
-            <p>
-              Title: <Link to={{ 
-                pathname: "/MoviePage", 
-                state: [{userid: userid, movieid: val.movieid}]  
-                }}> {val.name} 
-              </Link> |
-              Year: {val.year} | 
-              Synopsis: {val.synopsis} |
-              Watched: {watchval}
-              <br />
-              <button className = "newb" onClick={() => {unfavorite(val.movieid, userid)}}> Unfavorite </button> 
-              {' '}
-              <button className = "newb" onClick={() => {watched(val.movieid, userid)}}> Watched </button>
-           </p>
-          );
+            console.log(userid);
+            var watchval = "";
+            if (val.watched == 1) {
+              var watchval = "Yes"
+            } else {
+              var watchval = "No"
+            }
+            return (
+              <p>
+                Title: <Link to={{ 
+                  pathname: "/MoviePage", 
+                  state: [{userid: userid, movieid: val.movieid}]  
+                  }}> {val.name} 
+                </Link> |
+                Year: {val.year} | 
+                Synopsis: {val.synopsis} |
+                Watched: {watchval}
+                <br />
+                <button className = "newb" onClick={() => {unfavorite(val.movieid, userid)}}> Unfavorite </button> 
+                {' '}
+                <button className = "newb" onClick={() => {watched(val.movieid, userid)}}> Watched </button>
+            </p>
+            );
           })} 
     </div>
   );

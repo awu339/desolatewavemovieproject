@@ -79,6 +79,18 @@ nav{
   margin: 10px;
 }
 
+.rating-input {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+}
+
+.review-input {
+  width: 200px;
+  height: 50px;
+  margin: 10px;
+}
+
 .resultsBox {
   padding: 20px;
   text-align: left;
