@@ -99,7 +99,8 @@ nav{
   text-align:center;
   transition: all 0.2s;
   background-color: white;
-  }
+}
+
 .newb:hover{
   color:#FFFFFF;
   background-color:#3682d8;
