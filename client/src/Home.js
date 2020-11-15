@@ -64,7 +64,7 @@ function Home() {
         </p>
         );
       })}
-      <Container>
+      <Container fluid>
       <Row>
         <Col>
         <h1>Top Rated Movies</h1>
