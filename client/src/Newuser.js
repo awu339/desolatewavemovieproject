@@ -75,17 +75,23 @@ function Newuser() {
                 }} 
             />
             <label>Select User Type</label>
-            <select id="sel" onChange={(e) => {
-              var cont = document.getElementById('cont');
-              if (cont.style.display == 'block') {
-                  cont.style.display = 'none';
-              }
-              else {
-                  cont.style.display = 'block';
-              }
-            }}>
+            <select id="sel" onChange={displayCode}>
             <option value="1" >User</option>
             <option value="2" selected>Admin</option> </select>
+            <div id="cont" style={{display:"block"}}>
+              Admin Code: 
+              <input 
+                      type="text" 
+                      name="type" 
+                      onChange={(e)=> {
+                        if(e.target.value == "cs316") {
+                          setType("admin");
+                        } else {
+                          setType("user");
+                        }
+                      }} 
+                  />
+            </div>
             <button onClick = {submitUser}>Submit</button>
 
              {/* {userList.map((val) => {

@@ -304,6 +304,14 @@ app.get("/api/getsearchyear", (req, res) => {
   })
 });
 
+app.get("/api/getsearchuser", (req, res) => {
+  let username = req.query.username;
+  let sql = "SELECT * FROM User WHERE username LIKE ? order by username desc;";
+  db.query(sql, [username], (err, result) => {
+      res.json(result);
+  })
+});
+
 app.get("/api/getsearchgenre", (req, res) => {
   let genre = '%' + req.query.genre + '%';
   let sql = "SELECT * FROM Movies WHERE genre LIKE ? order by year desc;";

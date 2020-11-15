@@ -21,6 +21,28 @@ function Friends() {
         fetch("/api/unfriend?id=" + userid1 + "&userid=" + userid);
         window.location.href = "/Friends";
       };
+
+      const submitQuery = (search) => {
+        if (dropdownType == "Title" || dropdownType == "") {
+          fetch("/api/getsearchtitle?title=" + title)
+          .then(response => response.json())
+          .then(data => {
+            setResult(data);
+            setnumresults(data.length);
+          });
+        } else if (dropdownType == "Year") {
+          fetch("/api/getsearchyear?year=" + year)
+          .then(response => response.json())
+          .then(data => {
+            setResult(data);
+            setnumresults(data.length);
+        });
+        } else if (dropdownType == "Genre") {
+          searchGenre();
+        } else {
+          console.log("Invalid search submitted")
+        }
+      };
       
     return (
         <div>
