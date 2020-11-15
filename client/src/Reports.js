@@ -38,7 +38,7 @@ function Reports() {
       <Nav/>
       <h1>All Reported Reviews</h1>
       {arr.map(() => {
-          if (friendFavList === undefined || friendFavList.length === 0){
+          if (reported === undefined || reported.length === 0){
             return (
               <p>
                 There are 0 reviews reported.
