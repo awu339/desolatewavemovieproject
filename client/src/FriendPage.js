@@ -39,12 +39,33 @@ let unfriend = (userid) => {
   window.location.href = "/FriendPage";
 };
 
-let addfriend = (userid) => {
+/* let addfriend = (userid) => {
   console.log("am i getting here?");
   console.log(userid);
   console.log(userid1);
   fetch("/api/addfriend?id=" + userid1 + "&userid=" + userid);
   window.location.href = "/FriendPage";
+}; */
+
+const addfriend = (userid) => {
+  var user = {
+    user1: userid1,
+    user2: userid
+  };
+
+  var options = {
+    method: 'POST',
+    body: JSON.stringify(user),
+    headers: {
+        'Content-Type': 'application/json'
+    }
+  }
+  fetch("/api/addfriend", options)
+    .then(response => response.json())
+    .then(data => {
+      console.log("friend");
+      console.log(data);
+    }); 
 };
 
 let unfavorite = (movieid, userid1) => {
