@@ -63,6 +63,15 @@ app.get('/api/checkuser', (req, res) =>{
   });
 });
 
+app.get('/api/checkduplicate', (req, res) =>{
+  var usernameval = req.query.id;
+  const sqlCheckUser = "SELECT username FROM User WHERE username = ?";
+  db.query(sqlCheckUser, [usernameval], (err, result) =>{
+      if(err) console.log(err);
+      res.json(result);
+  });
+});
+
 app.get("/api/getfavorites", (req, res) => {
   let userid = req.query.id;
   const sqlSelect = "SELECT m.name as name, m.year as year, m.plot as plot, f.movieid as movieid, f.watched as watched FROM Movies as m, Favorites as f WHERE f.userid = ? and f.movieid = m.movieid order by m.name asc;";
