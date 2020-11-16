@@ -59,7 +59,7 @@ function Friends() {
             })} 
             {friendFavList.map((val) => {
             return (
-                <p align-content = "center">
+                <p>
                 Username: <Link to={{
                 pathname: "/FriendPage", 
                 state: [{userid: val.userid, username: val.username}]  
