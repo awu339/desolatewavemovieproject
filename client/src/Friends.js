@@ -71,9 +71,9 @@ function Friends() {
             })}  
             </div>  
             <h2>Search for Friends</h2>
-            <Col className = "friend-search-section">
+            <div className = "friend-search-section">
             <div className="search">
-                <Col>
+                <div>
                 Enter Username
               <input 
                 type="text" 
@@ -84,8 +84,8 @@ function Friends() {
                 }
               />
               <button className = "newb" onClick = {submitQuery}>Search</button> 
-              </Col>
-              <Col> 
+              </div>
+              <div> 
               <div class="scroll">
                   {friendResList.map((val) => {
                       if (friendResList === undefined || friendResList.length === 0){
@@ -109,9 +109,9 @@ function Friends() {
                               })
                     }
                               </div>
-              </Col>
+              </div>
               </div> 
-              </Col>
+              </div>
                 
         </div>
     );
