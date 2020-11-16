@@ -114,41 +114,39 @@ function Search() {
       <h1>Search</h1>
       <div className = "search">
         <div className="search-section">
-          
-          <span>
-            <Dropdown 
-              id = "search-by"
-              options={options} 
-              value={defaultOption} 
-              placeholder="Search by..." 
-              onChange={(e) => {
-                setType(e.value);
-              }}
-              className='skinny-dropdown'
-            />
-            <input 
-              type="text" 
-              name="title" 
-              onChange={(e) => {
-                  if (dropdownType == "Title" || dropdownType == "") {
-                    setTitle(e.target.value);
-                  } else if (dropdownType == "Year") {
-                    setYear(e.target.value);
-                  } else if (dropdownType == "Genre") {
-                    setGenre(e.target.value);
-                  } else { }
-                }
+        
+          <Dropdown 
+            id = "search-by"
+            options={options} 
+            value={defaultOption} 
+            placeholder="Search by..." 
+            onChange={(e) => {
+              setType(e.value);
+            }}
+            className='skinny-dropdown'
+          />
+          <input 
+            type="text" 
+            name="title" 
+            onChange={(e) => {
+                if (dropdownType == "Title" || dropdownType == "") {
+                  setTitle(e.target.value);
+                } else if (dropdownType == "Year") {
+                  setYear(e.target.value);
+                } else if (dropdownType == "Genre") {
+                  setGenre(e.target.value);
+                } else { }
               }
-            />
-          </span>
-          <div></div>
+            }
+          />
 
           <span>
+            <button className = "newb" onClick = {submitQuery}>Search</button>
             <button className = "newb" onClick = {sortByName}>Sort by name</button>
             <button className = "newb" onClick = {sortByYear}>Sort by year</button>
             <button className = "newb" onClick = {sortByGenre}>Sort by genre</button>
           </span>
-          <button className = "newb" onClick = {submitQuery}>Search</button>
+          
           <p>{numresults} results</p>
             <h2>Display by genre</h2>
             <Dropdown 
