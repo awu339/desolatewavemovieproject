@@ -106,30 +106,33 @@ function Search() {
       <div className = "search">
         <div className="search-section">
           
-          <Dropdown 
-            id = "search-by"
-            options={options} 
-            value={defaultOption} 
-            placeholder="Search by..." 
-            onChange={(e) => {
-              setType(e.value);
-            }}
-            className='skinny-dropdown'
-          />
-          <input 
-            type="text" 
-            name="title" 
-            onChange={(e) => {
-                if (dropdownType == "Title" || dropdownType == "") {
-                  setTitle(e.target.value);
-                } else if (dropdownType == "Year") {
-                  setYear(e.target.value);
-                } else if (dropdownType == "Genre") {
-                  setGenre(e.target.value);
-                } else { }
+          <span>
+            <Dropdown 
+              id = "search-by"
+              options={options} 
+              value={defaultOption} 
+              placeholder="Search by..." 
+              onChange={(e) => {
+                setType(e.value);
+              }}
+              className='skinny-dropdown'
+            />
+            <input 
+              type="text" 
+              name="title" 
+              onChange={(e) => {
+                  if (dropdownType == "Title" || dropdownType == "") {
+                    setTitle(e.target.value);
+                  } else if (dropdownType == "Year") {
+                    setYear(e.target.value);
+                  } else if (dropdownType == "Genre") {
+                    setGenre(e.target.value);
+                  } else { }
+                }
               }
-            }
-          />
+            />
+          </span>
+          <div></div>
 
           <span>
             <button className = "newb" onClick = {sortByName}>Sort by name</button>
@@ -152,59 +155,61 @@ function Search() {
         </div>
         </div>
         
-        <div className="resultsBox">
-          {searchResult.map((val) => {
-            if (val.poster == "N/A") {
-              return (  
-                <div className="movie-block">
-                  <Link to={{ 
-                    pathname: "/MoviePage", 
-                    state: [{userid: userid, movieid: val.movieid, watched: 1}]  
-                    }}> 
-                    <img className="icon-img" src={image} alt="poster"/>
-                  </Link>
-                  
-                  <span className="movie-text">
+        <div className = "search">
+          <div className="resultsBox">
+            {searchResult.map((val) => {
+              if (val.poster == "N/A") {
+                return (  
+                  <div className="movie-block">
                     <Link to={{ 
                       pathname: "/MoviePage", 
                       state: [{userid: userid, movieid: val.movieid, watched: 1}]  
                       }}> 
-                      {val.name}
+                      <img className="icon-img" src={image} alt="poster"/>
                     </Link>
-                    , {val.year}
-                    <br />
-                    {val.genre}
-                  </span>
-                  <hr/>
-                </div>
-              );
-            }
-            else{
-              return (  
-                <div className="movie-block">
-                  <Link to={{ 
-                    pathname: "/MoviePage", 
-                    state: [{userid: userid, movieid: val.movieid, watched: 1}]  
-                    }}> 
-                    <img className="movie-img" src={val.poster} alt="poster"/>
-                  </Link>
-                  
-                  <span className="movie-text">
+                    
+                    <span className="movie-text">
+                      <Link to={{ 
+                        pathname: "/MoviePage", 
+                        state: [{userid: userid, movieid: val.movieid, watched: 1}]  
+                        }}> 
+                        {val.name}
+                      </Link>
+                      , {val.year}
+                      <br />
+                      {val.genre}
+                    </span>
+                    <hr/>
+                  </div>
+                );
+              }
+              else{
+                return (  
+                  <div className="movie-block">
                     <Link to={{ 
                       pathname: "/MoviePage", 
                       state: [{userid: userid, movieid: val.movieid, watched: 1}]  
                       }}> 
-                      {val.name}
+                      <img className="movie-img" src={val.poster} alt="poster"/>
                     </Link>
-                    , {val.year}
-                    <br />
-                    {val.genre}
-                  </span>
-                  <hr/>
-                </div>
-              );
-            }
-          })}
+                    
+                    <span className="movie-text">
+                      <Link to={{ 
+                        pathname: "/MoviePage", 
+                        state: [{userid: userid, movieid: val.movieid, watched: 1}]  
+                        }}> 
+                        {val.name}
+                      </Link>
+                      , {val.year}
+                      <br />
+                      {val.genre}
+                    </span>
+                    <hr/>
+                  </div>
+                );
+              }
+            })}
+          </div>
         </div>
     </div>
   );
