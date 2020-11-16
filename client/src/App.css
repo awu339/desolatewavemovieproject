@@ -221,8 +221,9 @@ h1 {
 }
 
 .scroll2 {
-  height: 700px;
-  width: 500px;
+  height: 100%;
+  width: 40%;
+  margin: 20px;
   overflow-y: auto;
 }
 
