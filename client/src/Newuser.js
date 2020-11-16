@@ -19,6 +19,7 @@ function Newuser() {
     }, []); */
 
     const submitUser = () => {
+      console.log("admincode: " + adminCode + " | " + type);
       if(type === "admin" && adminCode != 'cs316') {
         alert('Incorrect Admin Code. Please Enter a Valid Code.');
       } else {

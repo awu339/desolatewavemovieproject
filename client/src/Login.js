@@ -55,7 +55,7 @@ export default function Login() {
   return (
     <div className="Login">
         <img className="movie-page-img" src={logo}/>
-        <h1>Desolate ---- Wave Movie List</h1>
+        <h1>DesolateWave Movie List</h1>
       <form onSubmit={handleSubmit}>
         <FormGroup controlId="username" bsSize="large">
           <ControlLabel>Username: </ControlLabel>
