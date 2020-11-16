@@ -221,8 +221,9 @@ h1 {
 }
 
 .scroll2 {
-  height: 500px;
+  height: 700px;
   width: 1000px;
+  overflow-y: auto;
 }
 
 .friend-search-section {

@@ -62,7 +62,7 @@ function Home() {
       })}
       <Grid>
         <Row>
-          <Col>
+          <Col className = "scroll2">
           <h2>Top Rated Movies</h2>
           <div className = "search"> 
             <Dropdown 
@@ -119,7 +119,7 @@ function Home() {
             }
           })}
           </Col>
-          <Col>
+          <Col className = "scroll2">
             <h2>Recently Released Movies</h2>
               {recentMovies.map((movie) => {
                 if(movie.poster == "N/A") {
