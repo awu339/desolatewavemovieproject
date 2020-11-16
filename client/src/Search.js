@@ -103,6 +103,7 @@ function Search() {
     <div>
       <Nav />
       <h1>Search</h1>
+      <div className = "search-section">
         <div className="search">
           
           <Dropdown 
@@ -151,6 +152,7 @@ function Search() {
             className='skinny-dropdown'
           />
           <button className = "newb" onClick = {searchGenre}>Display</button>
+        </div>
         </div>
         
         <div className="resultsBox">
