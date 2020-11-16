@@ -215,7 +215,7 @@ h1 {
 
 .scroll {
   height: 500px;
-  width: 400; 
+  width: 400px; 
   overflow-y: auto;
   align-content: center;
   text-align:center;
