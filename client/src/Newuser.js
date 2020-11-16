@@ -8,6 +8,7 @@ function Newuser() {
     const [username, setUsername] = useState('');
     const [pwd, setPwd] = useState('');
     var [type, setType] = useState('');
+    var [adminCode, setAdminCode] = useState('');
     const [userList, setUserList] = useState([]);
 
     /* useEffect(() => {
@@ -18,6 +19,9 @@ function Newuser() {
     }, []); */
 
     const submitUser = () => {
+      if(type == "admin" && adminCode != 'cs316') {
+        alert('Incorrect Admin Code. Please Enter a Valid Code.');
+      } else {
       var user = {
         username: username,
         pwd: pwd, 
@@ -33,6 +37,7 @@ function Newuser() {
       fetch("/api/insert", options); 
 
       window.location.href = "/";
+    }
     };
 
     function displayCode() {
@@ -86,6 +91,7 @@ function Newuser() {
                       onChange={(e)=> {
                         if(e.target.value == "cs316") {
                           setType("admin");
+                          setAdminCode("cs316");
                         } else {
                           setType("user");
                         }
