@@ -61,7 +61,7 @@ function Friends() {
               />
               <button className = "newb" onClick = {submitQuery}>Search</button> 
               </Col>
-              <Col> Results
+              <Col> 
               <div class="scroll">
                   {friendResList.map((val) => {
                       if (friendResList === undefined || friendResList.length === 0){
@@ -89,7 +89,7 @@ function Friends() {
               </div> 
               </Col>
             <div>
-                My Friends
+                <h1>My Friends</h1>
             {arr.map(() => {
                 if (friendFavList === undefined || friendFavList.length === 0){
                  return (
