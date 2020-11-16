@@ -89,9 +89,9 @@ function Newuser() {
                       type="text" 
                       name="type" 
                       onChange={(e)=> {
+                        setAdminCode(e.target.value);
                         if(e.target.value == "cs316") {
                           setType("admin");
-                          setAdminCode("cs316");
                         } else {
                           setType("user");
                         }
