@@ -99,6 +99,7 @@ function Search() {
   ];
   const defaultOption = options[0];
 
+  console.log(userid);
   if (userid == null) {
     return (
       <div>
