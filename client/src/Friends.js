@@ -46,6 +46,30 @@ function Friends() {
     return (
         <div>
             <Nav/>
+            <div>
+                <h1>My Friends</h1>
+            {arr.map(() => {
+                if (friendFavList === undefined || friendFavList.length === 0){
+                 return (
+                <p>
+                    You have 0 friends.
+                </p>
+                    )
+                }
+            })} 
+            {friendFavList.map((val) => {
+            return (
+                <p>
+                Username: <Link to={{
+                pathname: "/FriendPage", 
+                state: [{userid: val.userid, username: val.username}]  
+                }}>{val.username}</Link>
+                <br />
+                <button className = "newb" onClick={() => {unfriend(val.userid)}}> Remove Friend </button> 
+            </p>
+            );        
+            })}  
+            </div>  
             <h1>Friends</h1>
             <Col className = "search-section">
             <div className="search">
@@ -88,30 +112,7 @@ function Friends() {
               </Col>
               </div> 
               </Col>
-            <div>
-                <h1>My Friends</h1>
-            {arr.map(() => {
-                if (friendFavList === undefined || friendFavList.length === 0){
-                 return (
-                <p>
-                    You have 0 friends.
-                </p>
-                    )
-                }
-            })} 
-            {friendFavList.map((val) => {
-            return (
-                <p>
-                Username: <Link to={{
-                pathname: "/FriendPage", 
-                state: [{userid: val.userid, username: val.username}]  
-                }}>{val.username}</Link>
-                <br />
-                <button className = "newb" onClick={() => {unfriend(val.userid)}}> Remove Friend </button> 
-            </p>
-            );        
-            })}  
-            </div>      
+                
         </div>
     );
 }
