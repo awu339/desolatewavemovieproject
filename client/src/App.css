@@ -209,6 +209,8 @@ h1 {
   padding: 20px;
   margin: 10px;
   height: 500px;
+  align-content: center;
+  text-align:center;
 }
 
 .scroll {
