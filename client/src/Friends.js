@@ -46,7 +46,7 @@ function Friends() {
     return (
         <div>
             <Nav/>
-            <h1>MyFriends</h1>
+            <h1>My Friends</h1>
             <div class = "scroll">
             {arr.map(() => {
                 if (friendFavList === undefined || friendFavList.length === 0){
