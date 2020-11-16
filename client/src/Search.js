@@ -99,6 +99,14 @@ function Search() {
   ];
   const defaultOption = options[0];
 
+  if (userid == null) {
+    return (
+      <div>
+        You may not view this site. Please login.
+      </div>
+    );
+  }
+  else {
   return (
     <div>
       <Nav />
@@ -213,6 +221,7 @@ function Search() {
         </div>
     </div>
   );
+  }
 }
 
 export default Search;
