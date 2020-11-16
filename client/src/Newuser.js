@@ -10,7 +10,6 @@ function Newuser() {
     var [type, setType] = useState('');
     var [adminCode, setAdminCode] = useState('');
     const [userList, setUserList] = useState([]);
-    const [duplicateUser, setDuplicateUser] = useState([]);
 
     /* useEffect(() => {
         Axios.get("http://localhost:3001/api/getusers")
@@ -20,13 +19,9 @@ function Newuser() {
     }, []); */
 
     const submitUser = () => {
-      checkDuplicate();
       console.log("admincode: " + adminCode + " | " + type);
-      // if(type === "admin" && adminCode != 'cs316') {
-      //   alert('Incorrect Admin Code. Please Enter a Valid Code.');
-      // } else 
-      if(duplicateUser.length > 0){
-          alert("Username already taken. Please choose another one.");
+      if(type === "admin" && adminCode != 'cs316') {
+        alert('Incorrect Admin Code. Please Enter a Valid Code.');
       } else {
       var user = {
         username: username,
@@ -55,17 +50,6 @@ function Newuser() {
           cont.style.display = 'block';
       }
   }
-
-  function checkDuplicate(){
-    fetch("/api/checkduplicate?id=" + username)
-  .then(response => response.json())
-  .then(data => {
-    console.log("dups: " + data);
-    setDuplicateUser(data);
-  });
-  }
-
-
   
 
   return (
