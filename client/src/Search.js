@@ -103,8 +103,8 @@ function Search() {
     <div>
       <Nav />
       <h1>Search</h1>
-      <div className = "search-section">
-        <div className="search">
+      <div className = "search">
+        <div className="search-section">
           
           <Dropdown 
             id = "search-by"
@@ -138,20 +138,17 @@ function Search() {
           </span>
           <button className = "newb" onClick = {submitQuery}>Search</button>
           <p>{numresults} results</p>
-        </div>
-
-        <div className="search">
-          <h2>Display by genre</h2>
-          <Dropdown 
-            options={genres} 
-            value={genres[0]} 
-            placeholder="Genres" 
-            onChange={(e) => {
-              setGenre(e.value);
-            }}
-            className='skinny-dropdown'
-          />
-          <button className = "newb" onClick = {searchGenre}>Display</button>
+            <h2>Display by genre</h2>
+            <Dropdown 
+              options={genres} 
+              value={genres[0]} 
+              placeholder="Genres" 
+              onChange={(e) => {
+                setGenre(e.value);
+              }}
+              className='skinny-dropdown'
+            />
+            <button className = "newb" onClick = {searchGenre}>Display</button>
         </div>
         </div>
         

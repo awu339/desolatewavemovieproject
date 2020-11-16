@@ -94,9 +94,9 @@ nav{
 .resultsBox {
   padding: 5px;
   text-align: left;
-  overflow-y: auto;
   height: 1000px;
-  width: 500px;
+  width: 1000px;
+  overflow-y: auto;
 }
 
 .b{
@@ -209,7 +209,6 @@ h1 {
   padding: 20px;
   margin: 10px;
   height: 500px;
-  width: 300px;
 }
 
 .scroll {
