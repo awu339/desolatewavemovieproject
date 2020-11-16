@@ -46,8 +46,8 @@ function Friends() {
     return (
         <div>
             <Nav/>
-            <div>
-                <h1>My Friends</h1>
+            <h1>MyFriends</h1>
+            <div class = "scroll">
             {arr.map(() => {
                 if (friendFavList === undefined || friendFavList.length === 0){
                  return (
@@ -70,11 +70,11 @@ function Friends() {
             );        
             })}  
             </div>  
-            <h1>Friends</h1>
-            <Col className = "search-section">
+            <h2>Search for Friends</h2>
+            <Col className = "friend-search-section">
             <div className="search">
                 <Col>
-                Search for Friends
+                Enter Username
               <input 
                 type="text" 
                 name="title" 
