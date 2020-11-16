@@ -209,6 +209,7 @@ h1 {
 }
 
 .scroll {
-  height: 300px;
+  height: 400px;
+  width: 200px; 
   overflow-y: auto;
 }
