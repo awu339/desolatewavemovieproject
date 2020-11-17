@@ -262,7 +262,7 @@ return (
           <div className = "movie-info">
 
             <h1>Leave a Review</h1>
-            <label>Rating</label> 
+            <label>Rating: </label> 
             <input
               type="number"
               min="0"
@@ -274,7 +274,7 @@ return (
               className = "rating-input"
             />
 
-            <br/> <label>Review</label> 
+            <br/> <label>Review: </label> 
             <input
               type="text"
               name="review"
@@ -297,7 +297,7 @@ return (
           <br/>Rating: {reviewexists[0].rating}
           <br/>Review: {reviewexists[0].content}
           <br/>
-          <br/> <label>New Rating</label> 
+          <br/> <label>New Rating: </label> 
           <input
         type="number"
         min="0"
@@ -307,7 +307,7 @@ return (
           setRating(e.target.value);
         }}
       />
-      <br/> <label>New Review</label> 
+      <br/> <label>New Review: </label> 
       <input
         type="text"
         name="review"

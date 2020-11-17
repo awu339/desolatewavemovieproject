@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Axios from 'axios';
 import Nav from './Nav';
+var type = "user";
 
 function Newuser() {
     //const [userID, setUserID] = useState('');
     const [username, setUsername] = useState('');
     const [pwd, setPwd] = useState('');
-    var [type, setType] = useState('');
+    //var [type, setType] = useState('');
     var [adminCode, setAdminCode] = useState('');
     const [userList, setUserList] = useState([]);
 
@@ -20,9 +21,9 @@ function Newuser() {
 
     const submitUser = () => {
       console.log("admincode: " + adminCode + " | " + type);
-      if(type === "admin" && adminCode != 'cs316') {
+      /* if(type === "admin" && adminCode != 'cs316') {
         alert('Incorrect Admin Code. Please Enter a Valid Code.');
-      } else {
+      } else { */
       var user = {
         username: username,
         pwd: pwd, 
@@ -38,7 +39,7 @@ function Newuser() {
       fetch("/api/insert", options); 
 
       window.location.href = "/";
-    }
+    
     };
 
     function displayCode() {
@@ -93,9 +94,9 @@ function Newuser() {
                       onChange={(e)=> {
                         setAdminCode(e.target.value);
                         if(e.target.value == "cs316") {
-                          setType("admin");
+                          type = "admin";
                         } else {
-                          setType("user");
+                          type = "user";
                         }
                       }} 
                   />
