@@ -21,9 +21,9 @@ function Newuser() {
 
     const submitUser = () => {
       console.log("admincode: " + adminCode + " | " + type);
-      /* if(type === "admin" && adminCode != 'cs316') {
+      if(type === "admin" && adminCode != 'cs316') {
         alert('Incorrect Admin Code. Please Enter a Valid Code.');
-      } else { */
+      } else {
       var user = {
         username: username,
         pwd: pwd, 
@@ -39,7 +39,7 @@ function Newuser() {
       fetch("/api/insert", options); 
 
       window.location.href = "/";
-    
+      }
     };
 
     function displayCode() {
@@ -93,11 +93,12 @@ function Newuser() {
                       name="type" 
                       onChange={(e)=> {
                         setAdminCode(e.target.value);
-                        if(e.target.value == "cs316") {
+                        /* if(e.target.value == "cs316") {
                           type = "admin";
                         } else {
                           type = "user";
-                        }
+                        } */
+                        type = "admin";
                       }} 
                   />
             </div>
