@@ -29,8 +29,13 @@ export default function Login() {
     fetch("/api/checkuser?id=" + username)
     .then(response => response.json())
     .then(data => {
+      if (data === undefined || data.length === 0){
+        alert('Username does not exist. Please try again or register a new user.');
+      }
+      else{
       correctPassword = data[0].password;
       checkPassword();
+      }
     });    
     }
 
