@@ -172,6 +172,15 @@ app.get('/api/watched', (req, res) =>{
   });
 });
 
+app.get('/api/unwatched', (req, res) =>{
+  var movieidval = req.query.id;
+  var userid = req.query.userid;
+  const sqlWatched = "UPDATE Favorites SET watched = 0 WHERE movieid = ? and userid = ?";
+  db.query(sqlWatched, [movieidval, userid], (err, result) =>{
+      if(err) console.log(err);
+  });
+});
+
 
 app.get("/api/getfriends", (req, res) => {
   let userid = req.query.id;
