@@ -223,7 +223,7 @@ h1 {
 
 .scroll2 {
   height: 800px;
-  width: 45%;
+  margin: 20px;
   padding: 20px;
   overflow-y: auto;
 
