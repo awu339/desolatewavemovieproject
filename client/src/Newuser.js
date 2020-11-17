@@ -26,7 +26,7 @@ function Newuser() {
       fetch("/api/checkuser?id=" + username)
       .then(response => response.json())
       .then(data => {
-        if (data !== undefined || data.length >= 0){
+        if (data !== undefined || data.length > 0){
           alert('Username is already taken. Please try again with a different username.');
         }
         else{
@@ -117,7 +117,7 @@ function Newuser() {
             </div>
             <button className = "newb" onClick = {submitUser}>Submit</button>
             {" "}
-            <Link to = '/'><button className = "newb"> Login </button></Link>
+            <Link to = '/'><button className = "newb"> Back to Login </button></Link>
              {/* {userList.map((val) => {
               return (
               <p>
