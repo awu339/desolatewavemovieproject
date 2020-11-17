@@ -196,9 +196,10 @@ return (
           <br/> Runtime: {val.runtime}
           <br/> <button className = "newb" onClick={() => addFavorite(val.movieid)}>Add Favorite</button>
         </p>
-            )
+            );
         }
         else {
+          return (
           <p>
           <h2>{val.name} </h2>
           <img className="movie-page-img" src = {x} alt="Poster"/>
@@ -210,7 +211,7 @@ return (
           <br/> Runtime: {val.runtime}
           <br/>
         </p>
-        }
+          );}
     })}
 
       if (reviewexists === undefined || reviewexists.length === 0){
