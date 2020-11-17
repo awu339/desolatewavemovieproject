@@ -64,12 +64,14 @@ function Search() {
   }
 
   const submitQuery = () => {
+    document.getElementById("loading").classList.remove("invisible");
     if (dropdownType == "Title" || dropdownType == "") {
       fetch("/api/getsearchtitle?title=" + title)
       .then(response => response.json())
       .then(data => {
         setResult(data);
         setnumresults(data.length);
+        document.getElementById("loading").classList.add("invisible");
       });
     } else if (dropdownType == "Year") {
       fetch("/api/getsearchyear?year=" + year)
@@ -77,9 +79,11 @@ function Search() {
       .then(data => {
         setResult(data);
         setnumresults(data.length);
+        document.getElementById("loading").classList.add("invisible");
     });
     } else if (dropdownType == "Genre") {
       searchGenre();
+      document.getElementById("loading").classList.add("invisible");
     } else {
       console.log("Invalid search submitted")
     }
@@ -168,6 +172,9 @@ function Search() {
         
         <div className = "search">
           <div className="resultsBox">
+            <div id = "loading" className="invisible">
+              Loading...
+            </div>
             {searchResult.map((val) => {
               if (val.poster == "N/A") {
                 return (  
