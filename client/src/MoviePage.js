@@ -176,6 +176,7 @@ const UpdateReview = () => {
 const report = (reviewid) => {
   fetch("/api/report?id=" + reviewid)
     .then(response => response.json()); 
+    alert('You have successfully reported this review.');
     window.location.href = "/MoviePage";
 };  
 
