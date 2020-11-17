@@ -24,7 +24,11 @@ useEffect(() => {
   fetch("/api/getmovie?id=" + movieid)
   .then(response => response.json())
   .then(data => {
+    console.log("whyyyyyyy");
+    console.log(data);
     setMovie(data);
+    console.log("????");
+    console.log(movie);
   });
 
   fetch("/api/getreviews?id=" + movieid)
