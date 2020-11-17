@@ -26,8 +26,13 @@ function Newuser() {
       fetch("/api/checkuser?id=" + username)
       .then(response => response.json())
       .then(data => {
-        if (data !== undefined || data.length > 0){
+        console.log("testing");
+        console.log(data);
+        if (data.length > 0){
           alert('Username is already taken. Please try again with a different username.');
+        }
+        else if (username === undefined || username.length === 0 || pwd === undefined || pwd.length === 0){
+          alert('Username or password is empty. Please enter both a username and a password.');
         }
         else{
           if(type === "admin" && adminCode != "cs316") {
