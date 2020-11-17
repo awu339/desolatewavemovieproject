@@ -71,11 +71,11 @@ let addfriend = (userid) => {
     }); 
 }; */
 
-let unfavorite = (movieid, userid1) => {
+/* let unfavorite = (movieid, userid1) => {
   fetch("/api/delete?id=" + movieid + "&userid=" + userid1);
-};
+}; */
 
-const addFavorite = (movieid) => {
+/* const addFavorite = (movieid) => {
   var user = {
     movieid: movieid,
     userid: userid1
@@ -89,7 +89,7 @@ const addFavorite = (movieid) => {
   }
   fetch("/api/insertfriendfavorite", options);
 };
-
+ */
 
 return (
   <div>
@@ -139,7 +139,7 @@ return (
         Synopsis: {val.synopsis} |
         Watched: {watchval}
         <br />
-        <button className = "newb" onClick={() => addFavorite(val.movieid)}>Add Favorite</button>
+        {/* <button className = "newb" onClick={() => addFavorite(val.movieid)}>Add Favorite</button> */}
      </p>
     );
     })} 
