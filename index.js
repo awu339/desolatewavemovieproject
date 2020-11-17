@@ -47,6 +47,15 @@ app.post("/api/reviewexists", (req, res) => {
   });
 });
 
+app.post("/api/favexists", (req, res) => {
+  let movieid = req.body.movieid;
+  let userid = req.body.userid;
+  const sqlSelect = "SELECT * FROM Favorites where movieid = ? AND userid = ?;";
+  db.query(sqlSelect, [movieid, userid], (err, result) => {
+      res.json(result);
+  });
+});
+
 app.get("/api/getusers", (req, res) => {
   const sqlSelect = "SELECT * FROM User;";
   db.query(sqlSelect, (err, result) => {

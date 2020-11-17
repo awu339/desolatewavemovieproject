@@ -4,10 +4,12 @@ import Nav from './Nav';
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import image from './nomovie.jpg';
+var arr = [1];
 
 function MoviePage(props) {
     const [movie, setMovie] = useState([]);
     const[reviewexists, setReviewExists] = useState([]);
+    const[favexists, setFavExists] = useState([]);
     const [reviews, setReviews] = useState([]);
     var [rating, setRating] = useState("");
     var [review, setReview] = useState("");
@@ -36,7 +38,6 @@ useEffect(() => {
     movieid: movieid,
     userid: userid
   };
-
   var options = {
     method: 'POST',
     body: JSON.stringify(user),
@@ -44,12 +45,29 @@ useEffect(() => {
         'Content-Type': 'application/json'
     }
   }
-
   fetch("/api/reviewexists?id=", options)
   .then(response => response.json())
   .then(data => {
     setReviewExists(data);
   }); 
+
+  var user2 = {
+    movieid: movieid,
+    userid: userid
+  };
+  var options2 = {
+    method: 'POST',
+    body: JSON.stringify(user2),
+    headers: {
+        'Content-Type': 'application/json'
+    }
+  }
+  fetch("/api/favexists?id=", options2)
+  .then(response => response.json())
+  .then(data => {
+    setFavExists(data);
+  }); 
+  
 }, []);
 
 const addFavorite = (movieid) => {
@@ -163,18 +181,41 @@ return (
       else {
         x = val.poster;
       }
+      
+      {arr.map(() => {
+        if (favexists === undefined || favexists.length === 0){
+         return (
+          <div className = "movie-info">
+          <h2>{val.name} </h2>
+          <img className="movie-page-img" src = {x} alt="Poster"/>
+          <br/> Year: {val.year} 
+          <br/> Genre: {val.genre} 
+          <br/> Synopsis: {val.plot} 
+          <br/> Director: {val.director}
+          <br/> Actors: {val.actors} 
+          <br/> Runtime: {val.runtime}
+          <br/> <button className = "newb" onClick={() => addFavorite(val.movieid)}>Add Favorite</button>
+        </div>
+            )
+        }
+        else {
+          <div className = "movie-info">
+          <h2>{val.name} </h2>
+          <img className="movie-page-img" src = {x} alt="Poster"/>
+          <br/> Year: {val.year} 
+          <br/> Genre: {val.genre} 
+          <br/> Synopsis: {val.plot} 
+          <br/> Director: {val.director}
+          <br/> Actors: {val.actors} 
+          <br/> Runtime: {val.runtime}
+          <br/> Already in favorites
+        </div>
+        }
+    })}
+
       if (reviewexists === undefined || reviewexists.length === 0){
         return (
           <div className = "movie-info">
-            <h2>{val.name} </h2>
-            <img className="movie-page-img" src = {x} alt="Poster"/>
-            <br/> Year: {val.year} 
-            <br/> Genre: {val.genre} 
-            <br/> Synopsis: {val.plot} 
-            <br/> Director: {val.director}
-            <br/> Actors: {val.actors} 
-            <br/> Runtime: {val.runtime}
-            <br/> <button className = "newb" onClick={() => addFavorite(val.movieid)}>Add Favorite</button>
 
             <h1>Leave a Review</h1>
             <label>Rating</label> 
@@ -207,16 +248,6 @@ return (
         else{
           return (
             <p>
-              <h2>{val.name} </h2>
-          <img className="movie-page-img" src = {x} alt="Poster"/>
-          <br/> Year: {val.year} 
-          <br/> Genre: {val.genre} 
-          <br/> Synopsis: {val.plot} 
-          <br/> Director: {val.director}
-          <br/> Actors: {val.actors} 
-          <br/> Runtime: {val.runtime}
-          <br/> <button className = "newb" onClick={() => addFavorite(val.movieid)}>Add Favorite</button>
-
           <h1>Update Your Review</h1>
           <br/>User: {username}
           <br/>Rating: {reviewexists[0].rating}
@@ -239,7 +270,9 @@ return (
         size="100"
         onChange={(e) => {
           setReview(e.target.value);
-        }}
+        }
+      
+      }
       />
       <br/><button className = "newb" onClick = {UpdateReview}>Update</button>
      <br/> <button className = "newb" onClick={() => deleteReview(reviewexists[0].reviewid)}>Delete</button>
