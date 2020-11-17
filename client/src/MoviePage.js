@@ -187,6 +187,7 @@ return (
     {movie.map((val) => {
       console.log("rendering the movie");
       console.log(reviewexists);
+      console.log(favexists);
       
       var x = "";
       if (val.poster == "N/A") {
@@ -232,8 +233,9 @@ return (
     
     })}
     {movie.map((val) => {
-      console.log("rendering the movie");
+      console.log("rendering the movie 2");
       console.log(reviewexists);
+      console.log(favexists);
       
       var x = "";
       if (val.poster == "N/A") {
