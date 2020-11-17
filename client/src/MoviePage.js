@@ -181,38 +181,50 @@ return (
       else {
         x = val.poster;
       }
-      
-      {arr.map(() => {
-        if (favexists === undefined || favexists.length === 0){
+
+      if (favexists === undefined || favexists.length === 0){
+        return (
+          <div className = "movie-info">
+         <h2>{val.name} </h2>
+         <img className="movie-page-img" src = {x} alt="Poster"/>
+         <br/> Year: {val.year} 
+         <br/> Genre: {val.genre} 
+         <br/> Synopsis: {val.plot} 
+         <br/> Director: {val.director}
+         <br/> Actors: {val.actors} 
+         <br/> Runtime: {val.runtime}
+         <br/> <button className = "newb" onClick={() => addFavorite(val.movieid)}>Add Favorite</button>
+       </div>
+           );
+       }
+       else {
          return (
-          <p>
-          <h2>{val.name} </h2>
-          <img className="movie-page-img" src = {x} alt="Poster"/>
-          <br/> Year: {val.year} 
-          <br/> Genre: {val.genre} 
-          <br/> Synopsis: {val.plot} 
-          <br/> Director: {val.director}
-          <br/> Actors: {val.actors} 
-          <br/> Runtime: {val.runtime}
-          <br/> <button className = "newb" onClick={() => addFavorite(val.movieid)}>Add Favorite</button>
-        </p>
-            );
-        }
-        else {
-          return (
-          <p>
-          <h2>{val.name} </h2>
-          <img className="movie-page-img" src = {x} alt="Poster"/>
-          <br/> Year: {val.year} 
-          <br/> Genre: {val.genre} 
-          <br/> Synopsis: {val.plot} 
-          <br/> Director: {val.director}
-          <br/> Actors: {val.actors} 
-          <br/> Runtime: {val.runtime}
-          <br/>
-        </p>
-          );}
+          <div className = "movie-info">
+         <h2>{val.name} </h2>
+         <img className="movie-page-img" src = {x} alt="Poster"/>
+         <br/> Year: {val.year} 
+         <br/> Genre: {val.genre} 
+         <br/> Synopsis: {val.plot} 
+         <br/> Director: {val.director}
+         <br/> Actors: {val.actors} 
+         <br/> Runtime: {val.runtime}
+         <br/>
+       </div>
+         );}
+    
     })}
+    {movie.map((val) => {
+      console.log("rendering the movie");
+      console.log(reviewexists);
+      
+      var x = "";
+      if (val.poster == "N/A") {
+        x = image;
+      }
+      else {
+        x = val.poster;
+      }
+      
 
       if (reviewexists === undefined || reviewexists.length === 0){
         return (
