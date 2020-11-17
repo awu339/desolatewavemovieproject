@@ -115,6 +115,7 @@ function Search() {
       <div className = "search">
         <div className="search-section">
         
+          <div className = "search">
           <Dropdown 
             id = "search-by"
             options={options} 
@@ -139,6 +140,7 @@ function Search() {
               }
             }
           />
+          </div>
 
           <span>
             <button className = "newb" onClick = {submitQuery}>Search</button>
