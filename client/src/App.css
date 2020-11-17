@@ -194,6 +194,7 @@ h1 {
   width: 200px;
   text-align: center;
   align-items: center;
+  align-content: center;
   margin: 20px;
 }
 
@@ -222,8 +223,7 @@ h1 {
 
 .scroll2 {
   height: 800px;
-  width: 50%;
-  margin: 20px;
+  width: 45%;
   padding: 20px;
   overflow-y: auto;
 
