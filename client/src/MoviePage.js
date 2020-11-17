@@ -4,6 +4,8 @@ import Nav from './Nav';
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import image from './nomovie.jpg';
+var arr = [1];
+var moviename = "";
 
 function MoviePage(props) {
     const [movie, setMovie] = useState([]);
@@ -26,6 +28,7 @@ useEffect(() => {
   .then(response => response.json())
   .then(data => {
     setMovie(data);
+    moviename = data[0].name;
   });
   fetch("/api/getmovierating?id=" + movieid)
   .then(response => response.json())
@@ -325,7 +328,18 @@ return (
       })}
     <br />
     <h1>All Reviews</h1>
-    
+
+    {arr.map(() => {
+         if (reviews === undefined || reviews.length === 0){
+           return (
+             <p>
+               There are 0 reviews for {moviename}.
+               <br/>
+             </p>
+           )
+         }
+      })}
+
     {reviews.map((val) => {
       if (type == "admin"){
         var date = val.date.split("T");
