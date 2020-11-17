@@ -130,7 +130,7 @@ return (
     }
     return (
       <p>
-        Movie: <Link to={{ 
+        Title: <Link to={{ 
                 pathname: "/MoviePage", 
                 state: [{userid: userid1, movieid: val.movieid}]  
                 }}> {val.name} 
@@ -150,7 +150,7 @@ return (
       date = date[0];
       return (
         <p>
-          Movie: <Link to={{ 
+          Title: <Link to={{ 
                 pathname: "/MoviePage", 
                 state: [{userid: userid1, movieid: val.movieid}]  
                 }}> {val.name}</Link> |
