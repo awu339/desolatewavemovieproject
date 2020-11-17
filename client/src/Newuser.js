@@ -73,7 +73,7 @@ function Newuser() {
   return (
     <div>
       
-      <h1>Register new user</h1>
+      <h1>Register New User</h1>
         <div className="form">
            {/*  <label>UserID:</label>
             <input 
@@ -120,8 +120,9 @@ function Newuser() {
                       }} 
                   />
             </div>
+            <br/>
             <button className = "newb" onClick = {submitUser}>Submit</button>
-            {" "}
+            
             <Link to = '/'><button className = "newb"> Back to Login </button></Link>
              {/* {userList.map((val) => {
               return (
