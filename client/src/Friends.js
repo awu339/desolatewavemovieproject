@@ -87,15 +87,17 @@ function Friends() {
               </div>
               <div> 
               <div class="scroll">
+              {arr.map(() => {
+                if (friendResList === undefined || friendResList.length === 0){
+                 return (
+                <p>
+                    No matching users.
+                </p>
+                    )
+                }
+            })} 
                   {friendResList.map((val) => {
-                      if (friendResList === undefined || friendResList.length === 0){
-                        return (
-                       <p>
-                           No matching users.
-                       </p>
-                           )
-                       } else {
-                      
+                                           
                       return (
                       <p>
                           Username: <Link to={{
@@ -105,7 +107,7 @@ function Friends() {
                               <br />
                               <button className = "newb" onClick={() => {addfriend(val.userid)}}> Add Friend </button> 
                               </p>
-                              );}        
+                              );        
                               })
                     }
                               </div>
