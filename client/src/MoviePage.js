@@ -69,7 +69,7 @@ useEffect(() => {
   
 }, []);
 
-const addFavorite = (movieid) => {
+/* const addFavorite = (movieid) => {
   var user = {
     movieid: movieid,
     userid: userid
@@ -89,6 +89,11 @@ const addFavorite = (movieid) => {
       console.log(data);
       window.location.href = "/MoviePage"
     }); 
+}; */
+
+let addFavorite = (movieid, userid) => {
+  fetch("/api/insertfavorite?id=" + movieid + "&userid=" + userid);
+  window.location.href = "/MoviePage";
 };
 
 let unfavorite = (movieid, userid) => {
@@ -198,7 +203,7 @@ return (
          <br/> Director: {val.director}
          <br/> Actors: {val.actors} 
          <br/> Runtime: {val.runtime}
-         <br/> <button className = "newb" onClick={() => addFavorite(val.movieid)}>Add Favorite</button>
+         <br/> <button className = "newb" onClick={() => addFavorite(val.movieid, userid)}>Add Favorite</button>
        </div>
            );
        }

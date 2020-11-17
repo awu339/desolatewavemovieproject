@@ -107,6 +107,16 @@ app.get('/api/delete', (req, res) => {
   });
 });
 
+app.get('/api/insertfavorite', (req, res) => {
+  var movieid = req.query.id;
+  var userID = req.query.userid;
+  var watched = 0;
+
+  const sqlInsert = "INSERT INTO Favorites (userID, movieid, watched) VALUES(?, ?, ?)";
+  db.query(sqlInsert, [userID, movieid, watched], (err, result) => {
+  });
+});
+
 app.get('/api/unfriend', (req, res) => {
   var user1 = req.query.id;
   var user2 = req.query.userid;
@@ -183,17 +193,6 @@ app.post('/api/insertfriendfavorite', (req, res) => {
 
   const movieid = req.body.movieid;
   const userID = req.body.userid;
-  const watched = 0;
-
-  const sqlInsert = "INSERT INTO Favorites (userID, movieid, watched) VALUES(?, ?, ?)";
-  db.query(sqlInsert, [userID, movieid, watched], (err, result) => {
-  });
-});
-
-app.post('/api/insertfavorite', (req, res) => {
-
-  const userID = req.body.userid;
-  const movieid = req.body.movieid;
   const watched = 0;
 
   const sqlInsert = "INSERT INTO Favorites (userID, movieid, watched) VALUES(?, ?, ?)";
