@@ -185,7 +185,7 @@ return (
       {arr.map(() => {
         if (favexists === undefined || favexists.length === 0){
          return (
-          <div className = "movie-info">
+          <p>
           <h2>{val.name} </h2>
           <img className="movie-page-img" src = {x} alt="Poster"/>
           <br/> Year: {val.year} 
@@ -195,11 +195,11 @@ return (
           <br/> Actors: {val.actors} 
           <br/> Runtime: {val.runtime}
           <br/> <button className = "newb" onClick={() => addFavorite(val.movieid)}>Add Favorite</button>
-        </div>
+        </p>
             )
         }
         else {
-          <div className = "movie-info">
+          <p>
           <h2>{val.name} </h2>
           <img className="movie-page-img" src = {x} alt="Poster"/>
           <br/> Year: {val.year} 
@@ -208,8 +208,8 @@ return (
           <br/> Director: {val.director}
           <br/> Actors: {val.actors} 
           <br/> Runtime: {val.runtime}
-          <br/> Already in favorites
-        </div>
+          <br/>
+        </p>
         }
     })}
 
