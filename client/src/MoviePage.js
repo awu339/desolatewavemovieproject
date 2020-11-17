@@ -4,7 +4,6 @@ import Nav from './Nav';
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import image from './nomovie.jpg';
-var arr = [1];
 
 function MoviePage(props) {
     const [movie, setMovie] = useState([]);
@@ -88,7 +87,13 @@ const addFavorite = (movieid) => {
     .then(data => {
       console.log("favorites");
       console.log(data);
+      window.location.href = "/MoviePage"
     }); 
+};
+
+let unfavorite = (movieid, userid) => {
+  fetch("/api/delete?id=" + movieid + "&userid=" + userid);
+  window.location.href = "/MoviePage";
 };
 
 /* const getUsername = (userid) => {
@@ -208,7 +213,7 @@ return (
          <br/> Director: {val.director}
          <br/> Actors: {val.actors} 
          <br/> Runtime: {val.runtime}
-         <br/>
+         <br/> <button className = "newb" onClick={() => {unfavorite(val.movieid, userid)}}> Unfavorite </button>
        </div>
          );}
     
