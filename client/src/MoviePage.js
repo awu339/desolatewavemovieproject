@@ -7,6 +7,7 @@ import image from './nomovie.jpg';
 
 function MoviePage(props) {
     const [movie, setMovie] = useState([]);
+    const [movieRating, setMovieRating] = useState([]);
     const[reviewexists, setReviewExists] = useState([]);
     const[favexists, setFavExists] = useState([]);
     const [reviews, setReviews] = useState([]);
@@ -24,11 +25,12 @@ useEffect(() => {
   fetch("/api/getmovie?id=" + movieid)
   .then(response => response.json())
   .then(data => {
-    console.log("whyyyyyyy");
-    console.log(data);
     setMovie(data);
-    console.log("????");
-    console.log(movie);
+  });
+  fetch("/api/getmovierating?id=" + movieid)
+  .then(response => response.json())
+  .then(data => {
+    setMovieRating(data);
   });
 
   fetch("/api/getreviews?id=" + movieid)
@@ -190,11 +192,18 @@ return (
       console.log(favexists);
       
       var x = "";
+      var rating = "";
       if (val.poster == "N/A") {
         x = image;
       }
       else {
         x = val.poster;
+      }
+      if (movieRating === undefined || movieRating.length === 0){
+        rating = "No Ratings Exist"
+      }
+      else{
+        rating = movieRating[0].rating;
       }
 
       if (favexists === undefined || favexists.length === 0){
@@ -208,7 +217,7 @@ return (
          <br/> Director: {val.director}
          <br/> Actors: {val.actors} 
          <br/> Runtime: {val.runtime}
-         <br/> Average Rating: {val.rating}
+         <br/> Average Rating: {rating}
          <br/> 
          <br/> <button className = "newb" onClick={() => addFavorite(val.movieid, userid)}>Add Favorite</button>
        </div>
@@ -225,7 +234,7 @@ return (
          <br/> Director: {val.director}
          <br/> Actors: {val.actors} 
          <br/> Runtime: {val.runtime}
-         <br/> Average Rating: {val.rating}
+         <br/> Average Rating: {rating}
          <br/> 
          <br/> <button className = "newb" onClick={() => {unfavorite(val.movieid, userid)}}> Unfavorite </button>
        </div>

@@ -31,6 +31,14 @@ app.get("/api/getmovies", (req, res) => {
 
 app.get("/api/getmovie", (req, res) => {
   let movieid = req.query.id;
+  let sqlSelect = "SELECT * FROM Movies m where m.movieid = ?;"
+  db.query(sqlSelect, [movieid], (err, result) => {
+      res.json(result);
+  });
+});
+
+app.get("/api/getmovierating", (req, res) => {
+  let movieid = req.query.id;
   let sql = "CREATE VIEW a AS (SELECT movieid, AVG(rating) as rating FROM Review GROUP BY movieid);";
   let sqlSelect = "SELECT * FROM Movies m, a where m.movieid = ? and m.movieid = a.movieid;"
   db.query(sql, (err, result) => {
