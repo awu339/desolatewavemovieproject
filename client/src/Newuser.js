@@ -4,6 +4,7 @@ import Axios from 'axios';
 import Nav from './Nav';
 var type = "user";
 var adminCode = "wrong";
+import { Link } from 'react-router-dom';
 
 function Newuser() {
     //const [userID, setUserID] = useState('');
@@ -114,8 +115,9 @@ function Newuser() {
                       }} 
                   />
             </div>
-            <button onClick = {submitUser}>Submit</button>
-
+            <button className = "newb" onClick = {submitUser}>Submit</button>
+            {" "}
+            <Link to = '/'><button className = "newb"> Login </button></Link>
              {/* {userList.map((val) => {
               return (
               <p>
