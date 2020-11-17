@@ -149,6 +149,7 @@ function Search() {
           
           <p>{numresults} results</p>
             <h2>Display by genre</h2>
+            <div  className = "search">
             <Dropdown 
               options={genres} 
               value={genres[0]} 
@@ -158,6 +159,7 @@ function Search() {
               }}
               className='skinny-dropdown'
             />
+            </div>
             <button className = "newb" onClick = {searchGenre}>Display</button>
         </div>
         </div>
