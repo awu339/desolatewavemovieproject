@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import Nav from './Nav';
 var type = "user";
 var adminCode = "wrong";
-import { Link } from 'react-router-dom';
 
 function Newuser() {
     //const [userID, setUserID] = useState('');
