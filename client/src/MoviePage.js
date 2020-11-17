@@ -203,6 +203,7 @@ return (
          <br/> Director: {val.director}
          <br/> Actors: {val.actors} 
          <br/> Runtime: {val.runtime}
+         <br/> Average Rating: {val.rating}
          <br/> <button className = "newb" onClick={() => addFavorite(val.movieid, userid)}>Add Favorite</button>
        </div>
            );
@@ -218,6 +219,7 @@ return (
          <br/> Director: {val.director}
          <br/> Actors: {val.actors} 
          <br/> Runtime: {val.runtime}
+         <br/> Average Rating: {val.rating}
          <br/> <button className = "newb" onClick={() => {unfavorite(val.movieid, userid)}}> Unfavorite </button>
        </div>
          );}
