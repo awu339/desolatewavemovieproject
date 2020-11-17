@@ -20,27 +20,51 @@ function Newuser() {
         }); 
     }, []); */
 
+    let checkUser = (username) => {
+      fetch("/api/checkuser?id=" + username)
+    .then(response => response.json())
+    .then(data => {
+      if (data === undefined || data.length === 0){
+        alert('Username does not exist. Please try again or register a new user.');
+      }
+      else{
+      correctPassword = data[0].password;
+      checkPassword();
+      }
+    });   
+    };
+ 
     const submitUser = () => {
       console.log("admincode: " + adminCode + " | " + type);
-      if(type === "admin" && adminCode != "cs316") {
-        alert('Incorrect Admin Code. Please Enter a Valid Code.');
-      } else {
-      var user = {
-        username: username,
-        pwd: pwd, 
-        type: type
-      };
-      var options = {
-        method: 'POST',
-        body: JSON.stringify(user),
-        headers: {
-            'Content-Type': 'application/json'
+      fetch("/api/checkuser?id=" + username)
+      .then(response => response.json())
+      .then(data => {
+        if (data !== undefined || data.length >= 0){
+          alert('Username is already taken. Please try again with a different username.');
         }
-      }
-      fetch("/api/insert", options); 
-
-      window.location.href = "/";
-      }
+        else{
+          if(type === "admin" && adminCode != "cs316") {
+            alert('Incorrect Admin Code. Please Enter a Valid Code.');
+          } else {
+          var user = {
+            username: username,
+            pwd: pwd, 
+            type: type
+          };
+          var options = {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+          }
+          fetch("/api/insert", options); 
+    
+          window.location.href = "/";
+          }
+        }
+      });   
+      
     };
 
     function displayCode() {
