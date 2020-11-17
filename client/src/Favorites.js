@@ -63,7 +63,7 @@ function Favorites() {
                   <br />
                   <button className = "newb" onClick={() => {unfavorite(val.movieid, userid)}}> Unfavorite </button> 
                   {' '}
-                  <button className = "newb" onClick={() => {watched(val.movieid, userid)}}> Watched </button>
+                  <button className = "newb" onClick={() => {unwatched(val.movieid, userid)}}> Not Yet Watched </button>
               </p>
               );
             } 
@@ -82,7 +82,7 @@ function Favorites() {
                   <br />
                   <button className = "newb" onClick={() => {unfavorite(val.movieid, userid)}}> Unfavorite </button> 
                   {' '}
-                  <button className = "newb" onClick={() => {unwatched(val.movieid, userid)}}> Not Yet Watched </button>
+                  <button className = "newb" onClick={() => {watched(val.movieid, userid)}}> Watched </button>
               </p>
               );
             }
