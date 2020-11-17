@@ -238,7 +238,6 @@ return (
       else {
         x = val.poster;
       }
-      
 
       if (reviewexists === undefined || reviewexists.length === 0){
         return (

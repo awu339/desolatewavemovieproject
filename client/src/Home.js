@@ -106,7 +106,7 @@ function Home() {
                 <div className = "left">
                   <Link to={{ 
                     pathname: "/MoviePage", 
-                    state: [{userid: userid, movieid: movie.movieid, watched: 1}]  
+                    state: [{userid: userid, movieid: movie.movieid}]  
                     }}> 
                     <img className="movie-img" src={movie.poster} alt="poster"/> 
                   </Link>
@@ -128,7 +128,7 @@ function Home() {
                     <div className = "left">
                       <Link to={{ 
                         pathname: "/MoviePage", 
-                        state: [{userid: userid, movieid: movie.movieid, watched: 1}]  
+                        state: [{userid: userid, movieid: movie.movieid}]  
                         }}> 
                         <img className="icon-img" src={image} alt={movie.name}/>
                       </Link>
@@ -145,7 +145,7 @@ function Home() {
                     <div className = "left">
                       <Link to={{ 
                         pathname: "/MoviePage", 
-                        state: [{userid: userid, movieid: movie.movieid, watched: 1}]  
+                        state: [{userid: userid, movieid: movie.movieid}]  
                         }}> 
                         <img className="movie-img" src={movie.poster} alt={movie.name}/>
                       </Link>
