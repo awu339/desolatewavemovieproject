@@ -172,7 +172,7 @@ function Search() {
                       pathname: "/MoviePage", 
                       state: [{userid: userid, movieid: val.movieid, watched: 1}]  
                       }}> 
-                      <img className="icon-img" src={image} alt="poster"/>
+                      <img className="movie-img" src={image} alt="poster"/>
                     </Link>
                     
                     <span className="movie-text">

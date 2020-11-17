@@ -221,14 +221,14 @@ h1 {
 }
 
 .scroll2 {
-  height: 900px;
-  width: 40%;
+  height: 800px;
+  width: 50%;
   margin: 20px;
   padding: 20px;
   overflow-y: auto;
 
-  border-radius: 5px;
-  background: lightgray;
+  border-radius: 10px;
+  background: whitesmoke;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
