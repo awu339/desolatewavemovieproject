@@ -60,6 +60,7 @@ function Home() {
         </p>
         );
       })}
+      <div className = "search">
       <Grid>
         <Row>
           <Col className = "scroll2">
@@ -160,6 +161,7 @@ function Home() {
           </Col>
         </Row>
       </Grid>
+      </div>
     </div>
   );
 }
