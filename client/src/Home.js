@@ -17,19 +17,23 @@ function Home() {
   const [profileInfo, setProfileInfo] = useState([]);
 
   useEffect(() => {
+    document.getElementById("loading1").classList.remove("invisible");
     fetch("/api/gettopmovies")
     .then(response => response.json())
     .then(data => {
       setTopMovies(data);
       setNumber(10);
+      document.getElementById("loading1").classList.add("invisible");
     }); 
   }, []);
 
   useEffect(() => {
+    document.getElementById("loading2").classList.remove("invisible");
     fetch("/api/getrecentmovies")
     .then(response => response.json())
     .then(data => {
       setRecentMovies(data);
+      document.getElementById("loading2").classList.add("invisible");
     }); 
   }, []);
 
@@ -83,6 +87,10 @@ function Home() {
             />
           </div>
 
+          <div id = "loading1" className = "invisible">
+              Loading...
+          </div>
+
           {topMovies.slice(0,number).map((movie) => {
             if(movie.poster == "N/A"){
               return (
@@ -122,6 +130,11 @@ function Home() {
           </Col>
           <Col className = "scroll2">
             <h2>Recently Released Movies</h2>
+
+            <div id = "loading2" className = "invisible">
+              Loading...
+             </div>
+
               {recentMovies.map((movie) => {
                 if(movie.poster == "N/A") {
                   return (
